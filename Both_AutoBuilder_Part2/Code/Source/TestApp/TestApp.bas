@@ -1,0 +1,8 @@
+#COMPILE EXE
+#DIM ALL
+
+FUNCTION PBMAIN () AS LONG
+    bla
+    STDOUT "do nothing"
+    WAITKEY$
+END FUNCTION

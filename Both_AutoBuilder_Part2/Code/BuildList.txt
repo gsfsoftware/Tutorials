@@ -1,0 +1,8 @@
+' AutoBuild project list
+'
+'Folder Name     |Type |File name                     |Delivers
+CommandLine      |PBCC |CommandLine.bas               |CommandLine.exe  
+GameOfLife       |PBCC |GameOfLife.bas                |GameOfLife.exe
+TestApp          |PBCC |TestApp.bas                   |TestApp.exe
+ScreenMetrics    |PBWIN|ScreenMetrics.bas             |ScreenMetrics.exe 
+WebCGIapp_new    |PBCC |WebCGIapp.bas                 |PBCGI_apptest.exe
