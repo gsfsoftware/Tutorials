@@ -1,0 +1,21 @@
+REM build on the command line
+
+REM set up virtual folders
+REM subst Y: "D:\Youtube\PowerBasic\Both_AutoBuilder\Code"
+REM subst X: "E:\PowerBasic\PBCC60\WinAPI"
+
+echo "Building TestApp"
+CD "Y:\Source\TestApp"
+"E:\PowerBasic\PBCC60\bin\PBCC.exe" /L"TestApp" /Q /I"X:\";"Y:\Source\TestApp\TestApp.bas"
+
+echo "Building Commandline"
+CD "Y:\Source\CommandLine"
+"E:\PowerBasic\PBCC60\BIN\PBCC.exe" /L"CommandLine" /Q /I"X:\";"Y:\Source\CommandLine\CommandLine.bas" 
+
+echo "Building Game of life"
+CD "Y:\Source\GameOfLife"
+"E:\PowerBasic\PBCC60\BIN\PBCC.exe" /L"GameOfLife" /Q /I"X:\";"Y:\Source\GameOfLife\GameOfLife.bas" 
+
+echo "Building WebCGI app"
+CD "Y:\Source\WebCGIapp"
+"E:\PowerBasic\PBCC60\BIN\PBCC.exe" /L"PB_CGIsub_showDataResults" /Q /I"X:\";"Y:\Source\GameOfLife\PB_CGIsub_showDataResults.bas" 
