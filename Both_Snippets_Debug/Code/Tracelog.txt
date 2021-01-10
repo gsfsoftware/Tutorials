@@ -1,0 +1,45 @@
+Trace Begins...
+Reading the file into the array
+ FUNREADTHEFILEINTOANARRAY("D:\Youtube\PowerBasic\Both_Snippets_Debug\Prepwork\MyFile.csv",1703316)
+ FUNREADTHEFILEINTOANARRAY Exit
+ FUNLOG("FirstName,Surname,Address,Telephone")
+ FUNLOG Exit
+ FUNLOG("John,Smith,"14 Any Street, Any Town",0555 0145 7000")
+ FUNLOG Exit
+ FUNLOG("Jane,Jones,"15 Any Road, New Town",0555 0146 7010")
+ FUNLOG Exit
+ FUNLOG("Emma,Kane,"3a Tower Hamlet, Jonesville",0556 0146 7010")
+ FUNLOG Exit
+ FUNLOG("Sam,McGreggor,"146 Main Street, Hopetown",0557 0146 7010")
+ FUNLOG Exit
+ FUNLOG("Susan,O'Leary,"10 Any Street, Any Town",0558 0146 7011")
+ FUNLOG Exit
+ FUNLOG("Fingal,MacDonald,"12 Any Avenue, Any Town",0559 0146 7013")
+ FUNLOG Exit
+ FUNLOG("Tom,Baker,"1 Any Street, Any Town",0440 0146 7012")
+ FUNLOG Exit
+ FUNLOG("Samuel,Finch,"40 Any Street, Any Town",0561 0146 7015")
+ FUNLOG Exit
+now Sorting
+ FUNLOG("<0D><0A>Sorted")
+ FUNLOG Exit
+ FUNLOG("FirstName,Surname,Address,Telephone")
+ FUNLOG Exit
+ FUNLOG("Tom,Baker,"1 Any Street, Any Town",0440 0146 7012")
+ FUNLOG Exit
+ FUNLOG("Samuel,Finch,"40 Any Street, Any Town",0561 0146 7015")
+ FUNLOG Exit
+ FUNLOG("Jane,Jones,"15 Any Road, New Town",0555 0146 7010")
+ FUNLOG Exit
+ FUNLOG("Emma,Kane,"3a Tower Hamlet, Jonesville",0556 0146 7010")
+ FUNLOG Exit
+ FUNLOG("Fingal,MacDonald,"12 Any Avenue, Any Town",0559 0146 7013")
+ FUNLOG Exit
+ FUNLOG("Sam,McGreggor,"146 Main Street, Hopetown",0557 0146 7010")
+ FUNLOG Exit
+ FUNLOG("Susan,O'Leary,"10 Any Street, Any Town",0558 0146 7011")
+ FUNLOG Exit
+ FUNLOG("John,Smith,"14 Any Street, Any Town",0555 0145 7000")
+ FUNLOG Exit
+ FUNWAIT()
+ FUNWAIT Exit
