@@ -1,0 +1,8 @@
+0067Samuel                                            Finch                                             40 Any Street, Any Town                                                                             0561 0146 7015
+0132Tom                                               Baker                                             1 Any Street, Any Town                                                                              0440 0146 7012
+0234Susan                                             O'Leary                                           10 Any Street, Any Town                                                                             0558 0146 7011
+0600Sam                                               McGreggor                                         126 Main Crescent, Hopetown                                                                         0570 0946 7020
+1156Jane                                              Jones                                             15 Any Road, New Town                                                                               0555 0146 7010
+1287Emma                                              Kane                                              3a Tower Hamlet, Jonesville                                                                         0556 0146 7010
+1300Fred                                              Smith                                             12 Any Place,Any City                                                                               0555 0123 6000
+7121Fingal                                            MacDonald                                         12 Any Avenue, Any Town                                                                             0559 0146 7013
