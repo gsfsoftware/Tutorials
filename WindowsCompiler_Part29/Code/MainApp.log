@@ -1,0 +1,22 @@
+PowerBASIC 10 for Windows
+Copyright (c) 1996-2011 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Primary source:  D:\GIT_Rep2\Youtube\PowerBasic\WindowsCompiler_Part29\Code\MainApp.bas   {50 total lines}
+Target compilation:  MainApp.EXE
+Compile time:  0.1 seconds, at 60000 lines/minute
+
+896 bytes compiled code, 3512 bytes RTLibrary,
+200 bytes string literals, and 2852 bytes dgroup.
+Executable stack size:  1048576 bytes.
+Disk image: 7680 bytes   Memory image: 6564 bytes.
+
+Component Files:
+----------------
+D:\GIT_Rep2\Youtube\PowerBasic\WindowsCompiler_Part29\Code\MainApp.bas
+
+
+Code Extracted:
+---------------
+<NONE>
