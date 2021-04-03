@@ -1,0 +1,1 @@
+GenericBarChartGenerator.exe /FileNamePath#"D:\GIT_Rep2\Youtube\PowerBasic\3rdParty_RMChart_BarChart\Code\Chart3.png" /LEGEND#"Console users*Windows users*Both*Other" /DATA#"55|40|5|160" /TITLE#"PB Windows v Console users."
