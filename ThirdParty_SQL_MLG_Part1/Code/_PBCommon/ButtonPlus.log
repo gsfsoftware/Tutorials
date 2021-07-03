@@ -1,0 +1,7 @@
+PowerBASIC 10 for Windows
+Copyright (c) 1996-2011 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Error 493 in D:\Youtube\PowerBasic\3rdParty_SQL_MLG_Part1\PreWork\CDEF_Config\_PBCommon\ButtonPlus.bas(13:010):  Compiler file not found/accessible
+  Line 13: #INCLUDE "_PBCommon\ButtonPlus.inc"  
