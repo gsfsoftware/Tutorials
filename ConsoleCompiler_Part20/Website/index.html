@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META CHARSET="utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1">
+<TITLE>Welcome to the CGI Test Web Server</TITLE>
+<link rel="stylesheet" type="text/css" href="../CSS/am.css" />
+</HEAD>
+
+<script type="text/javascript">
+<!--
+
+function SearchDataDB() {
+var Chosen=document.getElementById("searchData").value 
+
+  loadDynamicRequest("/CGI_BIN/PB_CGIsub_showDataResults.exe?t=" + Math.random() + "&N=" + Chosen,function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("LineManagerDiv").innerHTML=xmlhttp.responseText;
+    }
+   });
+}
+
+
+function loadDynamicRequest(url,cfunc)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+   }
+xmlhttp.onreadystatechange=cfunc;
+xmlhttp.open("GET",url,true);
+
+xmlhttp.send();
+
+}
+
+// -->
+</script>
+
+<body>
+<table bgcolor="#006699" width="90%">
+<tr >
+<td width="90%"> <font color="#FFFFFF"><h1>PowerBasic CGI Tester</h1></td>
+<td width="10%"><img src="../Graphics/Logo.png" width="97" height="59" alt=""></td>
+</tr>
+</table>
+
+<p>
+<a href="/CGI_BIN/PBCGI_Testapp1.exe?Test">Run the FIRST CGI App</a>
+</p>
+
+
+Enter Eye colour to be searched for<br>
+<input type="text" 
+size="20" name="searchData" id="searchData" value="" 
+onkeypress="if (event.keyCode == 13) document.getElementById('btnSearchData').click()"/>
+
+<input type="button" id ="btnSearchData" onclick="SearchDataDB()" value="Search for Data" />
+
+<div id="LineManagerDiv">
+  <p> data will appear here</p>
+</div>
+
+<hr>
+<CENTER>
+<P CLASS="footer">
+Abyss Web Server - 
+Copyright &#169; 2001-2019 <A HREF="http://www.aprelium.com" >Aprelium</A> - All rights reserved
+</P>
+<P CLASS="footer">
+<A HREF="http://www.aprelium.com" ><IMG SRC="../Graphics/pwrabyss.gif" ALT="Powered by Abyss Web Server" TITLE="Powered by Abyss Web Server" BORDER="0" WIDTH="88" HEIGHT="31"></A>
+</P>
+</CENTER>
+</BODY></HTML>
