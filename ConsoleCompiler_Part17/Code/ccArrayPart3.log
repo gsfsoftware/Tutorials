@@ -1,0 +1,25 @@
+PowerBASIC 6 Console Compiler
+Copyright (c) 1998-2012 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Primary source:  D:\GIP_Rep1\Youtube\PowerBasic\ConsoleCompiler_Part17\Code\ccArrayPart3.bas   {165 total lines}
+Target compilation:  ccArrayPart3.EXE
+Compile time:  0.1 seconds, at 198000 lines/minute
+
+6592 bytes compiled code, 56956 bytes RTLibrary,
+400 bytes string literals, and 3184 bytes dgroup.
+Executable stack size:  1048576 bytes.
+Disk image: 73216 bytes   Memory image: 60540 bytes.
+
+Component Files:
+----------------
+D:\GIP_Rep1\Youtube\PowerBasic\ConsoleCompiler_Part17\Code\ccArrayPart3.bas
+D:\GIP_REP1\YOUTUBE\POWERBASIC\CONSOLECOMPILER_PART17\LIBRARIES\MACROS.INC
+D:\GIP_REP1\YOUTUBE\POWERBASIC\CONSOLECOMPILER_PART17\LIBRARIES\DEMOCLASS.INC
+<UNIT> PB_RANDOMROUTINES_SLL
+
+
+Code Extracted:
+---------------
+<NONE>
