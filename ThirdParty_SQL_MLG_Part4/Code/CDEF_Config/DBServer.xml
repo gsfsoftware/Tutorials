@@ -1,0 +1,9 @@
+<DBServer>
+   <Version>1.0</Version>
+   <Organisation>GSF Software</Organisation>
+   <LiveSQLServerName>quad001\sqlexpress</LiveSQLServerName>
+   <SQLServer>quad001\sqlexpress</SQLServer>
+   <SQLDBDatabase>MLG_Demo</SQLDBDatabase>
+   <WebServer>quad001</WebServer>
+   <SystemActive>true</SystemActive>
+</DBServer>
