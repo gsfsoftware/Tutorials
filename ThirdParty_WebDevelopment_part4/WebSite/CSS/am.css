@@ -1,0 +1,34 @@
+body {
+   background-color: #ffffff;
+   font-family:Helvetica, Arial, sans-serif;
+   }
+
+table {
+  border-collapse: collapse;
+  
+ }
+
+table td, th {
+  padding: 10px;
+}
+
+.TableList, .TableList th, .TableList td {
+ border: 1px solid #99ccff;
+}
+
+.TableWidth {
+  width:90%;
+}
+
+.TableListHeader {
+  background-color: #006699;
+  color: white;
+}
+
+.NewBandingOdd {
+  background-color: #cce0ff;
+  }
+
+.NewBandingEven {
+  background-color: #ffffff;
+  }
