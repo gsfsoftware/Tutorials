@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN">
+<html>
+
+<head>
+<title>Demo Reports</title>
+<link href="../css/am.css" rel="stylesheet">
+<META HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
+</head>
+
+<body>
+<table bgcolor="#006699" width="90%">
+<tr >
+<td width="90%"> <font color="#FFFFFF"><h1>Demo Reports</h1></td>
+<td width="10%"><img src="../Graphics/Logo.png" width="116" height="58" alt=""></td>
+</tr>
+</table>
+
+<p>
+@@@DATA@@@
+</p>
+
+</body>
+</html>
+
