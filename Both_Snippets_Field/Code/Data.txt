@@ -1,0 +1,4 @@
+George              Smith               26/10/1990Blue 
+Susan               Zane                02/12/1995Brown
+Jane                Jones               01/01/1994Hazel
+James               Robertson           13/06/1993Green
