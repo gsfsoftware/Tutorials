@@ -1,0 +1,14 @@
+This was our RC2014 mini at the end of the last video in which we added the Compact flash board giving us access to CPM and storage.
+
+Today we are going to add a RC2014 Pi Pico VGA Terminal board. This will allow us to have Z80 system that is fully stand alone giving us the ability to connect both VGA monitor and USB keyboard. It comes in two varieties for either the standard or enhanced bus in enviromental packaging.
+
+There aren't a large amount of components to solder, but it does include a PI Pico board which is surface mounted. The board is well labelled for the components but if you are unsure about the resistor values a multimeter that can tell you the value of a resistor is always useful.
+
+If you're looking to assemble this board you probably have some experiance of soldering components from previous projects. But generally I use a frame to hold the board and start with the lowest profile components first. Always taking time to ensure I don't inadvertantly solder together two parts of the board that should stay separate.
+
+Soldering the PI Pico as a surface mount does take a little more care but securing the PI Pico first with a couple of resistor offcut wires does give you a way to hold it in place until you have a few solder joints completed. 
+
+The PI Pico comes with software already installed, however the documentation on the web site does tell you how to update this to a later build of either the monochrome or colour firmware. I'll put a link to these instructions in the description below.
+
+As the graphics board outputs to VGA and my video recording card only does HDMI, I've resorted to a VGA to HDMI converter for the purposes of recording this video.
+
