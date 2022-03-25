@@ -1,0 +1,4 @@
+Forename|Surname|Account|Balance
+John|Smith|100001|90.56
+Jill|Jones|100002|145.50
+Tom|Robertson|100003|2001.00
