@@ -1,0 +1,5 @@
+Forename|Surname|Account|Balance|Dept|Email
+John|Smith|100001|90.56|HR|John.Smith@Company.com
+Jill|Jones|100002|145.50|Marketing|Jill.Jones@Company.com
+Tom|Robertson|100003|2001.00|IT|Tom.Robertson@Company.com
+Julie|Gold|100004|356.75|Facilities|Julie.Gold@Company.com
