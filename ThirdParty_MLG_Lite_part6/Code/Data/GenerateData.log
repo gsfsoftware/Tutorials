@@ -1,0 +1,40 @@
+PowerBASIC 10 for Windows
+Copyright (c) 1996-2011 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Primary source:  D:\Youtube\PowerBasic\3rdParty_MLG_Lite_part3\Code\Data\GenerateData.bas   {651 total lines}
+Target compilation:  GenerateData.EXE
+Compile time:  0.1 seconds, at 781200 lines/minute
+
+4048 bytes compiled code, 46608 bytes RTLibrary,
+460 bytes string literals, and 3244 bytes dgroup.
+Executable stack size:  1048576 bytes.
+Disk image: 58368 bytes   Memory image: 50312 bytes.
+
+Component Files:
+----------------
+D:\Youtube\PowerBasic\3rdParty_MLG_Lite_part3\Code\Data\GenerateData.bas
+D:\YOUTUBE\POWERBASIC\3RDPARTY_MLG_LITE_PART3\LIBRARIES\PB_FILEHANDLINGROUTINES.INC
+D:\YOUTUBE\POWERBASIC\3RDPARTY_MLG_LITE_PART3\LIBRARIES\PB_RANDOMROUTINES.INC
+
+
+Code Extracted:
+---------------
+FUNBINARYFILEASSTRING
+FUNBINARYSTRINGSAVEASFILE
+FUNARRAYDUMP
+FUNREADTHECSVFILEINTOANARRAY
+FUNREADTHEFILEINTOANARRAY
+FUNREADTHEFILEANDOUTPUT
+FUNREADTHEFILE
+FUNGETROWCOUNT
+FUNSTARTRANGEPARSE
+FUNPARSEFIND
+FUNGETTELEPHONE
+FUNSTREETNUMBER
+FUNGETAGE
+FUNADDDAYS
+FUNGETEMAIL
+FUNGENERATEDOB
+FUNGENERATEPOSTCODE
