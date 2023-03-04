@@ -1,0 +1,22 @@
+PowerBASIC 6 Console Compiler
+Copyright (c) 1998-2012 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Primary source:  D:\Youtube\PowerBasic\Both_Libraries_AdvancedLibraries\Prework\SLLs\RandomLib\PB_RandomRoutines_SLL.bas   {84 total lines}
+Target compilation:  PB_RandomRoutines_SLL.sll
+Compile time:  0.1 seconds, at 100800 lines/minute
+
+1216 bytes compiled code, 0 bytes RTLibrary,
+44 bytes string literals, and 2752 bytes dgroup.
+Executable stack size:  1048576 bytes.
+Disk image: 0 bytes   Memory image: 2796 bytes.
+
+Component Files:
+----------------
+D:\Youtube\PowerBasic\Both_Libraries_AdvancedLibraries\Prework\SLLs\RandomLib\PB_RandomRoutines_SLL.bas
+
+
+Code Extracted:
+---------------
+<NONE>

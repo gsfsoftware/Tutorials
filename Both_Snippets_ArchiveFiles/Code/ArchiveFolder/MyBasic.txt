@@ -1,0 +1,16 @@
+XTal Basic
+NewBrain Basic
+BASIC (for CP/M)
+GWBASIC
+MS BASIC
+QuickBasic
+ST Basic
+AmigaBasic
+STOS Basic
+Fast Basic
+Visual Basic 
+Visual BASIC for Applications (VBA)
+BasicScript (VBScript)
+Visual Basic .NET
+GFA Basic
+PowerBasic

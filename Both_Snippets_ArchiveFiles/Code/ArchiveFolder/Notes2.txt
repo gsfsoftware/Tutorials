@@ -1,0 +1,16 @@
+
+LOCAL LVData AS NM_ListView
+STATIC SortDirection AS LONG   
+
+CASE %LVN_COLUMNCLICK
+'
+   TYPE SET LVData = CB.NMHDR$(SIZEOF(LVData))
+   SortDirection = SortDirection XOR 1
+   '
+   IF SortDirection THEN
+     LISTVIEW SORT CB.HNDL, %idc_lvDataGrid, _
+                  LVData.iSubItem+1, ASCEND
+   ELSE
+     LISTVIEW SORT CB.HNDL, %idc_lvDataGrid, _
+                  LVData.iSubItem+1, DESCEND
+  END IF

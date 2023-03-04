@@ -1,0 +1,7 @@
+00:00 - Introduction
+00:48 - Adding a remote repository to SmartGit
+01:43 - Setting up SmartGits password store
+02:04 - Deciding on GitHub authentication
+03:33 - Adding GitHub authenticaion to SmartGit
+04:09 - Pushing local changes to GitHub
+05:42 - Summary

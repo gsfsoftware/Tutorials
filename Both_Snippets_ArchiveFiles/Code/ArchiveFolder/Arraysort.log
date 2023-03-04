@@ -1,0 +1,22 @@
+PowerBASIC 6 Console Compiler
+Copyright (c) 1998-2012 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Primary source:  D:\Youtube\PowerBasic\Temp\Arraysort.bas   {29 total lines}
+Target compilation:  Arraysort.EXE
+Compile time:  0.1 seconds, at 34800 lines/minute
+
+1072 bytes compiled code, 17408 bytes RTLibrary,
+72 bytes string literals, and 2736 bytes dgroup.
+Executable stack size:  1048576 bytes.
+Disk image: 23040 bytes   Memory image: 20216 bytes.
+
+Component Files:
+----------------
+D:\Youtube\PowerBasic\Temp\Arraysort.bas
+
+
+Code Extracted:
+---------------
+<NONE>

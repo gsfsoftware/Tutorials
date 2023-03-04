@@ -1,0 +1,22 @@
+PowerBASIC 6 Console Compiler
+Copyright (c) 1998-2012 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Primary source:  D:\GIP_Rep1\Youtube\PowerBasic\ConsoleCompiler_Part15\Prepwork\ccArray.bas   {87 total lines}
+Target compilation:  ccArray.EXE
+Compile time:  0.1 seconds, at 104400 lines/minute
+
+1296 bytes compiled code, 19296 bytes RTLibrary,
+64 bytes string literals, and 2728 bytes dgroup.
+Executable stack size:  1048576 bytes.
+Disk image: 25600 bytes   Memory image: 22088 bytes.
+
+Component Files:
+----------------
+D:\GIP_Rep1\Youtube\PowerBasic\ConsoleCompiler_Part15\Prepwork\ccArray.bas
+
+
+Code Extracted:
+---------------
+SUBFILL_NAME
