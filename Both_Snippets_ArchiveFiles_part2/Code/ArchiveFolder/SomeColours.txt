@@ -1,0 +1,8 @@
+Some Colours
+%ColorRed=&HFFFF0000
+%ColorSienna=&HFFA0522D
+%ColorDarkOrchid=&HFF9932CC
+%ColorPlum=&HFFDDA0DD
+%ColorPowderBlue=&HFFB0E0E
+%ColorPaleGoldenrod=&HFFEEE8AA
+%ColorOceanGreen=&HFF669999

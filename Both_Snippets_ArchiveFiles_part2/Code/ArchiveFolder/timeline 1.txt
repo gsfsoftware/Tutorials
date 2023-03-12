@@ -1,0 +1,5 @@
+00:00 - Introduction
+00:38 - The Graphics files
+01:23 - Graphic control or window?
+03:51 - Populating the Graphics control
+13:51 - Summary

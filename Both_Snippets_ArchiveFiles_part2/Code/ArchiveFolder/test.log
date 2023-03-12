@@ -1,0 +1,7 @@
+PowerBASIC 10 for Windows
+Copyright (c) 1996-2011 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Error 460 in D:\GIT_Rep2\Youtube\PowerBasic\WindowsCompiler_Part19\Prepwork\test.bas(107:065):  Undefined equate
+  Line 107:   ASSIGNACCEL tAccel(1), ASC("L"), %IDM_FILE_LOAD, %FVIRTKEY OR %FCTRL OR _  

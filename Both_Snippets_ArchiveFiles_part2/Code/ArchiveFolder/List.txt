@@ -1,0 +1,14 @@
+ Volume in drive D is Octal Storage
+ Volume Serial Number is 9CFB-0558
+
+ Directory of D:\GIT_Rep2\Youtube\PowerBasic\Both_Shell\Prepwork
+
+23/02/2020  11:29    <DIR>          .
+23/02/2020  11:29    <DIR>          ..
+23/02/2020  11:26               639 Backup.Shell.bas
+23/02/2020  11:29                 0 List.txt
+23/02/2020  11:29               718 Shell.bas
+23/02/2020  11:29            18,944 Shell.EXE
+23/02/2020  11:29            14,262 Shell.log
+               5 File(s)         34,563 bytes
+               2 Dir(s)  3,615,596,498,944 bytes free

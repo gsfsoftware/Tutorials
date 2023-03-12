@@ -1,0 +1,7 @@
+PowerBASIC 6 Console Compiler
+Copyright (c) 1998-2012 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Error 477 in D:\GIT_REP2\YOUTUBE\POWERBASIC\BOTH_OFFICE_EXCEL_PART_5\PREWORK\PB_EXCEL_FUNCTIONS.INC(34:055):  Syntax error
+  Line 34:   OBJECT CALL oExcelWorkSheet.Cells(lngRow,lngColumn).Paste ' Special  

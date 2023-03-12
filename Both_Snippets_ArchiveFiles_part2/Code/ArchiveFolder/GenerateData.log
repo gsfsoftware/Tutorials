@@ -1,0 +1,31 @@
+PowerBASIC 6 Console Compiler
+Copyright (c) 1998-2012 PowerBasic Inc.
+Englewood, Florida USA
+All Rights Reserved
+
+Primary source:  D:\Youtube\PowerBasic\Both_Threaded_Search\Prework\Data\GenerateData.bas   {558 total lines}
+Target compilation:  GenerateData.EXE
+Compile time:  0.1 seconds, at 669600 lines/minute
+
+4912 bytes compiled code, 47192 bytes RTLibrary,
+620 bytes string literals, and 3436 bytes dgroup.
+Executable stack size:  1048576 bytes.
+Disk image: 59904 bytes   Memory image: 51248 bytes.
+
+Component Files:
+----------------
+D:\Youtube\PowerBasic\Both_Threaded_Search\Prework\Data\GenerateData.bas
+D:\YOUTUBE\POWERBASIC\BOTH_THREADED_SEARCH\LIBRARIES\PB_FILEHANDLINGROUTINES.INC
+D:\YOUTUBE\POWERBASIC\BOTH_THREADED_SEARCH\LIBRARIES\PB_RANDOMROUTINES.INC
+
+
+Code Extracted:
+---------------
+FUNBINARYFILEASSTRING
+FUNBINARYSTRINGSAVEASFILE
+FUNARRAYDUMP
+FUNREADTHECSVFILEINTOANARRAY
+FUNREADTHEFILEINTOANARRAY
+FUNPARSEFIND
+FUNREADTHEFILEANDOUTPUT
+FUNREADTHEFILE
