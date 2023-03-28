@@ -1,0 +1,3 @@
+/DB#"A_YouTubeProjects"
+/Folder#"'E:\Backups\SQL_Backups\"
+/SQLserver#"DISK001\SQLEXPRESS01"
