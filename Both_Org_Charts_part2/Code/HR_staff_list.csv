@@ -1,0 +1,34 @@
+UniqueID,Name,Manager name ,manager UID,Department,Status
+1000,Jonathan Russo,,,Executive,Employed
+1001,Tyler Jordan,Jonathan Russo,1000,IT,Employed
+1002,Summer Marshall,Tyler Jordan,1001,IT,Employed
+1003,Fiona Irwin,Summer Marshall,1002,IT,Employed
+1004,Jack Dawson,Summer Marshall,1002,IT,Employed
+1005,Hamish Luna,Tyler Jordan,1002,IT,Employed
+1006,Calum Pruitt,Hamish Luna,1005,IT,Employed
+1007,Jack Hudson,Calum Pruitt,1006,IT,Employed
+1008,Poppy Ball,Calum Pruitt,1006,Networks,Employed
+1009,Ross Hernandez,Poppy Ball,1008,Networks,Employed
+1010,Jade Maynard,Poppy Ball,1008,Networks,Employed
+1011,Tracy Potts,Poppy Ball,1008,Networks,Employed
+1012,Gary Stanley,Poppy Ball,1008,Networks,Employed
+1013,Iain Hunt,Poppy Ball,1008,Networks,Employed
+1014,Gary Stanley,Calum Pruitt,1006,IT,Employed
+1015,James Castaneda,Tyler Jordan,1001,IT,Employed
+1016,Gordon Buckley,Jonathan Russo,1000,Marketing,Employed
+1017,Jenna Pineda,Gordon Buckley,1016,Marketing,Employed
+1018,Mason Mclean,Gordon Buckley,1016,Marketing,Employed
+1019,Vicky Daniel,Mason Mclean,1018,Marketing,Employed
+1020,Nathan Peck,Mason Mclean,1018,Marketing,Employed
+1021,Jade Maynard,Mason Mclean,1018,Marketing,Employed
+1022,Iona Martin,Mason Mclean,1018,Marketing,Employed
+1023,Taylor Burns,Mason Mclean,1018,Marketing,Employed
+1024,Katrina Kent,Gordon Buckley,1016,Marketing,Employed
+1025,Rosie Rollins,Jonathan Russo,1000,HR,Employed
+1026,Cole Henson,Rosie Rollins,1025,HR,Employed
+1027,Jasmine Galvan,Rosie Rollins,1025,HR,Employed
+1028,Brooke Fuller,Jasmine Galvan,1027,HR,Employed
+1029,Harry Conrad,Rosie Rollins,1025,HR,Employed
+1030,Amanda Ross,Rosie Rollins,1025,HR,Employed
+1031,Jamie Macdonald,Gary Stanley,1014,IT,Employed
+1032,Susan Woods,Gary Stanley,1014,IT,Employed
