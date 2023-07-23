@@ -1,0 +1,12 @@
+Object,Text,x,y,width,height,ID,function,Fieldname
+Title,First Form,0,0,500,300,,CENTER,
+Button,Ok,420,250,50,20,1200,SAVE,"Data\UserData.csv" 
+Button,Exit,20,250,50,20,1201,EXIT,
+Label,Name,20,20,100,10,2000,,
+Text,,20,30,100,10,2001,,Name
+Label,Address,20,43,100,10,2002,,
+Text,,20,53,300,10,2003,,Address  
+Label,Department,20,68,100,10,2004,,
+Dropdownlist,Department.txt,20,78,100,60,2005,SORT,Department
+Label,Skill,140,68,100,10,2006,,
+Listbox,Skill.txt,140,78,100,50,2007,SORT,Skill
