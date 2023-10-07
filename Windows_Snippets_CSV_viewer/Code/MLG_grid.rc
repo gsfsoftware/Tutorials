@@ -1,0 +1,40 @@
+//#PBForms Created v2.01
+//-----------------------------------------------------------------------------
+// The first line in this file is a PB/Forms comment. It
+// should ALWAYS be the first line of the file.  Other
+// PB/Forms comments are placed at the beginning and end
+// of "Named Blocks" of code that should be edited within
+// PB/Forms only.  Do not edit or delete these comments or
+// PB/Forms will not be able to reread the file correctly.
+// See the PB/Forms documentation for more information.
+// Named blocks begin like this:    //#PBFORMS BEGIN ...
+// Named blocks end like this:      //#PBFORMS END ...
+// Feel free to make changes anywhere else in the file.
+//-----------------------------------------------------------------------------
+
+#include "Resource.h"
+
+//-----------------------------------------------------------------------------
+//  ** Constants **
+//-----------------------------------------------------------------------------
+//#PBForms Begin Constants
+#define IDR_IMGFILE1  102
+#define IDR_IMGFILE2  103
+#define IDR_IMGFILE3  104
+//#PBForms End Constants
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+//  ** RC Data **
+//-----------------------------------------------------------------------------
+//#PBForms Begin RCData
+IDR_IMGFILE0  ICON   DISCARDABLE "Grid.ico"
+IDR_IMGFILE1  ICON   DISCARDABLE "TB_New.ico"
+IDR_IMGFILE2  ICON   DISCARDABLE "TB_Open.ico"
+IDR_IMGFILE3  ICON   DISCARDABLE "TB_Save.ico"
+//#PBForms End RCData
+//-----------------------------------------------------------------------------
+
+//#PBForms Begin Manifest
+1 24 XPTheme.xml
+//#PBForms End Manifest
