@@ -1,0 +1,16 @@
+Object,Text,x,y,width,height,ID,function,Fieldname,Mandatory,CharLimit,Tooltips
+Title,First Form,0,0,500,300,,CENTER,,
+Button,Ok,420,250,50,20,1200,SAVE,"Data\UserData.csv",,,"Save the form"
+Button,Exit,20,250,50,20,1201,EXIT,,,,"Exit the Form"
+Label,Name,20,20,100,10,2000,,
+Text,,20,30,100,10,2001,,Name,Yes,,"Enter persons first |and last name"
+Label,Address,20,43,100,10,2002,,,
+Text,,20,53,300,10,2003,,Address,,,"Enter full address"  
+Label,Department,20,68,100,10,2004,,,
+Dropdownlist,Department.txt,20,78,100,60,2005,SORT,Department,Yes,,"Select Department"
+Label,Skill,140,68,100,10,2006,,,
+Listbox,Skill.txt,140,78,100,50,2007,SORT,Skill,,,"Select one Skill"
+Label,Age,20,95,50,10,2008,,,,,""
+Text,,20,105,50,10,2009,NUMBERONLY,Age,,3,"Max 3 characters"
+Label,Start Date,20,130,50,10,2010,,,,,""
+Date,,20,140,50,10,2011,,Start Date,,,"Select the Start Date"
