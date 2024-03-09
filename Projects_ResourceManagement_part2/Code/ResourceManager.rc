@@ -1,0 +1,65 @@
+//#PBForms Created v2.01
+//-----------------------------------------------------------------------------
+// The first line in this file is a PB/Forms comment. It
+// should ALWAYS be the first line of the file.  Other
+// PB/Forms comments are placed at the beginning and end
+// of "Named Blocks" of code that should be edited within
+// PB/Forms only.  Do not edit or delete these comments or
+// PB/Forms will not be able to reread the file correctly.
+// See the PB/Forms documentation for more information.
+// Named blocks begin like this:    //#PBFORMS BEGIN ...
+// Named blocks end like this:      //#PBFORMS END ...
+// Feel free to make changes anywhere else in the file.
+//-----------------------------------------------------------------------------
+
+#include "Resource.h"
+
+//-----------------------------------------------------------------------------
+//  ** Constants **
+//-----------------------------------------------------------------------------
+//#PBForms Begin Constants
+#define IDR_IMGFILE1                    102
+#define IDR_IMGFILE2                    103
+#define IDR_IMGFILE3                    104
+#define IDR_IMGFILE4                    105
+#define IDR_IMGFILE5                    106
+#define IDR_IMGFILE6                    109
+#define IDR_IMGFILE7                    111
+#define IDM_RESOURCE_ADDRESOURCE        2308
+#define IDM_RESOURCE_AMENDARESOURCE     2317
+#define IDM_RESOURCE_DELETEARESOURCE    2318
+//#PBForms End Constants
+//-----------------------------------------------------------------------------
+
+
+
+//-----------------------------------------------------------------------------
+//  ** RC Data **
+//-----------------------------------------------------------------------------
+//#PBForms Begin RCData
+IDR_IMGFILE1    ICON   DISCARDABLE "staff.ico"
+IDR_IMGFILE2    BITMAP DISCARDABLE "logo.bmp"
+IDR_IMGFILE3    ICON   DISCARDABLE "load.ico"
+IDR_IMGFILE4    ICON   DISCARDABLE "save.ico"
+IDR_IMGFILE5    ICON   DISCARDABLE "16_CANCEL.ico"
+IDR_IMGFILE6    ICON   DISCARDABLE "16_OK.ico"
+IDR_IMGFILE7    ICON   DISCARDABLE "db.ico"
+//#PBForms End RCData
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+//  ** String Table **
+//-----------------------------------------------------------------------------
+//#PBForms Begin Strings
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDM_RESOURCE_ADDRESOURCE        "Add a new resource"
+    IDM_RESOURCE_AMENDARESOURCE     "Amend Existing Resource"
+    IDM_RESOURCE_DELETEARESOURCE    "Delete existing resource"
+END
+//#PBForms End Strings
+//-----------------------------------------------------------------------------
+
+//#PBForms Begin Manifest
+1 24 XPTheme.xml
+//#PBForms End Manifest
