@@ -1,0 +1,1352 @@
+1
+01:00:05,166 --> 01:00:07,800
+Welcome. In this series of short videos,
+
+2
+01:00:08,266 --> 01:00:09,683
+we will look at topics for the Power
+
+3
+01:00:09,683 --> 01:00:11,383
+Basic console compiler.
+
+4
+01:00:12,400 --> 01:00:13,633
+Today we will look again
+
+5
+01:00:13,633 --> 01:00:15,883
+at commands for the console.
+
+6
+01:00:17,466 --> 01:00:19,166
+This was our application at
+
+7
+01:00:19,166 --> 01:00:20,683
+the end of the last video.
+
+8
+01:00:21,750 --> 01:00:23,733
+We have created a console application
+
+9
+01:00:23,733 --> 01:00:26,316
+which displays information to
+
+10
+01:00:26,316 --> 01:00:28,216
+the user on the console screen.
+
+11
+01:00:29,016 --> 01:00:31,333
+As you will see from the start of the
+
+12
+01:00:31,333 --> 01:00:33,783
+code, we have two lines of code at the
+
+13
+01:00:33,783 --> 01:00:36,833
+beginning which define two constants, one
+
+14
+01:00:36,833 --> 01:00:38,900
+for rows and one for columns.
+
+15
+01:00:39,816 --> 01:00:41,966
+In the pb_main() function, we make a call
+
+16
+01:00:41,966 --> 01:00:44,166
+to a prep screen function.
+
+17
+01:00:44,916 --> 01:00:46,716
+This one here. This
+
+18
+01:00:46,716 --> 01:00:48,800
+prepares our console for use.
+
+19
+01:00:49,883 --> 01:00:51,383
+As you will see in here, we have a
+
+20
+01:00:51,383 --> 01:00:54,116
+command which sets the size of the screen
+
+21
+01:00:54,116 --> 01:00:56,416
+using the con virtual command.
+
+22
+01:00:57,533 --> 01:01:01,083
+So currently we're set for 25 rows and 80
+
+23
+01:01:01,083 --> 01:01:02,516
+columns, which is the
+
+24
+01:01:02,516 --> 01:01:03,883
+standard console size.
+
+25
+01:01:04,883 --> 01:01:06,433
+The first thing we're going to do today
+
+26
+01:01:06,433 --> 01:01:08,866
+is to increase the size of our console,
+
+27
+01:01:09,583 --> 01:01:12,866
+to go up to 50 rows and 100 columns.
+
+28
+01:01:13,666 --> 01:01:16,033
+If we run the application now without any
+
+29
+01:01:16,033 --> 01:01:19,766
+further changes, we will see it displays
+
+30
+01:01:19,766 --> 01:01:22,066
+quite happily, but you will also see we
+
+31
+01:01:22,066 --> 01:01:22,966
+now have horizontal
+
+32
+01:01:22,966 --> 01:01:24,666
+and vertical scroll bars,
+
+33
+01:01:26,333 --> 01:01:29,366
+which allow us to move up, and down, and
+
+34
+01:01:29,366 --> 01:01:31,283
+left and right on the console.
+
+35
+01:01:31,966 --> 01:01:34,266
+This allows you to set a console up that
+
+36
+01:01:34,266 --> 01:01:37,316
+better suits your application, giving you
+
+37
+01:01:37,316 --> 01:01:39,616
+more flexibility for what you can use the
+
+38
+01:01:39,616 --> 01:01:41,199
+console compiler for.
+
+39
+01:01:41,983 --> 01:01:43,383
+The next thing we're going to change
+
+40
+01:01:43,383 --> 01:01:46,016
+today is the section of code that
+
+41
+01:01:46,016 --> 01:01:47,766
+displays information on
+
+42
+01:01:47,766 --> 01:01:49,066
+the screen to the user.
+
+43
+01:01:49,616 --> 01:01:52,199
+We have this at the moment inside a Do
+
+44
+01:01:52,199 --> 01:01:53,633
+loop. This one here.
+
+45
+01:01:54,416 --> 01:01:55,800
+We're going to take this section of code
+
+46
+01:01:55,800 --> 01:01:58,583
+and move it into its own function, and
+
+47
+01:01:58,583 --> 01:01:59,383
+we're going to call that
+
+48
+01:01:59,383 --> 01:02:00,883
+function display screen.
+
+49
+01:02:01,916 --> 01:02:04,000
+Having these lines of code in its own
+
+50
+01:02:04,000 --> 01:02:05,300
+function will make our PB
+
+51
+01:02:05,300 --> 01:02:06,900
+main function much tidier.
+
+52
+01:02:08,000 --> 01:02:10,216
+And here is the new function with the
+
+53
+01:02:10,216 --> 01:02:11,683
+code just pasted in.
+
+54
+01:02:12,516 --> 01:02:15,483
+First, we clear our console screen, we
+
+55
+01:02:15,483 --> 01:02:18,683
+display the headers, and we jump into the
+
+56
+01:02:18,683 --> 01:02:21,433
+Do loop to display the data on screen.
+
+57
+01:02:22,016 --> 01:02:25,500
+If we run the application now, we will
+
+58
+01:02:25,500 --> 01:02:28,366
+see it behaves exactly as it did before.
+
+59
+01:02:29,183 --> 01:02:31,733
+It runs through the loop, and at the end
+
+60
+01:02:31,733 --> 01:02:32,916
+of the loop, it will
+
+61
+01:02:32,916 --> 01:02:34,266
+terminate the application.
+
+62
+01:02:35,900 --> 01:02:37,599
+Since we have removed that code from our
+
+63
+01:02:37,599 --> 01:02:39,699
+PB main function, there are some declares
+
+64
+01:02:39,699 --> 01:02:41,583
+at the beginning of the function that we
+
+65
+01:02:41,583 --> 01:02:43,500
+no longer need, so we
+
+66
+01:02:43,500 --> 01:02:44,683
+will just take those out.
+
+67
+01:02:45,433 --> 01:02:47,733
+Next, we're going to make use of one of
+
+68
+01:02:47,733 --> 01:02:48,716
+the features of the
+
+69
+01:02:48,716 --> 01:02:50,216
+console within Power Basic.
+
+70
+01:02:51,000 --> 01:02:53,416
+Within Power Basic, you have not one, but
+
+71
+01:02:53,416 --> 01:02:56,966
+eight consoles available, and we can
+
+72
+01:02:56,966 --> 01:02:59,466
+switch quite easily between each console.
+
+73
+01:03:00,283 --> 01:03:02,699
+Only one console can display to the user
+
+74
+01:03:02,699 --> 01:03:05,866
+on screen at any one time, but having
+
+75
+01:03:05,866 --> 01:03:07,866
+these eight separate consoles gives us a
+
+76
+01:03:07,866 --> 01:03:10,066
+great deal of flexibility for how our
+
+77
+01:03:10,066 --> 01:03:11,199
+application operates.
+
+78
+01:03:12,316 --> 01:03:14,616
+In the display screen section, there's a
+
+79
+01:03:14,616 --> 01:03:16,433
+call to a underlying
+
+80
+01:03:16,433 --> 01:03:18,300
+function called display headers.
+
+81
+01:03:19,483 --> 01:03:21,900
+This displays basically a template on
+
+82
+01:03:21,900 --> 01:03:23,483
+screen, which we can use
+
+83
+01:03:23,483 --> 01:03:26,183
+later on. These are the headings.
+
+84
+01:03:27,333 --> 01:03:29,333
+Within Power Basic, the console compiler
+
+85
+01:03:29,333 --> 01:03:31,783
+keeps track of both the active console
+
+86
+01:03:31,783 --> 01:03:34,383
+page and the visible console page.
+
+87
+01:03:35,199 --> 01:03:36,133
+It's important to
+
+88
+01:03:36,133 --> 01:03:37,699
+differentiate between these two.
+
+89
+01:03:38,400 --> 01:03:40,783
+The active page is the page that your
+
+90
+01:03:40,783 --> 01:03:44,133
+commands will write to and read from.
+
+91
+01:03:45,266 --> 01:03:47,516
+The visible page is the page that is
+
+92
+01:03:47,516 --> 01:03:48,716
+visible to the user.
+
+93
+01:03:49,400 --> 01:03:51,599
+And as you can guess, the visible page
+
+94
+01:03:51,599 --> 01:03:53,166
+does not necessarily have to
+
+95
+01:03:53,166 --> 01:03:55,166
+be the same as the active page.
+
+96
+01:03:56,000 --> 01:03:57,400
+So within this function, we're going to
+
+97
+01:03:57,400 --> 01:03:59,683
+set up two local variables, one to keep
+
+98
+01:03:59,683 --> 01:04:02,233
+track of the active page and one to keep
+
+99
+01:04:02,233 --> 01:04:03,316
+track of the visible
+
+100
+01:04:03,316 --> 01:04:04,800
+page for our console.
+
+101
+01:04:05,816 --> 01:04:07,566
+And I'm going to add another local
+
+102
+01:04:07,566 --> 01:04:08,800
+variable called status.
+
+103
+01:04:09,583 --> 01:04:11,633
+This is going to be a static variable.
+
+104
+01:04:12,533 --> 01:04:14,533
+I intend to use one of the console pages
+
+105
+01:04:14,533 --> 01:04:16,833
+as a template so that when the
+
+106
+01:04:16,833 --> 01:04:18,916
+application runs, it will create a
+
+107
+01:04:18,916 --> 01:04:21,533
+template on the eighth console page.
+
+108
+01:04:22,133 --> 01:04:24,483
+That will be used as a template to copy
+
+109
+01:04:24,483 --> 01:04:25,483
+into any of the other
+
+110
+01:04:25,483 --> 01:04:26,983
+pages we wish to use.
+
+111
+01:04:27,949 --> 01:04:29,000
+Therefore, you only have to
+
+112
+01:04:29,000 --> 01:04:30,266
+create this template once.
+
+113
+01:04:31,550 --> 01:04:34,283
+And a single line of code can be used to
+
+114
+01:04:34,283 --> 01:04:37,283
+copy that eighth console page to any
+
+115
+01:04:37,283 --> 01:04:38,666
+other page of the console.
+
+116
+01:04:39,583 --> 01:04:41,416
+And our status variable is going to be
+
+117
+01:04:41,416 --> 01:04:44,083
+used to determine whether we have or
+
+118
+01:04:44,083 --> 01:04:46,166
+haven't yet created that template.
+
+119
+01:04:47,099 --> 01:04:48,633
+So we're going to make use of two
+
+120
+01:04:48,633 --> 01:04:50,116
+additional console commands.
+
+121
+01:04:51,033 --> 01:04:53,466
+Con page active, which can be used to
+
+122
+01:04:53,466 --> 01:04:56,516
+determine what is the active page, and
+
+123
+01:04:56,516 --> 01:04:58,833
+con page visible to determine which is
+
+124
+01:04:58,833 --> 01:05:00,699
+the page that is visible to the user.
+
+125
+01:05:01,466 --> 01:05:03,583
+These will populate these two variables,
+
+126
+01:05:03,983 --> 01:05:05,316
+which we can then test.
+
+127
+01:05:06,400 --> 01:05:08,400
+Testing the value within our status
+
+128
+01:05:08,400 --> 01:05:10,233
+variable will determine whether the
+
+129
+01:05:10,233 --> 01:05:12,366
+template has already been created or not.
+
+130
+01:05:13,316 --> 01:05:15,099
+If the template has already been created,
+
+131
+01:05:15,366 --> 01:05:17,683
+we're going to use a con pcopy command.
+
+132
+01:05:18,416 --> 01:05:20,483
+This will copy from one
+
+133
+01:05:20,483 --> 01:05:22,000
+console window to another.
+
+134
+01:05:23,066 --> 01:05:24,800
+And I'm going to create a new constant in
+
+135
+01:05:24,800 --> 01:05:26,616
+a moment to hold the value 8.
+
+136
+01:05:26,916 --> 01:05:28,316
+That will be template page.
+
+137
+01:05:29,516 --> 01:05:31,666
+So with this single line of code, we are
+
+138
+01:05:31,666 --> 01:05:34,116
+copying the eighth console to the
+
+139
+01:05:34,116 --> 01:05:35,900
+currently active console page.
+
+140
+01:05:36,900 --> 01:05:39,033
+And in order to determine which console
+
+141
+01:05:39,033 --> 01:05:41,099
+page we're actually on, let's print
+
+142
+01:05:41,099 --> 01:05:43,133
+something to the screen so the user can
+
+143
+01:05:43,133 --> 01:05:44,333
+quite easily see which
+
+144
+01:05:44,333 --> 01:05:45,866
+console page is in use.
+
+145
+01:05:46,916 --> 01:05:48,866
+So we will set the location to print to
+
+146
+01:05:48,866 --> 01:05:52,083
+row 1, column 2, and we'll call the print
+
+147
+01:05:52,083 --> 01:05:54,316
+function we created in the last video.
+
+148
+01:05:55,500 --> 01:05:58,383
+This to print the visible page number to
+
+149
+01:05:58,383 --> 01:06:01,583
+the top of the page, in the cyan colour.
+
+150
+01:06:02,633 --> 01:06:03,599
+And once that has completed,
+
+151
+01:06:03,983 --> 01:06:05,300
+we can then exit the function.
+
+152
+01:06:05,983 --> 01:06:08,300
+If the status variable is false, it means
+
+153
+01:06:08,300 --> 01:06:10,316
+our template has not yet been created.
+
+154
+01:06:11,000 --> 01:06:12,833
+So we can use the code that's about to
+
+155
+01:06:12,833 --> 01:06:14,466
+follow this to create
+
+156
+01:06:14,466 --> 01:06:16,183
+our standard template.
+
+157
+01:06:17,183 --> 01:06:18,216
+So we will set the status
+
+158
+01:06:18,216 --> 01:06:19,916
+variable to the value true.
+
+159
+01:06:20,833 --> 01:06:21,916
+And all the code after
+
+160
+01:06:21,916 --> 01:06:23,199
+that we need not change.
+
+161
+01:06:24,000 --> 01:06:26,216
+This will print to whatever the active
+
+162
+01:06:26,216 --> 01:06:27,900
+console page actually is.
+
+163
+01:06:28,783 --> 01:06:30,500
+So at the end of this function, we will
+
+164
+01:06:30,500 --> 01:06:31,666
+copy the active page
+
+165
+01:06:31,666 --> 01:06:32,633
+back to the template.
+
+166
+01:06:33,516 --> 01:06:35,116
+Before we run an application, we'll need
+
+167
+01:06:35,116 --> 01:06:37,083
+to create this new constant, this
+
+168
+01:06:37,083 --> 01:06:38,983
+template page constant at the
+
+169
+01:06:38,983 --> 01:06:40,333
+beginning of our application.
+
+170
+01:06:41,316 --> 01:06:43,133
+And we'll set that to the value 8.
+
+171
+01:06:43,333 --> 01:06:44,783
+So we'll be using the eighth
+
+172
+01:06:44,783 --> 01:06:46,333
+console page as our template.
+
+173
+01:06:47,016 --> 01:06:49,633
+So with the page number now displayed at
+
+174
+01:06:49,633 --> 01:06:52,233
+the beginning of our console page, we can
+
+175
+01:06:52,233 --> 01:06:53,183
+now try running an
+
+176
+01:06:53,183 --> 01:06:55,166
+application to see how it performs.
+
+177
+01:06:57,766 --> 01:06:58,800
+And there we have page 1
+
+178
+01:06:58,800 --> 01:07:00,083
+at the top of the screen.
+
+179
+01:07:02,699 --> 01:07:05,199
+So now that we have this multiple console
+
+180
+01:07:05,199 --> 01:07:07,066
+ability set up within our application,
+
+181
+01:07:07,433 --> 01:07:09,033
+how can we make use of it?
+
+182
+01:07:09,416 --> 01:07:11,416
+So let's go back to our pb_main function.
+
+183
+01:07:12,300 --> 01:07:14,233
+In our pb_main function, we prepare the
+
+184
+01:07:14,233 --> 01:07:15,883
+screen and we display
+
+185
+01:07:15,883 --> 01:07:17,099
+the screen to the user.
+
+186
+01:07:18,000 --> 01:07:19,516
+Next, what we're going to do is we're
+
+187
+01:07:19,516 --> 01:07:20,683
+going to make use of
+
+188
+01:07:20,683 --> 01:07:22,533
+the con scroll commands.
+
+189
+01:07:23,533 --> 01:07:26,116
+This allows you to scroll up, down, left
+
+190
+01:07:26,116 --> 01:07:27,583
+and right on the console.
+
+191
+01:07:28,766 --> 01:07:31,066
+Scrolling up on the console will move the
+
+192
+01:07:31,066 --> 01:07:32,866
+text effectively downwards.
+
+193
+01:07:33,933 --> 01:07:36,166
+So I will put a waitkey command after
+
+194
+01:07:36,166 --> 01:07:38,133
+that so we can still see it on the screen
+
+195
+01:07:38,133 --> 01:07:39,300
+after the application
+
+196
+01:07:39,300 --> 01:07:40,983
+completes that command.
+
+197
+01:07:43,916 --> 01:07:45,800
+We display the information to the user
+
+198
+01:07:45,800 --> 01:07:49,283
+and once that's complete, the console
+
+199
+01:07:49,283 --> 01:07:51,966
+scrolls down by 10 rows.
+
+200
+01:07:52,783 --> 01:07:54,183
+This allows you to move information
+
+201
+01:07:54,183 --> 01:07:57,516
+around on the console, effectively
+
+202
+01:07:57,516 --> 01:07:59,016
+creating a blank area to
+
+203
+01:07:59,016 --> 01:08:00,266
+which you can then write.
+
+204
+01:08:01,333 --> 01:08:03,716
+Even if that area is above information
+
+205
+01:08:03,716 --> 01:08:05,566
+already committed to the console.
+
+206
+01:08:06,266 --> 01:08:07,416
+So we're going to get a little
+
+207
+01:08:07,416 --> 01:08:08,983
+interactive with the console here.
+
+208
+01:08:09,000 --> 01:08:10,333
+I'm going to create
+
+209
+01:08:10,333 --> 01:08:12,116
+three new local variables.
+
+210
+01:08:13,233 --> 01:08:15,199
+One for input, one for
+
+211
+01:08:15,199 --> 01:08:17,800
+page, both string and number.
+
+212
+01:08:18,466 --> 01:08:19,266
+And we're going to be
+
+213
+01:08:19,266 --> 01:08:20,516
+using a Do loop here.
+
+214
+01:08:21,233 --> 01:08:22,600
+So we will first position
+
+215
+01:08:22,600 --> 01:08:25,166
+the cursor at row 2, column 2.
+
+216
+01:08:25,816 --> 01:08:27,166
+We will set the colour to
+
+217
+01:08:27,166 --> 01:08:28,716
+black with a white background.
+
+218
+01:08:29,866 --> 01:08:32,133
+And we will use the con input command to
+
+219
+01:08:32,133 --> 01:08:33,983
+prompt the user for a response.
+
+220
+01:08:34,883 --> 01:08:36,166
+So giving the text, do
+
+221
+01:08:36,166 --> 01:08:37,983
+you wish to exit yes or no?
+
+222
+01:08:38,000 --> 01:08:40,833
+And whatever the user types and then
+
+223
+01:08:40,833 --> 01:08:42,133
+presses enter, we will
+
+224
+01:08:42,133 --> 01:08:43,899
+store into the input variable.
+
+225
+01:08:44,733 --> 01:08:45,833
+This allows you to get
+
+226
+01:08:45,833 --> 01:08:47,266
+interactive with your user.
+
+227
+01:08:48,133 --> 01:08:49,116
+We can then test the
+
+228
+01:08:49,116 --> 01:08:50,883
+value of that input variable.
+
+229
+01:08:51,883 --> 01:08:53,483
+I'm forcing the input variable to
+
+230
+01:08:53,483 --> 01:08:55,300
+uppercase to test to see if
+
+231
+01:08:55,300 --> 01:08:56,733
+the word yes has been given.
+
+232
+01:08:57,883 --> 01:09:00,483
+If it has, we're then exiting our loop.
+
+233
+01:09:01,416 --> 01:09:03,483
+If we're not exiting the loop, I'm going
+
+234
+01:09:03,483 --> 01:09:05,966
+to ask the user to select which page of
+
+235
+01:09:05,966 --> 01:09:06,983
+the console they actually wish.
+
+236
+01:09:07,016 --> 01:09:09,399
+And we'll limit the user
+
+237
+01:09:09,399 --> 01:09:12,616
+to either page 1 or page 2.
+
+238
+01:09:12,733 --> 01:09:15,366
+Again using the con input command to
+
+239
+01:09:15,366 --> 01:09:17,066
+prompt them for an input.
+
+240
+01:09:17,966 --> 01:09:19,199
+And we'll store that in a
+
+241
+01:09:19,199 --> 01:09:20,566
+string variable called page.
+
+242
+01:09:21,883 --> 01:09:23,833
+We can then transfer the value in that
+
+243
+01:09:23,833 --> 01:09:26,100
+string variable to a numeric variable
+
+244
+01:09:26,100 --> 01:09:27,316
+using the VAL command.
+
+245
+01:09:28,433 --> 01:09:31,216
+And we're then testing the value of that
+
+246
+01:09:31,216 --> 01:09:33,600
+page variable to see if
+
+247
+01:09:33,600 --> 01:09:34,983
+it's either value 1 or 2.
+
+248
+01:09:35,016 --> 01:09:38,416
+We're then setting the visible and the
+
+249
+01:09:38,416 --> 01:09:41,100
+active pages using the con page visible
+
+250
+01:09:41,100 --> 01:09:43,433
+and con page active commands.
+
+251
+01:09:44,333 --> 01:09:46,233
+While we're setting both the visible and
+
+252
+01:09:46,233 --> 01:09:48,800
+the active consoles to the same value,
+
+253
+01:09:49,266 --> 01:09:51,733
+you can use these functions to set them
+
+254
+01:09:51,733 --> 01:09:54,316
+to different values if you have different
+
+255
+01:09:54,316 --> 01:09:55,466
+functionality in mind.
+
+256
+01:09:56,133 --> 01:09:57,883
+Now that we've prompted a user for
+
+257
+01:09:57,883 --> 01:09:59,966
+another console number, we can then
+
+258
+01:09:59,966 --> 01:10:00,983
+re-display the screen to the user
+
+259
+01:10:01,000 --> 01:10:03,399
+using our existing
+
+260
+01:10:03,399 --> 01:10:04,800
+display screen function.
+
+261
+01:10:05,783 --> 01:10:07,516
+We're resetting the color back to green
+
+262
+01:10:07,516 --> 01:10:08,566
+with a black background
+
+263
+01:10:08,566 --> 01:10:10,766
+and calling display screen.
+
+264
+01:10:11,633 --> 01:10:13,416
+And then scrolling up 10
+
+265
+01:10:13,416 --> 01:10:16,166
+lines, as we did earlier.
+
+266
+01:10:17,133 --> 01:10:19,833
+So once we exit this loop, we can then,
+
+267
+01:10:19,833 --> 01:10:21,666
+for the purposes of this application,
+
+268
+01:10:22,300 --> 01:10:23,766
+re-display each of the
+
+269
+01:10:23,766 --> 01:10:25,266
+console pages to the user.
+
+270
+01:10:25,783 --> 01:10:27,983
+For example pages 1 and pages 2.
+
+271
+01:10:28,000 --> 01:10:31,233
+In order to do this, all I need to do is
+
+272
+01:10:31,233 --> 01:10:33,699
+to use the con page visible command to
+
+273
+01:10:33,699 --> 01:10:35,500
+set it to the page I wish.
+
+274
+01:10:36,300 --> 01:10:38,100
+And then we're using a waitkey command to
+
+275
+01:10:38,100 --> 01:10:39,833
+allow it to remain on screen so we can
+
+276
+01:10:39,833 --> 01:10:41,783
+see it before going to
+
+277
+01:10:41,783 --> 01:10:43,166
+the next console page.
+
+278
+01:10:44,116 --> 01:10:45,966
+So let's try running our application now
+
+279
+01:10:45,966 --> 01:10:47,066
+and see how it goes.
+
+280
+01:10:49,050 --> 01:10:50,916
+So the application runs and we're
+
+281
+01:10:50,916 --> 01:10:51,566
+displaying the
+
+282
+01:10:51,566 --> 01:10:54,083
+information on page 1 to the user.
+
+283
+01:10:59,416 --> 01:11:01,533
+Once this is completed, we scroll down 10
+
+284
+01:11:01,533 --> 01:11:04,199
+lines and we prompt the user to see
+
+285
+01:11:04,199 --> 01:11:06,399
+whether they wish to exit yes or no.
+
+286
+01:11:07,083 --> 01:11:09,000
+So in this case, let's put the value no
+
+287
+01:11:09,000 --> 01:11:10,616
+in and press the enter button.
+
+288
+01:11:11,733 --> 01:11:12,933
+It's now asking which
+
+289
+01:11:12,933 --> 01:11:14,666
+console page we actually want.
+
+290
+01:11:15,283 --> 01:11:17,300
+We know we're on console page 1, so let's
+
+291
+01:11:17,300 --> 01:11:19,133
+pick console page 2.
+
+292
+01:11:21,550 --> 01:11:22,483
+And it's now displaying
+
+293
+01:11:22,483 --> 01:11:24,383
+console page 2 to the user.
+
+294
+01:11:26,100 --> 01:11:28,083
+And once this has completed, it will
+
+295
+01:11:28,083 --> 01:11:32,083
+again scroll down another 10 lines and
+
+296
+01:11:32,083 --> 01:11:34,633
+ask if you wish to exit yes or no.
+
+297
+01:11:35,416 --> 01:11:36,866
+In this case, we'll say yes.
+
+298
+01:11:40,183 --> 01:11:42,533
+What it has now done is it's re-displayed
+
+299
+01:11:42,533 --> 01:11:45,500
+to us what was on page 1, as
+
+300
+01:11:45,500 --> 01:11:46,666
+you can see from the screen.
+
+301
+01:11:47,333 --> 01:11:50,033
+The last data appearing on page 1 is now
+
+302
+01:11:50,033 --> 01:11:52,966
+visible, including the two prompts at the
+
+303
+01:11:52,966 --> 01:11:53,983
+top of the console page.
+
+304
+01:11:55,000 --> 01:11:55,983
+We're now sitting on
+
+305
+01:11:55,983 --> 01:11:57,016
+the wait key command.
+
+306
+01:11:57,416 --> 01:12:00,716
+If we press the enter button, it will now
+
+307
+01:12:00,716 --> 01:12:02,800
+show us what was in page 2.
+
+308
+01:12:03,666 --> 01:12:05,383
+And if we hit the enter button once more,
+
+309
+01:12:06,216 --> 01:12:08,100
+the application will complete.
+
+310
+01:12:09,833 --> 01:12:12,300
+So in summary, what we've done today is
+
+311
+01:12:12,300 --> 01:12:15,766
+we have extended our console beyond the
+
+312
+01:12:15,766 --> 01:12:18,333
+80 columns and 25 rows,
+
+313
+01:12:19,283 --> 01:12:21,016
+allowing us to have scroll
+
+314
+01:12:21,016 --> 01:12:23,266
+bars, vertical and horizontal.
+
+315
+01:12:24,366 --> 01:12:26,416
+Additionally, we have taken information
+
+316
+01:12:26,416 --> 01:12:29,500
+on our console screen and saved it to a
+
+317
+01:12:29,500 --> 01:12:30,733
+template console screen.
+
+318
+01:12:31,416 --> 01:12:34,399
+And as the console has 8 screens within
+
+319
+01:12:34,399 --> 01:12:36,716
+Power Basic, we can use these quite
+
+320
+01:12:36,716 --> 01:12:38,383
+easily to switch between them,
+
+321
+01:12:38,866 --> 01:12:41,766
+using the visible and active commands.
+
+322
+01:12:42,016 --> 01:12:45,116
+We have displayed information on the
+
+323
+01:12:45,116 --> 01:12:47,399
+first page to the user and asked them
+
+324
+01:12:47,399 --> 01:12:48,783
+whether they wish to continue.
+
+325
+01:12:49,399 --> 01:12:51,366
+If they say yes, we're allowing them to
+
+326
+01:12:51,366 --> 01:12:52,899
+pick another console page.
+
+327
+01:12:53,666 --> 01:12:55,300
+And once this has been completed, when
+
+328
+01:12:55,300 --> 01:12:57,883
+the user decides they wish to exit, then
+
+329
+01:12:57,883 --> 01:13:00,016
+we're showing each page to the user.
+
+330
+01:13:00,483 --> 01:13:03,399
+The ability to have 8 console pages and
+
+331
+01:13:03,399 --> 01:13:05,583
+to allow the user to switch between them,
+
+332
+01:13:06,133 --> 01:13:08,533
+and also to copy information from one to
+
+333
+01:13:08,533 --> 01:13:10,783
+the other, gives you a great deal of
+
+334
+01:13:10,783 --> 01:13:12,933
+flexibility in your console applications.
+
+335
+01:13:13,699 --> 01:13:15,533
+Hopefully you'll find this useful in your
+
+336
+01:13:15,533 --> 01:13:17,083
+own applications, but
+
+337
+01:13:17,083 --> 01:13:18,716
+that's it for today.
+
+338
+01:13:19,500 --> 01:13:20,333
+Thank you for watching.
+

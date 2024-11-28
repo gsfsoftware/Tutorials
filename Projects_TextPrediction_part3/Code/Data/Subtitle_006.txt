@@ -1,0 +1,1908 @@
+1
+01:00:04,133 --> 01:00:07,216
+Welcome! In this series of videos we will
+
+2
+01:00:07,216 --> 01:00:08,316
+cover the design and
+
+3
+01:00:08,316 --> 01:00:10,066
+implementation of a project,
+
+4
+01:00:10,616 --> 01:00:12,666
+from initial design through coding and
+
+5
+01:00:12,666 --> 01:00:15,366
+development to testing using the
+
+6
+01:00:15,366 --> 01:00:17,433
+PowerBasic Windows Compiler.
+
+7
+01:00:18,533 --> 01:00:20,866
+Today we will continue our project to
+
+8
+01:00:20,866 --> 01:00:22,816
+create our own web browser,
+
+9
+01:00:23,583 --> 01:00:25,966
+by adding support for hyperlinks on text
+
+10
+01:00:25,966 --> 01:00:27,633
+and other enhancements
+
+11
+01:00:27,633 --> 01:00:29,183
+to the existing code.
+
+12
+01:00:30,883 --> 01:00:32,566
+This was our application at
+
+13
+01:00:32,566 --> 01:00:34,016
+the end of the last video.
+
+14
+01:00:36,000 --> 01:00:38,483
+We have our experimental browser set up
+
+15
+01:00:38,483 --> 01:00:40,833
+so we can display an index page.
+
+16
+01:00:41,666 --> 01:00:44,516
+On our index page we have four graphics.
+
+17
+01:00:45,333 --> 01:00:46,233
+Each of these graphics
+
+18
+01:00:46,233 --> 01:00:47,683
+contains a hyperlink,
+
+19
+01:00:48,866 --> 01:00:51,733
+allowing us to click on the hyperlink and
+
+20
+01:00:51,733 --> 01:00:54,699
+go to a number of underlying pages.
+
+21
+01:00:55,466 --> 01:00:57,216
+What we're going to add today is the
+
+22
+01:00:57,216 --> 01:00:59,666
+ability to have a text hyperlink.
+
+23
+01:01:00,966 --> 01:01:02,983
+I've prepared a second index page to
+
+24
+01:01:02,983 --> 01:01:05,416
+demonstrate how this is going to be used.
+
+25
+01:01:06,183 --> 01:01:08,033
+So in order to see what we're aiming for
+
+26
+01:01:08,033 --> 01:01:10,433
+I'm going to use a chrome browser
+
+27
+01:01:10,783 --> 01:01:12,583
+and we're going to drag this new index
+
+28
+01:01:12,583 --> 01:01:13,933
+page onto that browser.
+
+29
+01:01:16,300 --> 01:01:19,000
+And this is what we're after. The four
+
+30
+01:01:19,000 --> 01:01:20,933
+links as we had before and
+
+31
+01:01:20,933 --> 01:01:23,266
+a text link at the bottom,
+
+32
+01:01:23,866 --> 01:01:25,733
+allowing us to go on to a fifth page.
+
+33
+01:01:26,516 --> 01:01:27,516
+Also as you'll note
+
+34
+01:01:27,516 --> 01:01:28,583
+on the chrome browser,
+
+35
+01:01:28,933 --> 01:01:31,666
+when the mouse moves over one of the
+
+36
+01:01:31,666 --> 01:01:32,683
+underlying hyperlinks,
+
+37
+01:01:33,316 --> 01:01:34,483
+the mouse cursor changes
+
+38
+01:01:34,483 --> 01:01:36,733
+from a pointer to a hand.
+
+39
+01:01:37,500 --> 01:01:38,666
+Regardless of whether it's a
+
+40
+01:01:38,666 --> 01:01:41,099
+graphic or a text hyperlink.
+
+41
+01:01:42,116 --> 01:01:43,316
+We're also going to implement that
+
+42
+01:01:43,316 --> 01:01:45,166
+functionality in our application.
+
+43
+01:01:46,166 --> 01:01:47,966
+But before we do that we're going to fix
+
+44
+01:01:47,966 --> 01:01:49,083
+one bug I've
+
+45
+01:01:49,083 --> 01:01:50,866
+discovered in the existing code.
+
+46
+01:01:51,583 --> 01:01:54,099
+If we go into say for example page four,
+
+47
+01:01:54,733 --> 01:01:58,066
+page four contains text and a graphic.
+
+48
+01:01:58,483 --> 01:02:00,883
+The graphic has no underlying hyperlink.
+
+49
+01:02:01,783 --> 01:02:03,783
+Yet when we go on to the graphic and
+
+50
+01:02:03,783 --> 01:02:06,116
+click on it, it's taking us to page one.
+
+51
+01:02:07,000 --> 01:02:07,966
+The reason for this,
+
+52
+01:02:08,283 --> 01:02:09,433
+as we go onto each page,
+
+53
+01:02:09,800 --> 01:02:12,000
+it's automatically setting up the hot zones
+
+54
+01:02:12,000 --> 01:02:14,199
+for each of these hyperlinks.
+
+55
+01:02:14,983 --> 01:02:16,766
+Designating the x and y coordinates,
+
+56
+01:02:17,133 --> 01:02:18,266
+which contain the zone,
+
+57
+01:02:18,683 --> 01:02:19,599
+which when clicked on
+
+58
+01:02:19,599 --> 01:02:21,033
+will trigger the hyperlink.
+
+59
+01:02:22,016 --> 01:02:23,916
+These hot zones are not being cleared out
+
+60
+01:02:23,916 --> 01:02:25,816
+when we move from one page to the next.
+
+61
+01:02:26,083 --> 01:02:28,599
+So we go to page two and
+
+62
+01:02:28,599 --> 01:02:30,083
+we click up near the top.
+
+63
+01:02:31,400 --> 01:02:32,866
+It will go back to page one.
+
+64
+01:02:34,033 --> 01:02:36,216
+So that's the first bug we need to fix.
+
+65
+01:02:36,866 --> 01:02:38,483
+So let's have a look at our code.
+
+66
+01:02:39,599 --> 01:02:41,516
+There is a function called render the
+
+67
+01:02:41,516 --> 01:02:43,333
+HTML tags, which is triggered
+
+68
+01:02:43,333 --> 01:02:45,716
+each time we load a new page.
+
+69
+01:02:46,566 --> 01:02:48,183
+So this is where we're going to make the
+
+70
+01:02:48,183 --> 01:02:50,283
+one line code change to fix this bug.
+
+71
+01:02:51,283 --> 01:02:52,566
+So here we are now in the
+
+72
+01:02:52,566 --> 01:02:54,316
+render the HTML tags function.
+
+73
+01:02:55,199 --> 01:02:57,483
+So before we step through each of the
+
+74
+01:02:57,483 --> 01:02:58,716
+tags within the HTML,
+
+75
+01:02:59,466 --> 01:03:02,333
+we'll want to reset the contents of the
+
+76
+01:03:02,333 --> 01:03:04,933
+global array, which contains the URLs.
+
+77
+01:03:06,016 --> 01:03:06,883
+We can do this by
+
+78
+01:03:06,883 --> 01:03:08,400
+using the reset command,
+
+79
+01:03:08,766 --> 01:03:09,866
+followed by the name of
+
+80
+01:03:09,866 --> 01:03:11,566
+the array we wish to reset.
+
+81
+01:03:12,550 --> 01:03:14,366
+So if we try running our code now.
+
+82
+01:03:17,733 --> 01:03:18,599
+There is our browser.
+
+83
+01:03:18,616 --> 01:03:26,366
+And if we drag our index onto
+
+84
+01:03:26,366 --> 01:03:30,683
+that and click on page four.
+
+85
+01:03:32,650 --> 01:03:35,766
+And we click on the image it is now no
+
+86
+01:03:35,766 --> 01:03:37,733
+longer linking back to page one.
+
+87
+01:03:38,366 --> 01:03:40,300
+So we have cured the first bug.
+
+88
+01:03:41,233 --> 01:03:44,033
+So let's drag index number two onto this
+
+89
+01:03:44,033 --> 01:03:45,633
+browser and see how it looks.
+
+90
+01:03:46,083 --> 01:03:48,633
+We will see that each of the graphical
+
+91
+01:03:48,633 --> 01:03:50,883
+images is still appearing as normal.
+
+92
+01:03:51,516 --> 01:03:54,266
+However, the text link at the bottom of
+
+93
+01:03:54,266 --> 01:03:57,016
+the page going to a new page five
+
+94
+01:03:57,416 --> 01:03:59,616
+is only appearing as text.
+
+95
+01:04:00,366 --> 01:04:02,183
+This is because we're not handling this
+
+96
+01:04:02,183 --> 01:04:04,416
+particular type of tag just yet.
+
+97
+01:04:05,099 --> 01:04:06,983
+So we've now created a page five that
+
+98
+01:04:06,983 --> 01:04:08,400
+this can actually link to
+
+99
+01:04:08,400 --> 01:04:09,883
+when we get the link working.
+
+100
+01:04:10,466 --> 01:04:12,316
+So let's go back to the code and make the
+
+101
+01:04:12,316 --> 01:04:13,666
+changes to allow us to handle
+
+102
+01:04:13,766 --> 01:04:16,316
+this particular type of text hyperlink.
+
+103
+01:04:17,000 --> 01:04:20,300
+The render the HTML tags function is our
+
+104
+01:04:20,300 --> 01:04:22,900
+engine to handle all HTML tagging.
+
+105
+01:04:23,699 --> 01:04:25,083
+If we look further down on that,
+
+106
+01:04:26,383 --> 01:04:28,000
+we'll see these are all the
+
+107
+01:04:28,000 --> 01:04:29,699
+tags that it currently handles.
+
+108
+01:04:30,633 --> 01:04:33,199
+We are handling the A and the
+
+109
+01:04:33,199 --> 01:04:35,016
+closing A tags at the moment,
+
+110
+01:04:35,416 --> 01:04:37,433
+but we're going to have to add some extra
+
+111
+01:04:37,433 --> 01:04:38,599
+functionality to these
+
+112
+01:04:38,599 --> 01:04:39,916
+to allow it to perform.
+
+113
+01:04:40,816 --> 01:04:41,766
+First of all, we need to
+
+114
+01:04:41,766 --> 01:04:43,500
+get the data inside the tag.
+
+115
+01:04:44,366 --> 01:04:47,066
+As you can see from the index to HTML
+
+116
+01:04:47,066 --> 01:04:50,366
+file, we have here the tag, which is
+
+117
+01:04:50,366 --> 01:04:51,983
+referencing page five.
+
+118
+01:04:52,833 --> 01:04:54,883
+The highlighted portion is already picked
+
+119
+01:04:54,883 --> 01:04:56,500
+up and populated into
+
+120
+01:04:56,500 --> 01:04:57,733
+the attributes variable.
+
+121
+01:04:58,699 --> 01:05:01,066
+However, the go to page five is not
+
+122
+01:05:01,066 --> 01:05:02,066
+currently picked up.
+
+123
+01:05:02,683 --> 01:05:04,733
+But we have a function which can be used
+
+124
+01:05:04,733 --> 01:05:05,833
+to pull that information
+
+125
+01:05:05,833 --> 01:05:08,333
+back called get tag value,
+
+126
+01:05:08,800 --> 01:05:10,599
+which is exactly what we're going to do.
+
+127
+01:05:11,416 --> 01:05:13,333
+So the return from this function will
+
+128
+01:05:13,333 --> 01:05:14,716
+return the text we
+
+129
+01:05:14,716 --> 01:05:15,983
+want to display on screen.
+
+130
+01:05:16,933 --> 01:05:19,033
+So here we need to differentiate between
+
+131
+01:05:19,033 --> 01:05:20,916
+the graphical image,
+
+132
+01:05:21,416 --> 01:05:24,199
+which is within this tag and the text
+
+133
+01:05:24,199 --> 01:05:25,633
+which is within this tag.
+
+134
+01:05:27,066 --> 01:05:28,400
+One easy way to do this is
+
+135
+01:05:28,400 --> 01:05:30,066
+to look for the equals sign.
+
+136
+01:05:30,916 --> 01:05:33,883
+If it contains an equals, then it is a
+
+137
+01:05:33,883 --> 01:05:35,266
+graphical image we're
+
+138
+01:05:35,266 --> 01:05:36,633
+attempting to show to the user.
+
+139
+01:05:37,116 --> 01:05:39,400
+If it does not contain an equals, then
+
+140
+01:05:39,400 --> 01:05:41,683
+it's not an image source, but plain text.
+
+141
+01:05:42,216 --> 01:05:43,433
+So we can test for this by
+
+142
+01:05:43,433 --> 01:05:45,000
+using the in string command.
+
+143
+01:05:45,866 --> 01:05:47,016
+And we're going to set a
+
+144
+01:05:47,016 --> 01:05:49,099
+variable to say image is false.
+
+145
+01:05:50,000 --> 01:05:52,066
+This can be tested elsewhere in the code.
+
+146
+01:05:52,800 --> 01:05:54,033
+Next thing to do is to
+
+147
+01:05:54,033 --> 01:05:56,833
+reset our tag user defined type.
+
+148
+01:05:57,333 --> 01:05:58,683
+So the reset command can
+
+149
+01:05:58,683 --> 01:06:00,199
+reset this user defined type.
+
+150
+01:06:00,566 --> 01:06:03,316
+We're incrementing the URL and we're
+
+151
+01:06:03,316 --> 01:06:05,366
+storing the URL itself
+
+152
+01:06:05,366 --> 01:06:07,583
+in our user defined type,
+
+153
+01:06:08,150 --> 01:06:09,483
+as the URL was picked up
+
+154
+01:06:09,483 --> 01:06:10,783
+previously in the code.
+
+155
+01:06:11,533 --> 01:06:13,216
+So having got this far, we now need to
+
+156
+01:06:13,216 --> 01:06:14,733
+print this text onto
+
+157
+01:06:14,733 --> 01:06:16,266
+the graphical canvas.
+
+158
+01:06:16,866 --> 01:06:18,383
+So as we have a function called print
+
+159
+01:06:18,383 --> 01:06:20,466
+data whose job it is to perform this,
+
+160
+01:06:20,783 --> 01:06:21,916
+we're going to call that.
+
+161
+01:06:22,483 --> 01:06:24,300
+But we're going to change the existing
+
+162
+01:06:24,300 --> 01:06:25,833
+print data command to
+
+163
+01:06:25,833 --> 01:06:27,333
+accept additional parameters.
+
+164
+01:06:28,466 --> 01:06:31,266
+We're going to pass ref tag and we're
+
+165
+01:06:31,266 --> 01:06:33,283
+going to pass our user defined type.
+
+166
+01:06:33,683 --> 01:06:34,866
+The ref tag is either
+
+167
+01:06:34,866 --> 01:06:36,583
+going to be true or false.
+
+168
+01:06:37,366 --> 01:06:39,116
+And the user defined type is going to be
+
+169
+01:06:39,116 --> 01:06:41,133
+used to store the hot
+
+170
+01:06:41,133 --> 01:06:42,933
+zone, which is the URL,
+
+171
+01:06:43,416 --> 01:06:45,883
+just as we did for the graphical images.
+
+172
+01:06:46,766 --> 01:06:48,583
+So let's go to the print data function
+
+173
+01:06:48,583 --> 01:06:50,183
+and add these extra parameters.
+
+174
+01:06:50,933 --> 01:06:52,716
+So here are the two extra
+
+175
+01:06:52,716 --> 01:06:54,099
+parameters for this function,
+
+176
+01:06:54,466 --> 01:06:55,783
+the ref tag variable
+
+177
+01:06:55,783 --> 01:06:58,266
+and the user defined type.
+
+178
+01:06:58,783 --> 01:07:00,300
+Print data is called from
+
+179
+01:07:00,300 --> 01:07:01,633
+elsewhere in the application.
+
+180
+01:07:02,283 --> 01:07:03,816
+So we're going to have to ensure that
+
+181
+01:07:03,816 --> 01:07:05,283
+everywhere it's called,
+
+182
+01:07:05,733 --> 01:07:06,516
+these two additional
+
+183
+01:07:06,516 --> 01:07:07,783
+parameters are included.
+
+184
+01:07:08,500 --> 01:07:10,066
+However, before we do that, I'm going to
+
+185
+01:07:10,066 --> 01:07:12,616
+add on a couple of extra local variables.
+
+186
+01:07:13,266 --> 01:07:14,166
+These I'm going to call
+
+187
+01:07:14,166 --> 01:07:15,900
+image width and image height.
+
+188
+01:07:16,683 --> 01:07:18,300
+We're creating these two variables to
+
+189
+01:07:18,300 --> 01:07:20,166
+contain the width and the
+
+190
+01:07:20,166 --> 01:07:22,366
+height of our text hyperlink.
+
+191
+01:07:23,099 --> 01:07:25,166
+This information is needed as we need to
+
+192
+01:07:25,166 --> 01:07:25,666
+store this
+
+193
+01:07:25,666 --> 01:07:27,966
+information in the global array.
+
+194
+01:07:28,883 --> 01:07:29,733
+So that when the user
+
+195
+01:07:29,733 --> 01:07:31,416
+clicks on the graphics control,
+
+196
+01:07:31,900 --> 01:07:33,633
+we know whether they've clicked on a hot
+
+197
+01:07:33,633 --> 01:07:34,683
+zone, which will
+
+198
+01:07:34,683 --> 01:07:36,916
+trigger a call to a hyperlink.
+
+199
+01:07:37,783 --> 01:07:39,133
+So in order to do that, we'll need to
+
+200
+01:07:39,133 --> 01:07:40,766
+change this line of code.
+
+201
+01:07:41,366 --> 01:07:43,983
+This is looking to see whether our string
+
+202
+01:07:43,983 --> 01:07:45,583
+coming in as image
+
+203
+01:07:45,583 --> 01:07:47,016
+source equals within it.
+
+204
+01:07:47,883 --> 01:07:49,400
+I'm going to change this so
+
+205
+01:07:49,400 --> 01:07:51,666
+it's looking for a href equals.
+
+206
+01:07:52,400 --> 01:07:53,233
+To tell whether it's an
+
+207
+01:07:53,233 --> 01:07:55,333
+embedded image or a hyperlink.
+
+208
+01:07:55,816 --> 01:07:58,800
+This allows us to set the global X and Y
+
+209
+01:07:58,800 --> 01:08:00,366
+positions of the text.
+
+210
+01:08:01,016 --> 01:08:03,333
+But before this section of code, we need
+
+211
+01:08:03,333 --> 01:08:05,300
+to determine the height
+
+212
+01:08:05,300 --> 01:08:06,733
+and width of the text.
+
+213
+01:08:07,400 --> 01:08:09,833
+This is done by testing our ref tag.
+
+214
+01:08:10,766 --> 01:08:14,116
+If the ref tag is true and the str data
+
+215
+01:08:14,116 --> 01:08:16,500
+is not an empty length string,
+
+216
+01:08:17,233 --> 01:08:19,516
+then we know it's a text URL.
+
+217
+01:08:20,216 --> 01:08:21,300
+And we can work out the
+
+218
+01:08:21,300 --> 01:08:22,616
+height and width of the text.
+
+219
+01:08:23,600 --> 01:08:25,716
+We can do this quite easily by using a
+
+220
+01:08:25,716 --> 01:08:28,300
+new command called graphics cell size.
+
+221
+01:08:29,199 --> 01:08:31,300
+This gives us the height and width of a
+
+222
+01:08:31,300 --> 01:08:33,916
+standard character in the selected font.
+
+223
+01:08:34,483 --> 01:08:36,416
+This saves us having to work out which
+
+224
+01:08:36,416 --> 01:08:37,416
+font we're currently
+
+225
+01:08:37,416 --> 01:08:39,066
+using on the graphics control.
+
+226
+01:08:39,516 --> 01:08:41,133
+And having worked out the width and
+
+227
+01:08:41,133 --> 01:08:42,666
+height of a standard character,
+
+228
+01:08:43,233 --> 01:08:45,583
+we can then multiply the width by the
+
+229
+01:08:45,583 --> 01:08:46,833
+number of characters.
+
+230
+01:08:47,816 --> 01:08:50,316
+And adding a little to the height just to
+
+231
+01:08:50,316 --> 01:08:51,399
+make it slightly bigger.
+
+232
+01:08:52,116 --> 01:08:54,116
+This gives us the values we can now store
+
+233
+01:08:54,116 --> 01:08:56,816
+in our user defined type.
+
+234
+01:08:57,433 --> 01:08:59,000
+Using the global X and Y
+
+235
+01:08:59,000 --> 01:09:00,800
+as the top X and top Y.
+
+236
+01:09:01,566 --> 01:09:03,133
+And adding on to that the width and
+
+237
+01:09:03,133 --> 01:09:05,583
+height for the bottom X and bottom Y.
+
+238
+01:09:06,283 --> 01:09:08,016
+If we try compiling that now.
+
+239
+01:09:08,283 --> 01:09:10,399
+We can see we have one local variable we
+
+240
+01:09:10,399 --> 01:09:11,433
+still have to declare,
+
+241
+01:09:12,316 --> 01:09:13,616
+at the beginning of the
+
+242
+01:09:13,616 --> 01:09:15,316
+render HTML tags function.
+
+243
+01:09:16,216 --> 01:09:18,033
+So while we're adding this variable I'm
+
+244
+01:09:18,033 --> 01:09:19,300
+going to add some more.
+
+245
+01:09:20,266 --> 01:09:23,199
+We currently have a command variable that
+
+246
+01:09:23,199 --> 01:09:24,666
+stores the current command.
+
+247
+01:09:25,949 --> 01:09:27,966
+As some of these tags are going to be
+
+248
+01:09:27,966 --> 01:09:30,033
+nested, we'll need to work out what the
+
+249
+01:09:30,033 --> 01:09:31,233
+previous command was.
+
+250
+01:09:31,716 --> 01:09:33,016
+So I'm going to create a local variable
+
+251
+01:09:33,016 --> 01:09:35,266
+to keep track of the last command.
+
+252
+01:09:36,133 --> 01:09:37,500
+And we'll also create a
+
+253
+01:09:37,500 --> 01:09:39,433
+couple more boolean variables.
+
+254
+01:09:40,616 --> 01:09:41,766
+One to keep track of the
+
+255
+01:09:41,766 --> 01:09:43,116
+fact is it an image or not?
+
+256
+01:09:43,683 --> 01:09:45,600
+And one to keep track of the fact are we
+
+257
+01:09:45,600 --> 01:09:47,366
+inside a paragraph or not?
+
+258
+01:09:48,283 --> 01:09:50,183
+This will give us more flexibility for
+
+259
+01:09:50,183 --> 01:09:50,800
+the work we're doing
+
+260
+01:09:50,800 --> 01:09:53,016
+today and for future changes.
+
+261
+01:09:53,883 --> 01:09:55,399
+In this line of code we're
+
+262
+01:09:55,399 --> 01:09:56,983
+picking up the current command.
+
+263
+01:09:57,883 --> 01:09:59,866
+Before we populate this we'll want to
+
+264
+01:09:59,866 --> 01:10:01,600
+populate the last command
+
+265
+01:10:01,600 --> 01:10:03,100
+variable we have just created.
+
+266
+01:10:03,783 --> 01:10:05,883
+Now that that is stored we can quite
+
+267
+01:10:05,883 --> 01:10:07,000
+happily go ahead and
+
+268
+01:10:07,000 --> 01:10:08,483
+populate the command variable.
+
+269
+01:10:09,066 --> 01:10:11,600
+So as you can see we make other calls to
+
+270
+01:10:11,600 --> 01:10:13,100
+the print data function.
+
+271
+01:10:13,516 --> 01:10:15,416
+So we will need to amend each call to
+
+272
+01:10:15,416 --> 01:10:16,566
+this print data function to
+
+273
+01:10:16,566 --> 01:10:17,983
+add these extra parameters.
+
+274
+01:10:18,899 --> 01:10:20,916
+Additionally in the paragraph section
+
+275
+01:10:20,916 --> 01:10:23,133
+we're setting the paragraph boolean.
+
+276
+01:10:23,800 --> 01:10:25,866
+To be true since we know at this point we
+
+277
+01:10:25,866 --> 01:10:27,300
+are inside a paragraph.
+
+278
+01:10:28,533 --> 01:10:31,266
+And here are our extra parameters to the
+
+279
+01:10:31,266 --> 01:10:32,666
+print data function call.
+
+280
+01:10:33,500 --> 01:10:36,166
+And we've now added the population of the
+
+281
+01:10:36,166 --> 01:10:37,883
+in paragraph variable to
+
+282
+01:10:37,883 --> 01:10:39,633
+false when we close off
+
+283
+01:10:39,666 --> 01:10:42,300
+our paragraph. So our application is
+
+284
+01:10:42,300 --> 01:10:43,816
+compiling quite happily now.
+
+285
+01:10:44,100 --> 01:10:45,066
+So let's try running it
+
+286
+01:10:45,066 --> 01:10:46,233
+and see how good it looks.
+
+287
+01:10:47,199 --> 01:10:48,800
+So we drag in index 2.
+
+288
+01:10:51,266 --> 01:10:53,633
+We can see we've now got go to page 5 at
+
+289
+01:10:53,633 --> 01:10:55,033
+the bottom of the screen.
+
+290
+01:10:55,866 --> 01:10:58,533
+However is it a hyperlink? If we click on
+
+291
+01:10:58,533 --> 01:11:01,033
+it it's indeed taking us to page 5.
+
+292
+01:11:01,883 --> 01:11:03,983
+So we've achieved the ability to have
+
+293
+01:11:03,983 --> 01:11:06,000
+hyperlinks which go directly
+
+294
+01:11:06,000 --> 01:11:08,199
+to the page regardless if they
+
+295
+01:11:08,216 --> 01:11:11,933
+are images or text. However what we need
+
+296
+01:11:11,933 --> 01:11:13,616
+to tackle next is we need to
+
+297
+01:11:13,616 --> 01:11:15,416
+change the mouse cursor from
+
+298
+01:11:15,416 --> 01:11:17,916
+an arrow to a hand when it goes over a
+
+299
+01:11:17,916 --> 01:11:20,716
+hot zone. We already have a callback
+
+300
+01:11:20,716 --> 01:11:22,033
+function which handles
+
+301
+01:11:22,033 --> 01:11:24,600
+the mouse movement on the screen to pick
+
+302
+01:11:24,600 --> 01:11:26,600
+up the left and right mouse clicks.
+
+303
+01:11:27,683 --> 01:11:30,600
+This is the graph proc function. So
+
+304
+01:11:30,600 --> 01:11:32,166
+within this function we are currently
+
+305
+01:11:32,166 --> 01:11:33,616
+handling two events.
+
+306
+01:11:34,533 --> 01:11:37,916
+The left mouse button going up and the
+
+307
+01:11:37,916 --> 01:11:39,866
+right mouse button going up.
+
+308
+01:11:40,550 --> 01:11:43,066
+So we're going to handle a new event in
+
+309
+01:11:43,066 --> 01:11:45,333
+here. We're going to handle mouse move.
+
+310
+01:11:46,050 --> 01:11:48,233
+This will trigger every time the mouse is
+
+311
+01:11:48,233 --> 01:11:50,100
+actually moved. And we will
+
+312
+01:11:50,100 --> 01:11:51,483
+create a new local variable
+
+313
+01:11:51,816 --> 01:11:55,133
+to allow us to store the handle of the
+
+314
+01:11:55,133 --> 01:11:57,699
+new cursor. And we'll call this hand.
+
+315
+01:11:58,333 --> 01:12:02,300
+Here is a new mouse move event. This as
+
+316
+01:12:02,300 --> 01:12:04,233
+we did with the previous events is
+
+317
+01:12:04,233 --> 01:12:05,616
+picking up the x and y
+
+318
+01:12:05,616 --> 01:12:08,466
+coordinates of the mouse. We're
+
+319
+01:12:08,466 --> 01:12:11,000
+determining where the location on the
+
+320
+01:12:11,000 --> 01:12:12,300
+graphical screen because it is
+
+321
+01:12:12,300 --> 01:12:15,066
+a virtual graphical screen by adding on
+
+322
+01:12:15,066 --> 01:12:17,699
+the width and height. And
+
+323
+01:12:17,699 --> 01:12:18,899
+then we're using the existing
+
+324
+01:12:19,266 --> 01:12:21,783
+function is link to determine whether the
+
+325
+01:12:21,783 --> 01:12:23,566
+zone under the cursor is
+
+326
+01:12:23,566 --> 01:12:25,000
+a hot zone containing a
+
+327
+01:12:25,216 --> 01:12:28,633
+hyperlink. If that's the case we are
+
+328
+01:12:28,633 --> 01:12:31,583
+checking to see if the hand handle is
+
+329
+01:12:31,583 --> 01:12:32,416
+currently populated.
+
+330
+01:12:33,000 --> 01:12:35,183
+If it's not populated we're then using
+
+331
+01:12:35,183 --> 01:12:36,600
+the Windows API call
+
+332
+01:12:36,600 --> 01:12:39,333
+load cursor to load our hand cursor.
+
+333
+01:12:40,516 --> 01:12:42,616
+And using set cursor which is another
+
+334
+01:12:42,616 --> 01:12:45,483
+Windows API call to set the cursor to
+
+335
+01:12:45,483 --> 01:12:46,916
+that particular one.
+
+336
+01:12:47,699 --> 01:12:50,633
+So we're now displaying index two. If we
+
+337
+01:12:50,633 --> 01:12:51,500
+move the mouse around the
+
+338
+01:12:51,500 --> 01:12:53,583
+screen it stays as the ordinary
+
+339
+01:12:53,766 --> 01:12:56,600
+arrowed mouse pointer. If we move it over
+
+340
+01:12:56,600 --> 01:12:59,016
+one of the zones it changes
+
+341
+01:12:59,016 --> 01:13:01,483
+to a hand. And if we move it
+
+342
+01:13:01,483 --> 01:13:05,833
+back it changes back to an arrow. As you
+
+343
+01:13:05,833 --> 01:13:07,016
+will guess we are not putting
+
+344
+01:13:07,016 --> 01:13:08,699
+any code in to change the mouse
+
+345
+01:13:08,699 --> 01:13:10,866
+cursor back. Windows is doing this
+
+346
+01:13:10,866 --> 01:13:13,283
+automatically for you. If we move the
+
+347
+01:13:13,283 --> 01:13:14,800
+mouse down to where our
+
+348
+01:13:15,016 --> 01:13:18,316
+text hyperlink is it changes to a hand as
+
+349
+01:13:18,316 --> 01:13:20,016
+soon as we are over the
+
+350
+01:13:20,016 --> 01:13:22,683
+hyperlink. So we have successfully
+
+351
+01:13:23,199 --> 01:13:25,333
+implemented the ability to change the
+
+352
+01:13:25,333 --> 01:13:26,699
+mouse cursor when we're
+
+353
+01:13:26,699 --> 01:13:29,199
+over a hot zone that contains a
+
+354
+01:13:29,199 --> 01:13:31,583
+hyperlink. One thing that we have not
+
+355
+01:13:31,583 --> 01:13:33,133
+done yet is to change the
+
+356
+01:13:33,133 --> 01:13:36,316
+text on our text hyperlink to a
+
+357
+01:13:36,316 --> 01:13:38,016
+different color and mark it as
+
+358
+01:13:38,016 --> 01:13:40,983
+underlined. This would normally indicate
+
+359
+01:13:40,983 --> 01:13:42,283
+to the user that this is
+
+360
+01:13:42,283 --> 01:13:45,300
+a text hyperlink. We won't do that in
+
+361
+01:13:45,300 --> 01:13:47,166
+this video we'll do that in a future
+
+362
+01:13:47,166 --> 01:13:49,566
+video. One other thing
+
+363
+01:13:49,600 --> 01:13:51,899
+I'd like to do today to finish off with
+
+364
+01:13:51,899 --> 01:13:53,916
+is to change the location
+
+365
+01:13:53,916 --> 01:13:56,316
+of our graphical hyperlinks
+
+366
+01:13:56,316 --> 01:13:58,533
+on screen. At the moment they are
+
+367
+01:13:58,533 --> 01:14:00,500
+appearing one after the other
+
+368
+01:14:00,500 --> 01:14:03,300
+vertically. If we go into our
+
+369
+01:14:03,300 --> 01:14:08,483
+index HTML and make a minor change these
+
+370
+01:14:08,483 --> 01:14:09,683
+are contained within
+
+371
+01:14:09,683 --> 01:14:11,866
+paragraphs. So the page one
+
+372
+01:14:11,866 --> 01:14:14,116
+and page two links appear below each
+
+373
+01:14:14,116 --> 01:14:16,133
+other. If we take out these
+
+374
+01:14:16,133 --> 01:14:18,683
+paragraph tags so that both
+
+375
+01:14:18,699 --> 01:14:21,483
+hyperlinks are embedded in the same
+
+376
+01:14:21,483 --> 01:14:27,633
+paragraph. If we save this and copy this
+
+377
+01:14:27,633 --> 01:14:28,600
+back into our browser
+
+378
+01:14:28,933 --> 01:14:31,133
+we'll see that it does no longer appear
+
+379
+01:14:31,133 --> 01:14:33,166
+normally. If we looked at
+
+380
+01:14:33,166 --> 01:14:35,116
+this file in a Chrome browser
+
+381
+01:14:35,899 --> 01:14:37,933
+we will see they would appear quite
+
+382
+01:14:37,933 --> 01:14:40,033
+normally. There is however
+
+383
+01:14:40,033 --> 01:14:42,516
+a gap between each of these
+
+384
+01:14:42,800 --> 01:14:47,000
+images which is quite odd as it has what
+
+385
+01:14:47,000 --> 01:14:48,500
+appears to be a hyperlink
+
+386
+01:14:48,500 --> 01:14:51,383
+for page one between the two.
+
+387
+01:14:52,033 --> 01:14:53,733
+I would have expected both of these
+
+388
+01:14:53,733 --> 01:14:56,016
+images to appear side by side with no
+
+389
+01:14:56,016 --> 01:14:57,500
+gap. However what we
+
+390
+01:14:57,500 --> 01:14:59,566
+need to do in our browser is to change it
+
+391
+01:14:59,566 --> 01:15:00,833
+so they do indeed appear
+
+392
+01:15:00,833 --> 01:15:03,666
+side by side. So we need to
+
+393
+01:15:03,666 --> 01:15:05,683
+obviously handle the fact that it's
+
+394
+01:15:05,683 --> 01:15:06,716
+possible to have these
+
+395
+01:15:06,716 --> 01:15:09,716
+graphical images horizontally on one
+
+396
+01:15:09,766 --> 01:15:13,533
+line. So back to the code. As you will
+
+397
+01:15:13,533 --> 01:15:15,266
+remember earlier on we made
+
+398
+01:15:15,266 --> 01:15:16,699
+some changes to the paragraph
+
+399
+01:15:16,699 --> 01:15:20,616
+start and paragraph end tags. To set a
+
+400
+01:15:20,616 --> 01:15:22,199
+variable called paragraph
+
+401
+01:15:22,199 --> 01:15:24,166
+either to be true or false.
+
+402
+01:15:25,416 --> 01:15:27,699
+We can use this to determine when we
+
+403
+01:15:27,699 --> 01:15:29,500
+print an image on screen if
+
+404
+01:15:29,500 --> 01:15:31,166
+we're still inside a paragraph
+
+405
+01:15:31,500 --> 01:15:34,183
+or if the paragraph has moved on. And
+
+406
+01:15:34,183 --> 01:15:35,199
+this is where we're going to
+
+407
+01:15:35,199 --> 01:15:37,566
+make use of the last command.
+
+408
+01:15:37,600 --> 01:15:41,300
+We can test to see if the last command
+
+409
+01:15:41,300 --> 01:15:44,683
+was the closing a tag and
+
+410
+01:15:44,683 --> 01:15:46,066
+if it's true we're currently
+
+411
+01:15:46,066 --> 01:15:49,366
+working on an image. If that's the case
+
+412
+01:15:49,366 --> 01:15:51,166
+then we can reset the
+
+413
+01:15:51,166 --> 01:15:53,699
+global x coordinate to be 0
+
+414
+01:15:53,816 --> 01:15:56,633
+and the calculation of the y coordinate
+
+415
+01:15:56,633 --> 01:15:58,183
+will involve the current
+
+416
+01:15:58,183 --> 01:16:00,116
+value plus the bottom y
+
+417
+01:16:01,016 --> 01:16:04,766
+minus the top y. And we can use the
+
+418
+01:16:04,766 --> 01:16:06,533
+graphics set position command
+
+419
+01:16:06,533 --> 01:16:09,733
+to set the location where the
+
+420
+01:16:09,733 --> 01:16:12,483
+next printing will take place. So since
+
+421
+01:16:12,483 --> 01:16:14,766
+we're now using this in paragraph
+
+422
+01:16:14,766 --> 01:16:16,566
+variable we'll need to
+
+423
+01:16:16,566 --> 01:16:18,716
+pass this to the function which displays
+
+424
+01:16:18,716 --> 01:16:20,666
+the images. So this is an
+
+425
+01:16:20,666 --> 01:16:21,866
+additional variable we're
+
+426
+01:16:21,866 --> 01:16:24,583
+adding on to the list. And having passed
+
+427
+01:16:24,583 --> 01:16:25,800
+this variable to this
+
+428
+01:16:25,800 --> 01:16:27,616
+function we can test it within
+
+429
+01:16:27,733 --> 01:16:30,600
+the function itself. And there is our
+
+430
+01:16:30,600 --> 01:16:32,883
+function and we'll add on this extra
+
+431
+01:16:32,883 --> 01:16:34,616
+parameter. And further
+
+432
+01:16:34,616 --> 01:16:36,283
+down the function where we're updating
+
+433
+01:16:36,283 --> 01:16:39,500
+the global position we can take out the
+
+434
+01:16:39,500 --> 01:16:40,866
+graphics get position
+
+435
+01:16:41,183 --> 01:16:44,083
+command as this is determined further up
+
+436
+01:16:44,083 --> 01:16:47,016
+anyway. So this line of code is no
+
+437
+01:16:47,016 --> 01:16:48,466
+longer needed. And we
+
+438
+01:16:48,466 --> 01:16:51,866
+can now test the in paragraph tag. If the
+
+439
+01:16:51,866 --> 01:16:53,333
+in paragraph tag is
+
+440
+01:16:53,333 --> 01:16:56,399
+true then we can add on the
+
+441
+01:16:56,716 --> 01:17:00,100
+width of our graphical image to the x
+
+442
+01:17:00,100 --> 01:17:02,566
+coordinate. If it is false then we're
+
+443
+01:17:02,566 --> 01:17:03,916
+resetting the x coordinate
+
+444
+01:17:03,983 --> 01:17:07,000
+to 0. The y coordinate can be the y
+
+445
+01:17:07,000 --> 01:17:09,033
+coordinate plus the height of
+
+446
+01:17:09,033 --> 01:17:11,116
+our image. So with that logic
+
+447
+01:17:11,116 --> 01:17:14,433
+in place let's try recompiling which
+
+448
+01:17:14,433 --> 01:17:16,733
+recompiles quite cleanly. And we'll try
+
+449
+01:17:16,733 --> 01:17:17,666
+running our application
+
+450
+01:17:18,066 --> 01:17:20,316
+and we'll see if it now handles correctly
+
+451
+01:17:20,316 --> 01:17:24,916
+the new index page. And
+
+452
+01:17:24,916 --> 01:17:26,283
+there we have page one and
+
+453
+01:17:26,383 --> 01:17:29,716
+page two appearing side by side. In our
+
+454
+01:17:29,716 --> 01:17:31,333
+browser we have no space
+
+455
+01:17:31,333 --> 01:17:33,883
+between the two images which to be
+
+456
+01:17:33,883 --> 01:17:37,483
+honest I personally prefer. If we click
+
+457
+01:17:37,483 --> 01:17:40,883
+on page one it takes us to page one. If
+
+458
+01:17:40,883 --> 01:17:41,983
+we click on page two
+
+459
+01:17:42,133 --> 01:17:45,783
+it will take us to page two. Page three
+
+460
+01:17:45,783 --> 01:17:50,283
+still works. Page four and
+
+461
+01:17:50,283 --> 01:17:53,083
+the link which is the text
+
+462
+01:17:53,116 --> 01:17:58,916
+URL to page five also works. And our
+
+463
+01:17:58,916 --> 01:18:04,199
+history is working fine. So in summary
+
+464
+01:18:04,199 --> 01:18:05,266
+what we've done today
+
+465
+01:18:05,416 --> 01:18:07,966
+we have enabled our browser to support
+
+466
+01:18:07,966 --> 01:18:10,716
+text hyperlinks. We have
+
+467
+01:18:10,716 --> 01:18:13,216
+also allowed the cursor on
+
+468
+01:18:13,216 --> 01:18:15,583
+the mouse to change to a hand when it
+
+469
+01:18:15,583 --> 01:18:17,516
+moves over the hyperlink
+
+470
+01:18:17,516 --> 01:18:19,566
+either graphical or text.
+
+471
+01:18:20,466 --> 01:18:22,199
+And additionally we can now have
+
+472
+01:18:22,199 --> 01:18:24,000
+graphical hyperlinks side by
+
+473
+01:18:24,000 --> 01:18:26,366
+side on the same line. There
+
+474
+01:18:26,366 --> 01:18:29,716
+is of course a great deal more to do but
+
+475
+01:18:29,716 --> 01:18:31,216
+we'll leave that for later
+
+476
+01:18:31,216 --> 01:18:33,433
+videos. That's it for today.
+
+477
+01:18:34,416 --> 01:18:35,399
+Thank you for watching.
+

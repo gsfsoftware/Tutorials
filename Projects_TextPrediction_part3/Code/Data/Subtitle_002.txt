@@ -1,0 +1,1424 @@
+1
+01:00:04,150 --> 01:00:07,166
+Welcome! In this series of videos we will
+
+2
+01:00:07,166 --> 01:00:09,483
+cover the design and implementation of a
+
+3
+01:00:09,483 --> 01:00:12,016
+project, from initial design through
+
+4
+01:00:12,016 --> 01:00:14,783
+coding and development to testing, using
+
+5
+01:00:14,783 --> 01:00:17,183
+the Power Basic Windows Compiler.
+
+6
+01:00:18,033 --> 01:00:20,300
+Today we will continue our project to
+
+7
+01:00:20,300 --> 01:00:22,966
+create our own web browser, by completing
+
+8
+01:00:22,966 --> 01:00:26,116
+the work on text hyperlinks and adding
+
+9
+01:00:26,116 --> 01:00:28,383
+support for the underline tag.
+
+10
+01:00:29,699 --> 01:00:32,083
+This was our project at the end of the
+
+11
+01:00:32,083 --> 01:00:34,733
+last video. We have a light browser which
+
+12
+01:00:34,733 --> 01:00:37,000
+allows us to drag HTML
+
+13
+01:00:37,000 --> 01:00:38,716
+pages onto the browser.
+
+14
+01:00:43,199 --> 01:00:45,483
+This then displays our HTML page to the
+
+15
+01:00:45,483 --> 01:00:48,783
+user, and if we click on any one of the
+
+16
+01:00:48,783 --> 01:00:51,016
+image hyperlinks, it will
+
+17
+01:00:51,016 --> 01:00:52,733
+take us in to the next page,
+
+18
+01:00:56,900 --> 01:00:59,900
+including the display of graphics. We
+
+19
+01:00:59,900 --> 01:01:03,133
+also have headers and text which is
+
+20
+01:01:03,133 --> 01:01:07,083
+paragraphed, and we have a text URL at
+
+21
+01:01:07,083 --> 01:01:09,116
+the bottom of our index page.
+
+22
+01:01:10,099 --> 01:01:12,883
+However, at the moment this text URL is
+
+23
+01:01:12,883 --> 01:01:15,383
+not underlined, which is more or less the
+
+24
+01:01:15,383 --> 01:01:17,383
+standard for all text URLs.
+
+25
+01:01:17,416 --> 01:01:20,133
+That's what we're going to tackle today,
+
+26
+01:01:20,599 --> 01:01:23,933
+is the underlining of text hyperlinks and
+
+27
+01:01:23,933 --> 01:01:25,716
+the use of the underline tag.
+
+28
+01:01:26,916 --> 01:01:29,599
+The underline tag in HTML can be used to
+
+29
+01:01:29,599 --> 01:01:31,616
+mark a section of text as being
+
+30
+01:01:31,616 --> 01:01:34,366
+underlined. However, the use of the
+
+31
+01:01:34,366 --> 01:01:37,383
+underline tag is usually discouraged, as
+
+32
+01:01:37,383 --> 01:01:40,216
+it can confuse users to think that a
+
+33
+01:01:40,216 --> 01:01:41,199
+piece of text is
+
+34
+01:01:41,199 --> 01:01:42,383
+underlined is a hyperlink.
+
+35
+01:01:42,400 --> 01:01:45,566
+However, it's still supported within
+
+36
+01:01:45,566 --> 01:01:48,500
+HTML, so let's go and have a look at our
+
+37
+01:01:48,500 --> 01:01:49,766
+code to see what we
+
+38
+01:01:49,766 --> 01:01:51,116
+can do to achieve this.
+
+39
+01:01:52,183 --> 01:01:54,016
+Currently, we have two globals at the
+
+40
+01:01:54,016 --> 01:01:56,233
+beginning of our code, one for the
+
+41
+01:01:56,233 --> 01:01:58,866
+default font and one to contain the
+
+42
+01:01:58,866 --> 01:02:00,400
+handles for the array
+
+43
+01:02:00,400 --> 01:02:01,716
+of fonts we are using.
+
+44
+01:02:02,433 --> 01:02:04,883
+We're going to add two more globals to
+
+45
+01:02:04,883 --> 01:02:07,266
+this list, one for the default underline
+
+46
+01:02:07,266 --> 01:02:09,000
+font and one for an
+
+47
+01:02:09,000 --> 01:02:10,383
+array of underline fonts.
+
+48
+01:02:11,400 --> 01:02:14,083
+This will allow us to maintain an array
+
+49
+01:02:14,083 --> 01:02:16,599
+of underline fonts, which we can use at
+
+50
+01:02:16,599 --> 01:02:18,116
+any point in the application.
+
+51
+01:02:19,266 --> 01:02:20,633
+So, as you can probably guess, we're
+
+52
+01:02:20,633 --> 01:02:22,699
+going to have to create and also destroy
+
+53
+01:02:22,699 --> 01:02:23,916
+fonts when the program
+
+54
+01:02:23,916 --> 01:02:25,800
+starts and when the program ends.
+
+55
+01:02:26,583 --> 01:02:28,599
+So, we have two functions which perform
+
+56
+01:02:28,599 --> 01:02:31,233
+these functions, one called create fonts
+
+57
+01:02:31,233 --> 01:02:33,099
+and one called unload fonts.
+
+58
+01:02:33,400 --> 01:02:36,133
+So, let's go to the create fonts function
+
+59
+01:02:36,133 --> 01:02:38,716
+first. In here, we are re-dimensioning
+
+60
+01:02:38,716 --> 01:02:41,033
+our array as having six elements.
+
+61
+01:02:41,666 --> 01:02:43,566
+We're going to add a command to do the
+
+62
+01:02:43,566 --> 01:02:46,416
+same for our underline fonts. It allows
+
+63
+01:02:46,416 --> 01:02:48,816
+us to store the handles for each font.
+
+64
+01:02:49,666 --> 01:02:51,733
+So, as we have six normal fonts, we're
+
+65
+01:02:51,733 --> 01:02:54,416
+going to have six fonts of the same size,
+
+66
+01:02:54,733 --> 01:02:56,383
+but set for underline.
+
+67
+01:02:56,400 --> 01:02:59,583
+So, we've added a font new command to
+
+68
+01:02:59,583 --> 01:03:02,033
+create our default font, which in this
+
+69
+01:03:02,033 --> 01:03:05,000
+case is set for option five, which will
+
+70
+01:03:05,000 --> 01:03:07,183
+allow us to have bold underline.
+
+71
+01:03:08,099 --> 01:03:10,316
+And in our for next loop, where we created
+
+72
+01:03:10,316 --> 01:03:13,116
+the six fonts, we're creating six
+
+73
+01:03:13,116 --> 01:03:14,716
+additional fonts, but this
+
+74
+01:03:14,716 --> 01:03:17,216
+time set with the underline flag.
+
+75
+01:03:18,166 --> 01:03:19,966
+So, now that we've created our fonts, we
+
+76
+01:03:19,966 --> 01:03:21,916
+also have to unload the fonts when the
+
+77
+01:03:21,916 --> 01:03:22,983
+application completes.
+
+78
+01:03:23,416 --> 01:03:25,466
+So, if we have a look at the unload fonts
+
+79
+01:03:25,466 --> 01:03:28,783
+function, it will quite simply need two
+
+80
+01:03:28,783 --> 01:03:31,599
+font end commands, one to end the default
+
+81
+01:03:31,599 --> 01:03:35,316
+font and one to end each of the fonts
+
+82
+01:03:35,316 --> 01:03:37,900
+referenced in our global array.
+
+83
+01:03:38,900 --> 01:03:41,116
+So, now we need to handle the underline
+
+84
+01:03:41,116 --> 01:03:43,733
+tag when we get to the render the HTML
+
+85
+01:03:43,733 --> 01:03:46,433
+tags. This is our tagging engine.
+
+86
+01:03:47,216 --> 01:03:48,833
+So, let's go to that function and make
+
+87
+01:03:48,833 --> 01:03:49,833
+the necessary changes.
+
+88
+01:03:50,966 --> 01:03:52,483
+At the end of our select statement, we're
+
+89
+01:03:52,483 --> 01:03:54,516
+going to put two more case statements in,
+
+90
+01:03:54,833 --> 01:03:57,183
+one to handle the beginning underline tag
+
+91
+01:03:57,183 --> 01:03:58,733
+and one to handle the
+
+92
+01:03:58,733 --> 01:04:00,166
+end of the underline tag.
+
+93
+01:04:00,983 --> 01:04:02,900
+So, if we are starting an underline
+
+94
+01:04:02,900 --> 01:04:05,616
+section of the HTML document, we need to
+
+95
+01:04:05,616 --> 01:04:07,633
+set our graphic font to
+
+96
+01:04:07,633 --> 01:04:09,616
+the default underline font.
+
+97
+01:04:10,283 --> 01:04:12,500
+And we can do that using the graphic set
+
+98
+01:04:12,500 --> 01:04:15,166
+font command, using our global variable
+
+99
+01:04:15,166 --> 01:04:17,816
+for the underline bold handle.
+
+100
+01:04:18,750 --> 01:04:21,283
+Next, we can pick up the data after the
+
+101
+01:04:21,283 --> 01:04:23,516
+underline tag by using the function we
+
+102
+01:04:23,516 --> 01:04:25,699
+created in our previous video, the get
+
+103
+01:04:25,699 --> 01:04:29,816
+tag value, giving the long start variable
+
+104
+01:04:29,816 --> 01:04:32,466
+and the underline end tag.
+
+105
+01:04:33,866 --> 01:04:36,433
+And then we can go to the print data
+
+106
+01:04:36,433 --> 01:04:37,599
+statement, which will
+
+107
+01:04:37,599 --> 01:04:39,466
+print our data to the screen.
+
+108
+01:04:40,616 --> 01:04:43,099
+And with the end underline tag, we can
+
+109
+01:04:43,099 --> 01:04:46,116
+reset the font back to the global handle
+
+110
+01:04:46,116 --> 01:04:47,833
+of the default font.
+
+111
+01:04:48,666 --> 01:04:50,933
+So, in order to test to see how far we've
+
+112
+01:04:50,933 --> 01:04:53,099
+got with the underline tag, we need to
+
+113
+01:04:53,099 --> 01:04:55,283
+make a change to one of our web pages.
+
+114
+01:04:55,933 --> 01:04:56,933
+So, we're going to amend
+
+115
+01:04:56,933 --> 01:04:59,383
+the index to HTML document.
+
+116
+01:05:00,266 --> 01:05:02,516
+So, beneath the section which is going to
+
+117
+01:05:02,516 --> 01:05:05,933
+be hyperlinked, we have a new paragraph,
+
+118
+01:05:06,583 --> 01:05:09,883
+which is a test for our underline.
+
+119
+01:05:10,516 --> 01:05:12,766
+So, we have the word "test" and a piece
+
+120
+01:05:12,766 --> 01:05:14,116
+of text after that, which is
+
+121
+01:05:14,116 --> 01:05:15,383
+not going to be underlined.
+
+122
+01:05:16,166 --> 01:05:17,333
+So, let's run our application
+
+123
+01:05:17,333 --> 01:05:20,000
+and copy in this HTML document.
+
+124
+01:05:22,150 --> 01:05:23,016
+So, we have partially
+
+125
+01:05:23,016 --> 01:05:24,133
+achieved our objective.
+
+126
+01:05:24,916 --> 01:05:25,833
+We do have the word
+
+127
+01:05:25,833 --> 01:05:27,733
+"test" marked "underlined".
+
+128
+01:05:28,433 --> 01:05:31,683
+However, the tag is still visible on the
+
+129
+01:05:31,683 --> 01:05:33,716
+screen to the user, and we don't have the
+
+130
+01:05:33,716 --> 01:05:35,816
+words "and not underlined" after the
+
+131
+01:05:35,816 --> 01:05:37,883
+underlined "test" text.
+
+132
+01:05:39,116 --> 01:05:40,583
+So, there is more to do.
+
+133
+01:05:41,300 --> 01:05:43,066
+We'll need now to have a look at the
+
+134
+01:05:43,066 --> 01:05:44,333
+print function, which prints
+
+135
+01:05:44,333 --> 01:05:46,783
+data to our graphics control.
+
+136
+01:05:47,566 --> 01:05:49,133
+So, let's go back to the code.
+
+137
+01:05:50,766 --> 01:05:52,666
+So, within this function, we handle all
+
+138
+01:05:52,666 --> 01:05:55,000
+the text that has to be printed on the
+
+139
+01:05:55,000 --> 01:05:57,166
+HTML page for the user,
+
+140
+01:05:57,683 --> 01:05:59,216
+and our underlined tags
+
+141
+01:05:59,216 --> 01:06:00,983
+are, in fact, embedded links.
+
+142
+01:06:01,733 --> 01:06:03,566
+So, we have a section of this code which
+
+143
+01:06:03,566 --> 01:06:05,583
+currently handles embedded links.
+
+144
+01:06:05,866 --> 01:06:07,800
+We'll need to expand on that.
+
+145
+01:06:08,533 --> 01:06:09,816
+Here is a section of code
+
+146
+01:06:09,816 --> 01:06:12,083
+that tests for an embedded link.
+
+147
+01:06:12,966 --> 01:06:15,000
+So, we're currently looking for the href
+
+148
+01:06:15,000 --> 01:06:17,033
+equals text to
+
+149
+01:06:17,033 --> 01:06:19,000
+determine whether this is a URL,
+
+150
+01:06:19,633 --> 01:06:22,733
+and if so, we are setting positions and
+
+151
+01:06:22,733 --> 01:06:24,783
+exiting the function, so we do not
+
+152
+01:06:24,783 --> 01:06:26,566
+actually print that data.
+
+153
+01:06:27,566 --> 01:06:28,500
+And now, we're also
+
+154
+01:06:28,500 --> 01:06:30,900
+testing for the underlined tag.
+
+155
+01:06:31,533 --> 01:06:33,500
+If it's an embedded underlined tag, we're
+
+156
+01:06:33,500 --> 01:06:35,599
+exiting the function, so we do not print.
+
+157
+01:06:36,966 --> 01:06:39,283
+So, let's try running it again and see
+
+158
+01:06:39,283 --> 01:06:40,099
+what we get this time.
+
+159
+01:06:44,199 --> 01:06:45,683
+And now it's looking slightly better.
+
+160
+01:06:46,233 --> 01:06:48,433
+We're getting the word "test" underlined,
+
+161
+01:06:48,916 --> 01:06:50,699
+but we're missing the text after that.
+
+162
+01:06:51,099 --> 01:06:52,716
+So, there's a little more to do, but at
+
+163
+01:06:52,716 --> 01:06:54,216
+least we're no longer getting the
+
+164
+01:06:54,216 --> 01:06:56,866
+underlined tags printed on the dialog.
+
+165
+01:06:57,533 --> 01:06:59,099
+So again, back to our code.
+
+166
+01:07:02,250 --> 01:07:03,466
+Sometimes, when you're developing
+
+167
+01:07:03,466 --> 01:07:05,433
+applications, you'll find you may have to
+
+168
+01:07:05,433 --> 01:07:07,266
+go through a great number of iterations
+
+169
+01:07:07,416 --> 01:07:10,266
+to edge towards the eventual application
+
+170
+01:07:10,266 --> 01:07:12,016
+that you wish to use.
+
+171
+01:07:12,866 --> 01:07:15,000
+This is quite normal in development when
+
+172
+01:07:15,000 --> 01:07:15,583
+you're working on
+
+173
+01:07:15,583 --> 01:07:17,233
+something you've never done before.
+
+174
+01:07:17,983 --> 01:07:19,316
+So, while we're in this function, we're
+
+175
+01:07:19,316 --> 01:07:20,983
+going to add the color and
+
+176
+01:07:20,983 --> 01:07:22,716
+the underline to our hyperlinks.
+
+177
+01:07:23,500 --> 01:07:26,266
+If the ref tag is true and our
+
+178
+01:07:26,266 --> 01:07:28,516
+strDataViable is populated,
+
+179
+01:07:29,016 --> 01:07:31,316
+then we know this is a hot zone.
+
+180
+01:07:31,316 --> 01:07:32,616
+This is going to be a URL.
+
+181
+01:07:33,800 --> 01:07:35,933
+So, all we really need to do is to add
+
+182
+01:07:35,933 --> 01:07:38,716
+color to the foreground and background of
+
+183
+01:07:38,716 --> 01:07:40,683
+our font and set the
+
+184
+01:07:40,683 --> 01:07:42,066
+font to be underlined.
+
+185
+01:07:43,099 --> 01:07:44,900
+So, with our simple two commands, we
+
+186
+01:07:44,900 --> 01:07:46,266
+should have now handled the
+
+187
+01:07:46,266 --> 01:07:47,933
+underlining of our hyperlinks.
+
+188
+01:07:48,533 --> 01:07:50,666
+So, let's try running it again and see if
+
+189
+01:07:50,666 --> 01:07:51,316
+we've achieved that.
+
+190
+01:07:53,900 --> 01:07:56,566
+Well, there we do have a go-to page 5,
+
+191
+01:07:56,983 --> 01:07:58,033
+which if we click on it,
+
+192
+01:07:58,033 --> 01:07:59,383
+will take us to page 5.
+
+193
+01:08:00,400 --> 01:08:02,766
+So, we've achieved the coloring and the
+
+194
+01:08:02,766 --> 01:08:04,783
+underlining of a text hyperlink.
+
+195
+01:08:05,683 --> 01:08:08,033
+So, you can now see the confusion that
+
+196
+01:08:08,033 --> 01:08:09,000
+using the underline
+
+197
+01:08:09,000 --> 01:08:10,616
+tag can give to a user.
+
+198
+01:08:11,949 --> 01:08:14,233
+We have two pieces of text, one saying go
+
+199
+01:08:14,233 --> 01:08:17,016
+to page 5, which is indeed a hyperlink.
+
+200
+01:08:17,016 --> 01:08:18,816
+As we can see, if we move the mouse over,
+
+201
+01:08:18,816 --> 01:08:20,233
+it changes to the hand symbol.
+
+202
+01:08:21,483 --> 01:08:24,183
+But the word "test", which is also
+
+203
+01:08:24,183 --> 01:08:26,366
+underlined, is not a hyperlink.
+
+204
+01:08:26,416 --> 01:08:29,000
+But to a user, it could give the illusion
+
+205
+01:08:29,000 --> 01:08:30,600
+that it is a hyperlink.
+
+206
+01:08:31,583 --> 01:08:33,366
+So, generally, the use of the underline
+
+207
+01:08:33,366 --> 01:08:34,866
+tag is now discouraged.
+
+208
+01:08:35,683 --> 01:08:37,333
+The one piece of functionality we still
+
+209
+01:08:37,333 --> 01:08:39,583
+have to have on the screen is to have the
+
+210
+01:08:39,583 --> 01:08:41,216
+text after the ending
+
+211
+01:08:41,216 --> 01:08:42,416
+of the underline tag.
+
+212
+01:08:43,166 --> 01:08:45,183
+As you will see, we have the words "and
+
+213
+01:08:45,183 --> 01:08:46,500
+not underlined", which
+
+214
+01:08:46,500 --> 01:08:47,733
+follows the word "test".
+
+215
+01:08:48,500 --> 01:08:50,216
+So, let's go back to the code to see if
+
+216
+01:08:50,216 --> 01:08:50,383
+we can tidy that up.
+
+217
+01:08:50,416 --> 01:08:53,699
+At the end of this function, there is a
+
+218
+01:08:53,699 --> 01:08:55,466
+piece of code which handles where there
+
+219
+01:08:55,466 --> 01:08:57,383
+is a piece of text with no line breaks.
+
+220
+01:08:58,066 --> 01:09:00,033
+We need to check in this section to see
+
+221
+01:09:00,033 --> 01:09:01,899
+whether this is a reference tag.
+
+222
+01:09:02,916 --> 01:09:05,116
+And if it is true a reference tag, we
+
+223
+01:09:05,116 --> 01:09:07,716
+need to reset the default font and color.
+
+224
+01:09:08,583 --> 01:09:09,566
+This is done quite easily
+
+225
+01:09:09,566 --> 01:09:11,300
+using these two commands again.
+
+226
+01:09:11,516 --> 01:09:13,633
+The graphic color command to set the
+
+227
+01:09:13,633 --> 01:09:16,100
+foreground back to black and the
+
+228
+01:09:16,100 --> 01:09:16,383
+background to white.
+
+229
+01:09:17,399 --> 01:09:18,833
+And to set the font
+
+230
+01:09:18,833 --> 01:09:20,516
+back to the default font.
+
+231
+01:09:21,366 --> 01:09:23,300
+So, there are a couple more changes we'll
+
+232
+01:09:23,300 --> 01:09:25,300
+need to make to this code to fully
+
+233
+01:09:25,300 --> 01:09:27,216
+support the underline tag.
+
+234
+01:09:28,066 --> 01:09:30,600
+When we get to the end of the underline,
+
+235
+01:09:31,100 --> 01:09:32,666
+we need to check to see if we're actually
+
+236
+01:09:32,666 --> 01:09:34,433
+inside a paragraph or not.
+
+237
+01:09:35,133 --> 01:09:36,916
+We can do this by testing the
+
+238
+01:09:36,916 --> 01:09:38,166
+"inParagraph" variable.
+
+239
+01:09:38,699 --> 01:09:40,300
+If that's true, then we are
+
+240
+01:09:40,300 --> 01:09:41,866
+indeed inside a paragraph.
+
+241
+01:09:43,000 --> 01:09:43,683
+So, there may well be
+
+242
+01:09:43,683 --> 01:09:45,166
+some text still to print.
+
+243
+01:09:46,083 --> 01:09:47,699
+So, we can pick that up using the
+
+244
+01:09:47,699 --> 01:09:49,583
+"getTag" value, looking for
+
+245
+01:09:49,583 --> 01:09:50,983
+the end of the paragraph tag.
+
+246
+01:09:51,733 --> 01:09:52,533
+And then calling the
+
+247
+01:09:52,533 --> 01:09:54,833
+"printData" function to print that out.
+
+248
+01:09:55,516 --> 01:09:57,383
+So, let's try running that now to see if
+
+249
+01:09:57,383 --> 01:09:59,199
+we've got our extra text now.
+
+250
+01:10:02,850 --> 01:10:04,866
+Well, we're edging closer. We do actually
+
+251
+01:10:04,866 --> 01:10:06,516
+have the extra text, but
+
+252
+01:10:06,516 --> 01:10:08,216
+it's on the next line down.
+
+253
+01:10:09,116 --> 01:10:10,833
+Therefore, it's treating the text after
+
+254
+01:10:10,833 --> 01:10:11,766
+the underline
+
+255
+01:10:11,766 --> 01:10:14,383
+"endingTag" as a new line of data.
+
+256
+01:10:14,416 --> 01:10:15,933
+So, let's go back to the
+
+257
+01:10:15,933 --> 01:10:17,516
+code and sort that out.
+
+258
+01:10:17,866 --> 01:10:19,616
+If we have a look at the "printData"
+
+259
+01:10:19,616 --> 01:10:21,616
+function, we'll see there's a graphic
+
+260
+01:10:21,616 --> 01:10:22,816
+print statement which
+
+261
+01:10:22,816 --> 01:10:23,933
+is doing two things.
+
+262
+01:10:24,399 --> 01:10:27,066
+It's trimming the data, which will mean
+
+263
+01:10:27,066 --> 01:10:30,083
+taking the leading spaces off the end of
+
+264
+01:10:30,083 --> 01:10:32,699
+the string, which we do not in fact want.
+
+265
+01:10:36,250 --> 01:10:37,399
+And it's also missing
+
+266
+01:10:37,399 --> 01:10:38,866
+a semicolon in the end.
+
+267
+01:10:39,716 --> 01:10:41,483
+A semicolon in the end means we will not
+
+268
+01:10:41,483 --> 01:10:43,816
+automatically move down to the next line.
+
+269
+01:10:45,100 --> 01:10:46,000
+So, that should in
+
+270
+01:10:46,000 --> 01:10:47,866
+theory fix this problem.
+
+271
+01:10:49,816 --> 01:10:51,783
+Well, it has fixed one problem, but it
+
+272
+01:10:51,783 --> 01:10:53,600
+has actually introduced another one.
+
+273
+01:10:53,966 --> 01:10:54,800
+It's not picking up
+
+274
+01:10:54,800 --> 01:10:56,516
+the start of paragraphs.
+
+275
+01:10:58,783 --> 01:10:59,500
+So, we'll need to go back
+
+276
+01:10:59,500 --> 01:11:01,016
+to the code and fix that.
+
+277
+01:11:01,833 --> 01:11:03,483
+So, we're going to create a new function
+
+278
+01:11:03,483 --> 01:11:04,966
+which we can call from
+
+279
+01:11:04,966 --> 01:11:06,383
+different parts of the application.
+
+280
+01:11:07,399 --> 01:11:09,466
+We'll call this function "printBlankLine"
+
+281
+01:11:09,466 --> 01:11:13,183
+and its job will be to move the text down
+
+282
+01:11:13,183 --> 01:11:14,816
+to the next available line.
+
+283
+01:11:15,500 --> 01:11:16,766
+So, here is our new
+
+284
+01:11:16,766 --> 01:11:19,033
+"printBlankData" function.
+
+285
+01:11:19,899 --> 01:11:21,733
+It has always three commands – one to
+
+286
+01:11:21,733 --> 01:11:23,699
+set the position of the x
+
+287
+01:11:23,699 --> 01:11:25,016
+and y global coordinates,
+
+288
+01:11:25,850 --> 01:11:28,316
+one to print a line with nothing in it,
+
+289
+01:11:28,316 --> 01:11:30,516
+and a second to get the new position.
+
+290
+01:11:31,300 --> 01:11:33,216
+We'll need to call this new function from
+
+291
+01:11:33,216 --> 01:11:35,399
+within the "renderHTMLTags" function.
+
+292
+01:11:36,550 --> 01:11:37,566
+And we're now going to look
+
+293
+01:11:37,566 --> 01:11:39,583
+for the end of the paragraph.
+
+294
+01:11:40,333 --> 01:11:42,000
+And there we have the call to our new
+
+295
+01:11:42,000 --> 01:11:44,233
+function to print a blank line.
+
+296
+01:11:44,833 --> 01:11:47,116
+So, have we now done enough to make our
+
+297
+01:11:47,116 --> 01:11:49,566
+HTML document properly shown on screen?
+
+298
+01:11:50,550 --> 01:11:54,000
+If we bring in our index2 document, and
+
+299
+01:11:54,000 --> 01:11:57,883
+we can see that the problem we had with
+
+300
+01:11:57,883 --> 01:12:00,383
+the underline tag has now been resolved.
+
+301
+01:12:00,399 --> 01:12:04,166
+We have the link to go to page 5, we have
+
+302
+01:12:04,166 --> 01:12:05,916
+the underline text which is "test",
+
+303
+01:12:06,333 --> 01:12:07,899
+and the remainder of the line is showing
+
+304
+01:12:07,899 --> 01:12:09,433
+as not being underlined.
+
+305
+01:12:10,566 --> 01:12:11,466
+And we still have
+
+306
+01:12:11,466 --> 01:12:14,383
+operational links to each of the pages.
+
+307
+01:12:16,800 --> 01:12:18,699
+So, it's always a good idea to compare
+
+308
+01:12:18,699 --> 01:12:21,716
+our browser with a standard browser.
+
+309
+01:12:22,433 --> 01:12:24,566
+So, if we double-click on our index2
+
+310
+01:12:24,566 --> 01:12:27,500
+document and bring up a Chrome browser,
+
+311
+01:12:28,633 --> 01:12:30,883
+and if we compare that with our browser,
+
+312
+01:12:31,833 --> 01:12:34,899
+we'll see we're fairly close.
+
+313
+01:12:35,483 --> 01:12:38,116
+We're missing an extra line at the end of
+
+314
+01:12:38,116 --> 01:12:39,933
+each of the sections of
+
+315
+01:12:39,933 --> 01:12:41,899
+text where the paragraphs are,
+
+316
+01:12:42,100 --> 01:12:44,183
+but apart from that, we're fairly close.
+
+317
+01:12:45,283 --> 01:12:47,600
+So, the solution for our problem printing
+
+318
+01:12:47,600 --> 01:12:49,500
+seems to have been caused by this
+
+319
+01:12:49,500 --> 01:12:50,783
+graphics print statement.
+
+320
+01:12:51,800 --> 01:12:53,566
+While this is actually putting the cursor
+
+321
+01:12:53,566 --> 01:12:55,383
+down to the next available line,
+
+322
+01:12:55,399 --> 01:12:57,000
+it's not resetting the
+
+323
+01:12:57,000 --> 01:12:59,783
+global coordinates for X and Y.
+
+324
+01:13:00,666 --> 01:13:02,300
+So, we're going to take this line of code
+
+325
+01:13:02,300 --> 01:13:05,000
+out completely, and I've put an
+
+326
+01:13:05,000 --> 01:13:07,083
+additional print-blind line up here.
+
+327
+01:13:08,283 --> 01:13:10,899
+This is a section which handles text
+
+328
+01:13:10,899 --> 01:13:12,583
+which is not an image.
+
+329
+01:13:13,466 --> 01:13:15,483
+So, if we try running an application now,
+
+330
+01:13:16,100 --> 01:13:18,383
+hopefully this should fix the problem.
+
+331
+01:13:19,399 --> 01:13:23,433
+And indeed, we do have the paragraphs
+
+332
+01:13:23,433 --> 01:13:25,566
+quite correctly for the text, and we
+
+333
+01:13:25,566 --> 01:13:27,566
+appear to have it for the images as well.
+
+334
+01:13:31,933 --> 01:13:34,300
+If we compare that against a standard
+
+335
+01:13:34,300 --> 01:13:38,133
+browser, we can see our text is appearing
+
+336
+01:13:38,133 --> 01:13:40,383
+more or less exactly where it should.
+
+337
+01:13:41,399 --> 01:13:45,100
+We have each of the images
+
+338
+01:13:45,100 --> 01:13:48,266
+which have embedded links.
+
+339
+01:13:48,933 --> 01:13:53,883
+We have the URL, which is a text URL, and
+
+340
+01:13:53,883 --> 01:13:57,033
+we have underline and non-underline text
+
+341
+01:13:57,033 --> 01:13:58,716
+within the same paragraph.
+
+342
+01:14:00,433 --> 01:14:02,183
+So, in summary, what we've done today is
+
+343
+01:14:02,183 --> 01:14:03,166
+we have added support
+
+344
+01:14:03,166 --> 01:14:03,383
+for the underline tag.
+
+345
+01:14:04,399 --> 01:14:08,383
+Additionally, we have amended the text
+
+346
+01:14:08,383 --> 01:14:12,366
+URLs to be displayed in blue and with an
+
+347
+01:14:12,366 --> 01:14:15,016
+underline, making it more obvious to the
+
+348
+01:14:15,016 --> 01:14:17,266
+user that this is indeed a URL.
+
+349
+01:14:18,300 --> 01:14:20,100
+So, obviously there is a great deal more
+
+350
+01:14:20,100 --> 01:14:21,383
+to do in our browser.
+
+351
+01:14:22,116 --> 01:14:24,466
+However, the purpose of this project is
+
+352
+01:14:24,466 --> 01:14:27,033
+to cover areas of Power Basic that we may
+
+353
+01:14:27,033 --> 01:14:28,600
+never have covered before,
+
+354
+01:14:28,800 --> 01:14:30,383
+allowing us to pick up new skills.
+
+355
+01:14:30,483 --> 01:14:33,983
+But, that's it for
+
+356
+01:14:33,983 --> 01:14:36,399
+today. Thank you for watching.
+

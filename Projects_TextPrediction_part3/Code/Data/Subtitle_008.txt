@@ -1,0 +1,1372 @@
+1
+01:00:03,900 --> 01:00:06,733
+Welcome! In this series of short videos,
+
+2
+01:00:07,066 --> 01:00:09,016
+we will look at topics common to both the
+
+3
+01:00:09,016 --> 01:00:11,733
+PowerBasic console and Windows Compilers.
+
+4
+01:00:12,666 --> 01:00:14,733
+Today we will look again at using
+
+5
+01:00:14,733 --> 01:00:16,800
+pointers within your applications.
+
+6
+01:00:17,900 --> 01:00:19,699
+Today we're going to be looking at
+
+7
+01:00:19,699 --> 01:00:21,366
+pointers in PowerBasic.
+
+8
+01:00:22,516 --> 01:00:25,766
+Pointers are variables that hold a 32-bit
+
+9
+01:00:25,766 --> 01:00:27,833
+address of code or data
+
+10
+01:00:27,833 --> 01:00:30,416
+located somewhere else in memory.
+
+11
+01:00:31,166 --> 01:00:32,633
+It's called a pointer because it
+
+12
+01:00:32,633 --> 01:00:34,383
+literally points to that location.
+
+13
+01:00:35,333 --> 01:00:36,833
+I'm going to create a small application
+
+14
+01:00:36,833 --> 01:00:39,199
+today that will demonstrate the use of
+
+15
+01:00:39,199 --> 01:00:40,983
+pointers, what they are
+
+16
+01:00:40,983 --> 01:00:42,616
+and how you can use them.
+
+17
+01:00:43,283 --> 01:00:44,900
+So let's have a look at our code.
+
+18
+01:00:46,199 --> 01:00:48,033
+Let's assume for this application that
+
+19
+01:00:48,033 --> 01:00:48,633
+we're going to be
+
+20
+01:00:48,633 --> 01:00:50,833
+storing some data on stars.
+
+21
+01:00:51,949 --> 01:00:53,816
+We want to store a number of different
+
+22
+01:00:53,816 --> 01:00:56,416
+pieces of information on each star.
+
+23
+01:00:57,099 --> 01:00:59,683
+As the stars exist in a three-dimensional
+
+24
+01:00:59,683 --> 01:01:01,699
+space, we want to store the
+
+25
+01:01:01,699 --> 01:01:04,116
+x, the y and the z coordinates.
+
+26
+01:01:05,016 --> 01:01:06,483
+Plus we'll also want to
+
+27
+01:01:06,483 --> 01:01:07,983
+store the star's mass.
+
+28
+01:01:08,766 --> 01:01:10,333
+There are a number of ways of actually
+
+29
+01:01:10,333 --> 01:01:13,133
+storing these kinds of information, but
+
+30
+01:01:13,133 --> 01:01:14,216
+today we're going to be
+
+31
+01:01:14,216 --> 01:01:15,983
+using a user-defined type.
+
+32
+01:01:16,733 --> 01:01:18,616
+This user-defined type we're going to
+
+33
+01:01:18,616 --> 01:01:21,466
+call stars, udt stars.
+
+34
+01:01:21,883 --> 01:01:24,733
+We're prefixing the name with udt to
+
+35
+01:01:24,733 --> 01:01:25,766
+indicate that it is
+
+36
+01:01:25,766 --> 01:01:27,583
+indeed a user-defined type.
+
+37
+01:01:28,750 --> 01:01:31,400
+The four elements within this type are
+
+38
+01:01:31,400 --> 01:01:33,433
+all single-type variables.
+
+39
+01:01:34,833 --> 01:01:36,416
+Single-type variables are
+
+40
+01:01:36,416 --> 01:01:38,866
+single-precision floating-point numbers,
+
+41
+01:01:39,533 --> 01:01:40,383
+or to put it more
+
+42
+01:01:40,383 --> 01:01:41,916
+simply, single-precision.
+
+43
+01:01:42,650 --> 01:01:44,133
+These are very versatile.
+
+44
+01:01:44,766 --> 01:01:46,566
+The values stored within one of these
+
+45
+01:01:46,566 --> 01:01:48,933
+variables can contain decimal points.
+
+46
+01:01:50,000 --> 01:01:52,083
+This single-precision representation
+
+47
+01:01:52,083 --> 01:01:55,416
+comes as close as it can in six digits.
+
+48
+01:01:56,183 --> 01:01:58,366
+So if your number has six digits within
+
+49
+01:01:58,366 --> 01:01:59,316
+it, you can store it
+
+50
+01:01:59,316 --> 01:02:00,866
+within this type of variable.
+
+51
+01:02:01,966 --> 01:02:03,800
+This includes decimal places.
+
+52
+01:02:05,050 --> 01:02:06,266
+For the purposes of what we're doing
+
+53
+01:02:06,266 --> 01:02:08,566
+today, this will work out just fine.
+
+54
+01:02:09,016 --> 01:02:11,233
+So now that we have our user-defined type
+
+55
+01:02:11,233 --> 01:02:12,733
+set up at the beginning of the
+
+56
+01:02:12,733 --> 01:02:15,166
+application, within any of the functions
+
+57
+01:02:15,166 --> 01:02:18,633
+or subroutines, we can declare a local
+
+58
+01:02:18,633 --> 01:02:21,000
+variable as that user-defined type.
+
+59
+01:02:21,949 --> 01:02:23,583
+Then we can populate it.
+
+60
+01:02:24,033 --> 01:02:25,800
+So here we are declaring a
+
+61
+01:02:25,800 --> 01:02:27,599
+local variable called uStar.
+
+62
+01:02:28,599 --> 01:02:31,683
+And we're declaring that as udt stars.
+
+63
+01:02:32,750 --> 01:02:35,816
+So our local variable uStar, is now a
+
+64
+01:02:35,816 --> 01:02:38,316
+user-defined type containing the four
+
+65
+01:02:38,316 --> 01:02:40,183
+elements we declared at the
+
+66
+01:02:40,183 --> 01:02:41,283
+beginning of the application.
+
+67
+01:02:42,416 --> 01:02:44,366
+We can now populate these quite easily.
+
+68
+01:02:45,550 --> 01:02:47,783
+I'm using the prefix command here to make
+
+69
+01:02:47,783 --> 01:02:49,133
+the code look a little tidier.
+
+70
+01:02:49,666 --> 01:02:52,083
+All the prefix command does is it takes
+
+71
+01:02:52,083 --> 01:02:54,266
+the string that's in the double quotes
+
+72
+01:02:54,266 --> 01:02:57,683
+and it starts each following line until
+
+73
+01:02:57,683 --> 01:02:59,733
+end prefix with those values.
+
+74
+01:03:01,050 --> 01:03:05,266
+So it's uStar. sngX equals and then the
+
+75
+01:03:05,266 --> 01:03:06,816
+value for the first line.
+
+76
+01:03:07,400 --> 01:03:08,233
+And it does the same
+
+77
+01:03:08,233 --> 01:03:09,783
+for the next three lines.
+
+78
+01:03:10,699 --> 01:03:12,583
+What we're doing here is we're setting
+
+79
+01:03:12,583 --> 01:03:15,916
+the value of our x coordinate of the star
+
+80
+01:03:15,916 --> 01:03:19,016
+to be a random number between 1 and 1000,
+
+81
+01:03:19,716 --> 01:03:20,733
+and we're adding on
+
+82
+01:03:20,733 --> 01:03:22,266
+another random number.
+
+83
+01:03:22,866 --> 01:03:24,816
+That's a number between 0 and 1.
+
+84
+01:03:25,816 --> 01:03:27,933
+So this will populate our user-defined
+
+85
+01:03:27,933 --> 01:03:30,199
+type with the values randomly.
+
+86
+01:03:31,383 --> 01:03:33,416
+If we're using random numbers, we'll want
+
+87
+01:03:33,416 --> 01:03:34,666
+to set the random number
+
+88
+01:03:34,666 --> 01:03:36,699
+generator to a random seed.
+
+89
+01:03:37,199 --> 01:03:38,883
+We can do this at the beginning of our
+
+90
+01:03:38,883 --> 01:03:42,000
+application, by using the randomise
+
+91
+01:03:42,000 --> 01:03:44,383
+command with a seed number.
+
+92
+01:03:45,333 --> 01:03:46,966
+To make this fairly unique, we're going
+
+93
+01:03:46,966 --> 01:03:49,033
+to use the timer as our seed number.
+
+94
+01:03:49,816 --> 01:03:51,733
+So now that we've populated this local
+
+95
+01:03:51,733 --> 01:03:53,800
+variable, we'll now want to push the
+
+96
+01:03:53,800 --> 01:03:55,883
+information out to the log so we can see
+
+97
+01:03:55,883 --> 01:03:57,216
+what values have come out of it.
+
+98
+01:03:57,933 --> 01:04:00,483
+So we're using the format command to turn
+
+99
+01:04:00,483 --> 01:04:03,366
+these numbers into strings so we can use
+
+100
+01:04:03,366 --> 01:04:05,216
+our logging command to send
+
+101
+01:04:05,216 --> 01:04:06,616
+information out to the log.
+
+102
+01:04:07,616 --> 01:04:09,683
+So if we try running our application now,
+
+103
+01:04:10,800 --> 01:04:13,766
+it will display on screen a number of
+
+104
+01:04:13,766 --> 01:04:16,683
+values for the x, the y, the
+
+105
+01:04:16,683 --> 01:04:19,199
+z and the mass of our star.
+
+106
+01:04:19,933 --> 01:04:22,083
+So we've now stored random information
+
+107
+01:04:22,083 --> 01:04:23,833
+within our locally
+
+108
+01:04:23,833 --> 01:04:25,599
+declared user-defined type.
+
+109
+01:04:26,433 --> 01:04:28,033
+Of course, you can have
+
+110
+01:04:28,033 --> 01:04:30,300
+arrays of user-defined types.
+
+111
+01:04:31,116 --> 01:04:32,466
+So if we were looking to store
+
+112
+01:04:32,466 --> 01:04:35,216
+information on a multitude of stars, we
+
+113
+01:04:35,216 --> 01:04:38,116
+could use an array containing each
+
+114
+01:04:38,116 --> 01:04:40,566
+element being this user-defined type.
+
+115
+01:04:41,216 --> 01:04:42,116
+And this is where we
+
+116
+01:04:42,116 --> 01:04:43,333
+can start to use pointers.
+
+117
+01:04:44,083 --> 01:04:46,216
+But before we do the array, let's use
+
+118
+01:04:46,216 --> 01:04:47,800
+pointers with what we've
+
+119
+01:04:47,800 --> 01:04:49,300
+got – the single variable.
+
+120
+01:04:49,900 --> 01:04:50,733
+So for the moment,
+
+121
+01:04:50,733 --> 01:04:52,400
+let's comment out this code.
+
+122
+01:04:53,133 --> 01:04:54,000
+And we will create some
+
+123
+01:04:54,000 --> 01:04:55,566
+new code using a pointer.
+
+124
+01:04:56,400 --> 01:04:58,016
+As we're going to be storing information
+
+125
+01:04:58,016 --> 01:05:00,716
+on multiple stars and printing out
+
+126
+01:05:00,716 --> 01:05:03,199
+information on multiple stars, I'm going
+
+127
+01:05:03,199 --> 01:05:05,783
+to create two new functions –
+
+128
+01:05:05,949 --> 01:05:07,800
+one to store the information on a star
+
+129
+01:05:07,800 --> 01:05:09,366
+and one to output the
+
+130
+01:05:09,366 --> 01:05:10,699
+information on a star.
+
+131
+01:05:11,366 --> 01:05:13,316
+So we start off as we did before.
+
+132
+01:05:13,816 --> 01:05:16,066
+We want to create a local variable as
+
+133
+01:05:16,066 --> 01:05:17,283
+this user-defined type.
+
+134
+01:05:17,733 --> 01:05:19,500
+So this is exactly the same line of code
+
+135
+01:05:19,500 --> 01:05:22,016
+as we used before to declare our local
+
+136
+01:05:22,016 --> 01:05:23,066
+variable as the
+
+137
+01:05:23,066 --> 01:05:24,766
+user-defined type for stars.
+
+138
+01:05:26,316 --> 01:05:27,566
+Next, we're going to prepare
+
+139
+01:05:27,566 --> 01:05:29,633
+a pointer to be used for that.
+
+140
+01:05:30,500 --> 01:05:31,699
+And here, our local
+
+141
+01:05:31,699 --> 01:05:33,816
+variable is called "single star".
+
+142
+01:05:34,816 --> 01:05:36,466
+And we're declaring that as the
+
+143
+01:05:36,466 --> 01:05:38,533
+user-defined type, but we're following
+
+144
+01:05:38,533 --> 01:05:41,166
+that with the word "pointer" – to say
+
+145
+01:05:41,166 --> 01:05:42,116
+that this is going to be
+
+146
+01:05:42,116 --> 01:05:43,666
+used as a pointer variable.
+
+147
+01:05:44,466 --> 01:05:46,183
+And now that we've declared this pointer
+
+148
+01:05:46,183 --> 01:05:48,300
+variable, we can now populate it.
+
+149
+01:05:48,833 --> 01:05:50,683
+And we're populating this pointer
+
+150
+01:05:50,683 --> 01:05:53,833
+variable by using the VARPRT function.
+
+151
+01:05:54,849 --> 01:05:56,733
+This returns the 32-bit
+
+152
+01:05:56,733 --> 01:05:58,533
+address of a variable.
+
+153
+01:05:59,916 --> 01:06:01,983
+And in brackets, we have the name of the
+
+154
+01:06:01,983 --> 01:06:03,166
+variable we're returning.
+
+155
+01:06:03,933 --> 01:06:06,383
+So we're populating the 32-bit address
+
+156
+01:06:06,383 --> 01:06:09,533
+into our pointer variable of where the
+
+157
+01:06:09,533 --> 01:06:11,983
+information is stored for "U star".
+
+158
+01:06:12,766 --> 01:06:15,099
+And as I said earlier, we're going to use
+
+159
+01:06:15,099 --> 01:06:16,683
+two new functions –
+
+160
+01:06:17,133 --> 01:06:19,516
+one to prepare the star to populate the
+
+161
+01:06:19,516 --> 01:06:22,733
+values within the user-defined type, and
+
+162
+01:06:22,733 --> 01:06:24,633
+one to print the details out.
+
+163
+01:06:25,300 --> 01:06:28,166
+So we're calling the first function "prep
+
+164
+01:06:28,166 --> 01:06:29,500
+star" and the printing
+
+165
+01:06:29,500 --> 01:06:30,933
+function "print star".
+
+166
+01:06:32,099 --> 01:06:34,383
+As you'll see from both of the calls to
+
+167
+01:06:34,383 --> 01:06:36,616
+these functions, we're passing the
+
+168
+01:06:36,616 --> 01:06:39,233
+pointer variable – the single star
+
+169
+01:06:39,233 --> 01:06:41,833
+variable – to each of these functions.
+
+170
+01:06:42,916 --> 01:06:45,183
+So let's now go and create the first of
+
+171
+01:06:45,183 --> 01:06:46,066
+those two functions.
+
+172
+01:06:47,216 --> 01:06:50,033
+So here is the skeleton of our new
+
+173
+01:06:50,033 --> 01:06:52,033
+function – "prep star".
+
+174
+01:06:52,900 --> 01:06:54,866
+As you will see in the brackets, this is
+
+175
+01:06:54,866 --> 01:06:57,416
+where we normally put the name of the
+
+176
+01:06:57,416 --> 01:06:59,833
+variable we're passing to this function.
+
+177
+01:07:01,216 --> 01:07:02,716
+In this case, since we're passing a
+
+178
+01:07:02,716 --> 01:07:04,266
+pointer, pointers have
+
+179
+01:07:04,266 --> 01:07:05,816
+to be passed by value.
+
+180
+01:07:06,733 --> 01:07:08,599
+So we have the "by value" word at the
+
+181
+01:07:08,599 --> 01:07:09,866
+beginning of the list.
+
+182
+01:07:10,949 --> 01:07:13,116
+Followed by the name of the variable
+
+183
+01:07:13,116 --> 01:07:14,816
+we're bringing in. In this
+
+184
+01:07:14,816 --> 01:07:16,966
+case, it's the pointer for "star".
+
+185
+01:07:18,183 --> 01:07:20,166
+And we're declaring that as a
+
+186
+01:07:20,166 --> 01:07:22,366
+user-defined type, which we declared at
+
+187
+01:07:22,366 --> 01:07:23,566
+the beginning of our application.
+
+188
+01:07:24,416 --> 01:07:25,800
+And at the very end, we
+
+189
+01:07:25,800 --> 01:07:26,916
+have the word "pointer".
+
+190
+01:07:27,966 --> 01:07:29,533
+This indicates this variable
+
+191
+01:07:29,533 --> 01:07:31,716
+is in fact a pointer variable.
+
+192
+01:07:32,466 --> 01:07:34,266
+So now that we have that set up, how do
+
+193
+01:07:34,266 --> 01:07:35,500
+we populate the values
+
+194
+01:07:35,500 --> 01:07:36,966
+using this pointer variable?
+
+195
+01:07:37,900 --> 01:07:39,816
+So the lines of code to populate this
+
+196
+01:07:39,816 --> 01:07:41,083
+value look remarkably
+
+197
+01:07:41,083 --> 01:07:42,716
+similar to what we did before.
+
+198
+01:07:43,699 --> 01:07:45,699
+The only difference is the prefix line.
+
+199
+01:07:46,733 --> 01:07:48,599
+We're using an "@" sign in
+
+200
+01:07:48,599 --> 01:07:50,383
+front of the "p" star variable.
+
+201
+01:07:52,349 --> 01:07:54,883
+The "@" sign before the "p" indicates to
+
+202
+01:07:54,883 --> 01:07:56,966
+Power Basic that we're using a pointer.
+
+203
+01:07:57,900 --> 01:08:00,699
+And this will populate the values in our
+
+204
+01:08:00,699 --> 01:08:02,516
+user-defined type quite nicely.
+
+205
+01:08:03,800 --> 01:08:06,300
+So anytime you see the "@" sign in front
+
+206
+01:08:06,300 --> 01:08:08,583
+of a variable, you know that it's a
+
+207
+01:08:08,583 --> 01:08:09,983
+pointer that's being used.
+
+208
+01:08:10,616 --> 01:08:12,533
+So now that we've populated the
+
+209
+01:08:12,533 --> 01:08:14,616
+user-defined type using our "PrepStar"
+
+210
+01:08:14,616 --> 01:08:16,466
+function, how can we print
+
+211
+01:08:16,466 --> 01:08:18,233
+it out so the user can see it?
+
+212
+01:08:19,233 --> 01:08:20,500
+So we'll now create our
+
+213
+01:08:20,500 --> 01:08:21,699
+"PrintStar" function.
+
+214
+01:08:22,733 --> 01:08:24,500
+So again here, you'll see we're taking
+
+215
+01:08:24,500 --> 01:08:25,933
+exactly the same approach.
+
+216
+01:08:26,899 --> 01:08:29,483
+We have "byval" before the name of the
+
+217
+01:08:29,483 --> 01:08:31,566
+variable, and it's a
+
+218
+01:08:31,566 --> 01:08:33,866
+user-defined type of stars.
+
+219
+01:08:34,616 --> 01:08:36,033
+And again at the end we
+
+220
+01:08:36,033 --> 01:08:37,183
+have the word "pointer".
+
+221
+01:08:38,000 --> 01:08:39,500
+So we're passing exactly the same
+
+222
+01:08:39,500 --> 01:08:41,083
+variable in exactly the same
+
+223
+01:08:41,083 --> 01:08:43,233
+way to this printing function.
+
+224
+01:08:44,199 --> 01:08:46,916
+And to print the details of our stars out
+
+225
+01:08:46,916 --> 01:08:48,316
+to our log, we're taking
+
+226
+01:08:48,316 --> 01:08:49,800
+exactly the same approach.
+
+227
+01:08:51,100 --> 01:08:53,066
+We're using the "format" command to turn
+
+228
+01:08:53,066 --> 01:08:55,399
+the value back into a string so we can
+
+229
+01:08:55,399 --> 01:08:56,800
+use the fun log function.
+
+230
+01:08:58,183 --> 01:09:00,533
+And the variable name is preceded with
+
+231
+01:09:00,533 --> 01:09:03,166
+the "@" sign to indicate to Power Basic
+
+232
+01:09:03,166 --> 01:09:04,666
+that it's a pointer variable.
+
+233
+01:09:06,016 --> 01:09:06,916
+But the rest of the code
+
+234
+01:09:06,916 --> 01:09:08,566
+looks exactly the same.
+
+235
+01:09:10,316 --> 01:09:12,666
+We're still using the dot and the name of
+
+236
+01:09:12,666 --> 01:09:15,083
+the element within the user-defined type.
+
+237
+01:09:15,949 --> 01:09:17,916
+So now that we have that set up, our
+
+238
+01:09:17,916 --> 01:09:18,899
+program should function
+
+239
+01:09:18,899 --> 01:09:20,383
+in exactly the same way.
+
+240
+01:09:21,016 --> 01:09:21,766
+So let's try running
+
+241
+01:09:21,766 --> 01:09:22,916
+it and see how it goes.
+
+242
+01:09:24,133 --> 01:09:26,500
+So there our program has run, and we have
+
+243
+01:09:26,500 --> 01:09:28,983
+three coordinates for our star, and we
+
+244
+01:09:28,983 --> 01:09:30,183
+have the star's mass.
+
+245
+01:09:31,033 --> 01:09:32,899
+So we have successfully used a pointer
+
+246
+01:09:32,899 --> 01:09:35,983
+with a locally defined user-defined type.
+
+247
+01:09:36,866 --> 01:09:38,433
+So what are the advantages of
+
+248
+01:09:38,433 --> 01:09:39,983
+using this pointer variable?
+
+249
+01:09:40,966 --> 01:09:42,600
+Say for example we wanted to store
+
+250
+01:09:42,600 --> 01:09:44,733
+multiple stars in an
+
+251
+01:09:44,733 --> 01:09:46,600
+array of user-defined types.
+
+252
+01:09:47,616 --> 01:09:49,366
+So let's dimension an
+
+253
+01:09:49,366 --> 01:09:51,433
+array of 100 elements.
+
+254
+01:09:53,066 --> 01:09:55,483
+And this is going to be an array of our
+
+255
+01:09:55,483 --> 01:09:57,166
+user-defined type for stars.
+
+256
+01:09:58,550 --> 01:09:59,716
+And we're going to step through this
+
+257
+01:09:59,716 --> 01:10:01,283
+array using a For next loop.
+
+258
+01:10:02,033 --> 01:10:04,533
+So as we've done before, we'll need a
+
+259
+01:10:04,533 --> 01:10:06,566
+local variable to act as a
+
+260
+01:10:06,566 --> 01:10:08,866
+pointer to our user-defined type,
+
+261
+01:10:09,550 --> 01:10:10,566
+using exactly the same
+
+262
+01:10:10,566 --> 01:10:12,416
+line of code as we did before,
+
+263
+01:10:13,533 --> 01:10:16,616
+declaring PStar as a user-defined type of
+
+264
+01:10:16,616 --> 01:10:19,366
+stars with the word "pointer" on the end
+
+265
+01:10:19,366 --> 01:10:20,816
+to indicate that this is
+
+266
+01:10:20,816 --> 01:10:22,383
+indeed a pointer variable.
+
+267
+01:10:23,266 --> 01:10:24,983
+So let's now do the For next loop.
+
+268
+01:10:25,916 --> 01:10:28,033
+So for each star, we're going to populate
+
+269
+01:10:28,033 --> 01:10:29,466
+the pointer for the element
+
+270
+01:10:29,466 --> 01:10:30,899
+of the array being processed.
+
+271
+01:10:32,000 --> 01:10:34,016
+And we will populate the PStar variable
+
+272
+01:10:34,016 --> 01:10:37,516
+again using var pointer, but this time
+
+273
+01:10:37,516 --> 01:10:39,833
+pointing to the element of the array.
+
+274
+01:10:41,516 --> 01:10:43,966
+And having got that value into PStar, we
+
+275
+01:10:43,966 --> 01:10:46,133
+can now quite happily call our PrepStar
+
+276
+01:10:46,133 --> 01:10:47,733
+function, exactly the
+
+277
+01:10:47,733 --> 01:10:49,000
+same as we did before.
+
+278
+01:10:50,183 --> 01:10:52,483
+So from the point of view of the PrepStar
+
+279
+01:10:52,483 --> 01:10:54,433
+function, it's receiving a pointer.
+
+280
+01:10:55,266 --> 01:10:56,816
+And it doesn't really matter whether
+
+281
+01:10:56,816 --> 01:10:59,133
+you're passing the pointer to a single
+
+282
+01:10:59,133 --> 01:11:00,816
+declared variable or
+
+283
+01:11:00,816 --> 01:11:02,633
+an element of an array.
+
+284
+01:11:03,266 --> 01:11:05,000
+It will handle both quite happily.
+
+285
+01:11:05,716 --> 01:11:09,833
+So if we have now populated the value for
+
+286
+01:11:09,833 --> 01:11:11,766
+each star, let's print
+
+287
+01:11:11,766 --> 01:11:13,516
+some of those values out.
+
+288
+01:11:13,899 --> 01:11:15,733
+Let's go for the first three stars.
+
+289
+01:11:16,416 --> 01:11:19,416
+So again, we'll do a For next loop, and we
+
+290
+01:11:19,416 --> 01:11:21,533
+will call our printStar function.
+
+291
+01:11:22,500 --> 01:11:23,533
+So again, we're going
+
+292
+01:11:23,533 --> 01:11:26,166
+for lngR equals 1 to 3.
+
+293
+01:11:26,600 --> 01:11:27,283
+This will give us
+
+294
+01:11:27,283 --> 01:11:30,000
+information on the first three stars.
+
+295
+01:11:31,166 --> 01:11:33,500
+And we're populating the PStar pointer
+
+296
+01:11:33,500 --> 01:11:36,733
+again using var pointer just as we did
+
+297
+01:11:36,733 --> 01:11:39,633
+before, with the element of the array.
+
+298
+01:11:40,500 --> 01:11:42,733
+And we're calling the printStar function
+
+299
+01:11:42,733 --> 01:11:44,933
+with PStar as the
+
+300
+01:11:44,933 --> 01:11:46,533
+variable being passed in.
+
+301
+01:11:47,399 --> 01:11:48,266
+So let's run that
+
+302
+01:11:48,266 --> 01:11:49,683
+code and see what we get.
+
+303
+01:11:51,633 --> 01:11:52,316
+So there is our
+
+304
+01:11:52,316 --> 01:11:54,066
+function running quite happily.
+
+305
+01:11:55,466 --> 01:11:57,233
+And we have the information coming out of
+
+306
+01:11:57,233 --> 01:11:59,600
+the array of stars just as we had the
+
+307
+01:11:59,600 --> 01:12:00,616
+information coming out
+
+308
+01:12:00,616 --> 01:12:02,483
+from the single variable.
+
+309
+01:12:03,733 --> 01:12:05,766
+So as you can see, we're using the same
+
+310
+01:12:05,766 --> 01:12:08,666
+functions to handle both single variable
+
+311
+01:12:08,666 --> 01:12:10,883
+user-defined types and an
+
+312
+01:12:10,883 --> 01:12:14,100
+array element, all using pointers.
+
+313
+01:12:15,033 --> 01:12:16,983
+So to prove the information is coming out
+
+314
+01:12:16,983 --> 01:12:19,383
+quite correctly, let's print out the
+
+315
+01:12:19,383 --> 01:12:21,866
+third star without using pointers.
+
+316
+01:12:22,966 --> 01:12:23,483
+To make sure the
+
+317
+01:12:23,483 --> 01:12:25,333
+information is exactly the same.
+
+318
+01:12:26,316 --> 01:12:28,233
+So here is the code to print out the
+
+319
+01:12:28,233 --> 01:12:29,800
+values of the third star.
+
+320
+01:12:30,783 --> 01:12:31,466
+We're setting the
+
+321
+01:12:31,466 --> 01:12:33,283
+element number to be number 3.
+
+322
+01:12:33,933 --> 01:12:35,466
+This is the third star.
+
+323
+01:12:36,383 --> 01:12:38,466
+And we're printing out the x, y and z
+
+324
+01:12:38,466 --> 01:12:40,100
+coordinates of that star,
+
+325
+01:12:40,666 --> 01:12:42,666
+and also the mass of the star.
+
+326
+01:12:43,716 --> 01:12:45,500
+So if we run this now, it should show
+
+327
+01:12:45,500 --> 01:12:47,766
+exactly the same values coming out of the
+
+328
+01:12:47,766 --> 01:12:49,266
+array as it is for
+
+329
+01:12:49,266 --> 01:12:50,466
+this last piece of code.
+
+330
+01:12:51,416 --> 01:12:53,199
+And there we have the value coming out of
+
+331
+01:12:53,199 --> 01:12:56,199
+the array using the pointer functions and
+
+332
+01:12:56,199 --> 01:12:57,216
+coming out directly
+
+333
+01:12:57,216 --> 01:12:58,533
+without using pointers.
+
+334
+01:12:59,399 --> 01:13:01,283
+And the values are exactly the same.
+
+335
+01:13:02,699 --> 01:13:04,816
+So in summary, as you will see from this
+
+336
+01:13:04,816 --> 01:13:07,500
+code, this is a simple way to use
+
+337
+01:13:07,500 --> 01:13:10,916
+pointer, giving you a lot of flexibility
+
+338
+01:13:10,916 --> 01:13:13,483
+in how you can actually use information
+
+339
+01:13:13,483 --> 01:13:15,483
+which you're manipulating for users.
+
+340
+01:13:17,300 --> 01:13:19,199
+Hopefully you'll find this code useful in
+
+341
+01:13:19,199 --> 01:13:19,833
+your applications,
+
+342
+01:13:20,300 --> 01:13:22,166
+but that's it for today.
+
+343
+01:13:23,000 --> 01:13:23,933
+Thank you for watching.
+

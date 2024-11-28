@@ -1,0 +1,1088 @@
+1
+01:00:02,483 --> 01:00:06,333
+Welcome! In this series of short videos,
+
+2
+01:00:06,683 --> 01:00:07,716
+we will look at topics for
+
+3
+01:00:07,716 --> 01:00:09,466
+the PowerBasic Windows compiler.
+
+4
+01:00:10,699 --> 01:00:13,333
+Today we will look at the use of OpenGL.
+
+5
+01:00:14,383 --> 01:00:15,733
+That's the Open Graphics
+
+6
+01:00:15,733 --> 01:00:18,216
+Library within your applications.
+
+7
+01:00:20,033 --> 01:00:22,116
+Today we're going to be looking at the
+
+8
+01:00:22,116 --> 01:00:23,566
+Open Graphics Library.
+
+9
+01:00:26,349 --> 01:00:28,183
+OpenGL is a cross-language,
+
+10
+01:00:28,400 --> 01:00:30,466
+cross-platform API for
+
+11
+01:00:30,466 --> 01:00:33,616
+rendering 2D and 3D vector graphics.
+
+12
+01:00:35,516 --> 01:00:38,316
+Although OpenGL is no longer in active
+
+13
+01:00:38,316 --> 01:00:40,616
+development, there are extensions which
+
+14
+01:00:40,616 --> 01:00:42,816
+can provide additional functionality.
+
+15
+01:00:45,000 --> 01:00:47,066
+However, today we are just going to make
+
+16
+01:00:47,066 --> 01:00:51,416
+use of the OpenGL32.dll that
+
+17
+01:00:51,416 --> 01:00:53,616
+ships with Windows 10 and 11,
+
+18
+01:00:54,366 --> 01:00:57,233
+by looking at a piece of software created
+
+19
+01:00:57,233 --> 01:01:00,516
+by Gary Beene, to which I've added a
+
+20
+01:01:00,516 --> 01:01:01,966
+couple of small additions.
+
+21
+01:01:03,400 --> 01:01:05,033
+I'll put a link to Gary's
+
+22
+01:01:05,033 --> 01:01:06,716
+website in the description below.
+
+23
+01:01:07,866 --> 01:01:09,666
+This site contains lots of useful
+
+24
+01:01:09,666 --> 01:01:11,866
+examples of PowerBasic code.
+
+25
+01:01:13,266 --> 01:01:14,933
+As you can see on screen, we're going to
+
+26
+01:01:14,933 --> 01:01:16,516
+be demonstrating the 10
+
+27
+01:01:16,516 --> 01:01:19,366
+primitives that OpenGL supports,
+
+28
+01:01:20,500 --> 01:01:22,933
+from points all the way down to polygons.
+
+29
+01:01:24,233 --> 01:01:26,683
+I have added more options at the end of
+
+30
+01:01:26,683 --> 01:01:27,783
+the list, which we'll
+
+31
+01:01:27,783 --> 01:01:29,366
+cover later in the video.
+
+32
+01:01:30,566 --> 01:01:31,466
+What you can see at the
+
+33
+01:01:31,466 --> 01:01:33,900
+moment is the use of the points.
+
+34
+01:01:34,833 --> 01:01:36,333
+We have six points and
+
+35
+01:01:36,333 --> 01:01:37,933
+we're rotating around these.
+
+36
+01:01:39,516 --> 01:01:43,816
+If we switch to Lines, we can see we have
+
+37
+01:01:43,816 --> 01:01:47,016
+two lines on the screen, one in red and
+
+38
+01:01:47,016 --> 01:01:49,033
+one using a gradient fill.
+
+39
+01:01:51,466 --> 01:01:53,166
+The next is Line Strip.
+
+40
+01:01:54,933 --> 01:01:56,733
+This allows us to display a
+
+41
+01:01:56,733 --> 01:01:58,683
+longer and more angular line.
+
+42
+01:01:59,683 --> 01:02:01,666
+And the next is Line Loop, which is
+
+43
+01:02:01,666 --> 01:02:04,300
+showing a closed, four-sided figure.
+
+44
+01:02:06,000 --> 01:02:09,099
+If we now go to Triangles, we can
+
+45
+01:02:09,099 --> 01:02:11,500
+demonstrate the use of gradient fills.
+
+46
+01:02:12,516 --> 01:02:13,283
+Each corner of the
+
+47
+01:02:13,283 --> 01:02:15,733
+triangle has a base RGB colour.
+
+48
+01:02:18,533 --> 01:02:19,933
+Triangle Strip allows us
+
+49
+01:02:19,933 --> 01:02:21,233
+to add triangles together.
+
+50
+01:02:23,066 --> 01:02:25,000
+The next one is Triangle Fan.
+
+51
+01:02:26,966 --> 01:02:28,433
+And as you can see, this takes the
+
+52
+01:02:28,433 --> 01:02:29,566
+concept a little further.
+
+53
+01:02:30,816 --> 01:02:32,333
+Again with a gradient fill.
+
+54
+01:02:35,949 --> 01:02:37,199
+Quads takes us into the
+
+55
+01:02:37,199 --> 01:02:39,033
+realm of four-sided figures.
+
+56
+01:02:43,183 --> 01:02:45,316
+Quads Strip allows us to join these
+
+57
+01:02:45,316 --> 01:02:48,033
+four-sided figures together, again here
+
+58
+01:02:48,033 --> 01:02:49,166
+with a gradient fill.
+
+59
+01:02:51,933 --> 01:02:53,483
+Next is Polygons.
+
+60
+01:02:54,266 --> 01:02:56,099
+This allows you to specify the
+
+61
+01:02:56,099 --> 01:02:57,633
+coordinates of each of
+
+62
+01:02:57,633 --> 01:02:59,383
+the vertices of the polygon.
+
+63
+01:03:01,000 --> 01:03:02,716
+The final four elements are not
+
+64
+01:03:02,716 --> 01:03:05,000
+primitives. These are built up from the
+
+65
+01:03:05,000 --> 01:03:05,866
+primitives themselves.
+
+66
+01:03:07,116 --> 01:03:07,866
+First, we will have a
+
+67
+01:03:07,866 --> 01:03:09,116
+look at the Wire Sphere.
+
+68
+01:03:11,099 --> 01:03:13,666
+This allows us to specify quite easily on
+
+69
+01:03:13,666 --> 01:03:17,500
+screen a sphere with a number of
+
+70
+01:03:17,500 --> 01:03:19,699
+longitude and latitude lines.
+
+71
+01:03:21,583 --> 01:03:24,616
+The sphere is formed up of quad strips,
+
+72
+01:03:25,633 --> 01:03:27,916
+except for the north and south poles,
+
+73
+01:03:28,300 --> 01:03:30,083
+which are triangle fans.
+
+74
+01:03:34,099 --> 01:03:38,199
+We can specify a circle quite easily, and
+
+75
+01:03:38,199 --> 01:03:40,066
+this one has a nice gradient fill.
+
+76
+01:03:42,383 --> 01:03:44,033
+The next one is Spheres.
+
+77
+01:03:44,866 --> 01:03:45,983
+In this case, it appears
+
+78
+01:03:45,983 --> 01:03:47,683
+as if it's a billiard ball.
+
+79
+01:03:48,666 --> 01:03:51,283
+We have incorporated lighting and shading
+
+80
+01:03:51,283 --> 01:03:53,683
+on this one, to give quite a realistic
+
+81
+01:03:53,683 --> 01:03:55,116
+rendition of a sphere.
+
+82
+01:03:57,933 --> 01:04:00,216
+And the final one is Teapot.
+
+83
+01:04:01,083 --> 01:04:03,316
+What would a 3D demonstration be without
+
+84
+01:04:03,316 --> 01:04:05,216
+the traditional teapot shape?
+
+85
+01:04:09,016 --> 01:04:10,833
+So we will next look at the Power Basic
+
+86
+01:04:10,833 --> 01:04:12,033
+code that's been used
+
+87
+01:04:12,033 --> 01:04:14,000
+to generate these images.
+
+88
+01:04:16,183 --> 01:04:18,199
+So let's go and have a look at the code.
+
+89
+01:04:20,466 --> 01:04:22,366
+So at the top of our code, we have listed
+
+90
+01:04:22,366 --> 01:04:24,066
+the ten different
+
+91
+01:04:24,066 --> 01:04:26,599
+primitives that OpenGL supports.
+
+92
+01:04:27,366 --> 01:04:30,199
+Points, Lines, Polygons, Triangles,
+
+93
+01:04:30,666 --> 01:04:33,683
+Quads, Line Strips, Line Loops, Triangle
+
+94
+01:04:33,683 --> 01:04:35,199
+Strips, Triangle Fans
+
+95
+01:04:35,199 --> 01:04:37,183
+and finally, Quad Strips.
+
+96
+01:04:38,000 --> 01:04:40,699
+We're now including four libraries with
+
+97
+01:04:40,699 --> 01:04:43,800
+this code – the standard Windows 32 API
+
+98
+01:04:43,800 --> 01:04:45,283
+library and three
+
+99
+01:04:45,283 --> 01:04:48,166
+additional ones, coming from José Roca.
+
+100
+01:04:49,616 --> 01:04:51,733
+The GL include, the GLU
+
+101
+01:04:51,733 --> 01:04:55,383
+include and the AFX GLUT include.
+
+102
+01:04:57,833 --> 01:04:59,933
+I've added each of these libraries to the
+
+103
+01:04:59,933 --> 01:05:01,633
+zip file to make it easy for
+
+104
+01:05:01,633 --> 01:05:02,983
+you to test out this program.
+
+105
+01:05:04,683 --> 01:05:07,116
+And I've created an enumeration for all
+
+106
+01:05:07,116 --> 01:05:08,533
+of these primitives.
+
+107
+01:05:10,250 --> 01:05:11,133
+We've also used a macro
+
+108
+01:05:11,133 --> 01:05:13,483
+to define the constant pi.
+
+109
+01:05:16,133 --> 01:05:17,716
+The dialog is quite straightforward.
+
+110
+01:05:18,316 --> 01:05:19,733
+We're using option buttons.
+
+111
+01:05:20,716 --> 01:05:22,416
+And the graphics are displayed actually
+
+112
+01:05:22,416 --> 01:05:25,300
+on a label control called "id_Label".
+
+113
+01:05:26,816 --> 01:05:28,666
+So the work begins in the callback
+
+114
+01:05:28,666 --> 01:05:29,983
+function, the Event handler.
+
+115
+01:05:31,000 --> 01:05:33,016
+In here, we're doing a
+
+116
+01:05:33,016 --> 01:05:34,599
+number of things to set up.
+
+117
+01:05:35,366 --> 01:05:37,533
+We're using two subroutines, first of all
+
+118
+01:05:37,533 --> 01:05:39,983
+to get the render context and secondly,
+
+119
+01:05:39,983 --> 01:05:41,000
+to initialize the scene.
+
+120
+01:05:41,816 --> 01:05:42,900
+We'll cover these in a moment.
+
+121
+01:05:43,683 --> 01:05:45,983
+Then we're setting up a timer, triggering
+
+122
+01:05:45,983 --> 01:05:47,416
+every 50 milliseconds.
+
+123
+01:05:48,366 --> 01:05:50,500
+This is to allow us to change your
+
+124
+01:05:50,500 --> 01:05:52,983
+viewpoint of the 3D or 2D object.
+
+125
+01:05:54,000 --> 01:05:58,000
+And when any of the option buttons are
+
+126
+01:05:58,000 --> 01:06:00,183
+selected, we are calling a
+
+127
+01:06:00,183 --> 01:06:01,833
+routine called "draw scene".
+
+128
+01:06:02,916 --> 01:06:05,216
+Draw scene is the routine which will draw
+
+129
+01:06:05,216 --> 01:06:06,683
+the image onto the screen.
+
+130
+01:06:08,233 --> 01:06:10,133
+This is called from a number of places.
+
+131
+01:06:11,333 --> 01:06:12,416
+As you can see from the
+
+132
+01:06:12,416 --> 01:06:14,833
+timer and from the paint.
+
+133
+01:06:16,233 --> 01:06:18,833
+This takes a number of parameters, either
+
+134
+01:06:18,833 --> 01:06:20,983
+to have rotation or no rotation.
+
+135
+01:06:22,000 --> 01:06:24,800
+So if we look first of all at the
+
+136
+01:06:24,800 --> 01:06:26,816
+get_render_context subroutine.
+
+137
+01:06:31,333 --> 01:06:33,566
+This is first of all setting up the pixel
+
+138
+01:06:33,566 --> 01:06:36,266
+format properties for our device context.
+
+139
+01:06:38,116 --> 01:06:40,466
+We're going for 24-bit for both the colour
+
+140
+01:06:40,466 --> 01:06:41,699
+bits and for the depth.
+
+141
+01:06:43,500 --> 01:06:45,266
+And this command here, "control handle",
+
+142
+01:06:45,583 --> 01:06:49,000
+gets the handle of our label control and
+
+143
+01:06:49,000 --> 01:06:50,000
+stores it in hLabel.
+
+144
+01:06:52,000 --> 01:06:53,616
+hLabel is a global variable.
+
+145
+01:06:54,933 --> 01:06:56,383
+And we're using the get_dc
+
+146
+01:06:56,383 --> 01:06:59,033
+call to get the device context.
+
+147
+01:07:01,483 --> 01:07:03,666
+And another Windows API call,
+
+148
+01:07:03,983 --> 01:07:06,933
+setPixelFormat, to set our pixel format
+
+149
+01:07:06,933 --> 01:07:08,816
+up and ready to render.
+
+150
+01:07:10,416 --> 01:07:11,383
+Once this is done, we're
+
+151
+01:07:11,383 --> 01:07:12,616
+into the initialize scene.
+
+152
+01:07:13,266 --> 01:07:15,400
+And this is where we start using some of
+
+153
+01:07:15,400 --> 01:07:17,366
+the OpenGL functions.
+
+154
+01:07:19,016 --> 01:07:23,783
+To clear the colour, to set the depth, to
+
+155
+01:07:23,783 --> 01:07:26,733
+specify the depth function, to enable
+
+156
+01:07:26,733 --> 01:07:30,316
+depth test, to go for smooth shading and
+
+157
+01:07:30,316 --> 01:07:31,516
+to go for the best quality
+
+158
+01:07:31,516 --> 01:07:33,433
+rendering we can on our device.
+
+159
+01:07:35,033 --> 01:07:36,616
+So if we have a look at the
+
+160
+01:07:36,616 --> 01:07:38,466
+routine which does all the work.
+
+161
+01:07:39,466 --> 01:07:40,766
+The one called draw scene.
+
+162
+01:07:41,466 --> 01:07:43,983
+It takes in the three parameters, the X,
+
+163
+01:07:44,233 --> 01:07:45,983
+Y and Z coordinates.
+
+164
+01:07:47,000 --> 01:07:49,883
+And we're stepping through each of the
+
+165
+01:07:49,883 --> 01:07:52,900
+possible selections the user has made.
+
+166
+01:07:53,500 --> 01:07:55,166
+So we're basically checking to see which
+
+167
+01:07:55,166 --> 01:07:56,766
+option button has been
+
+168
+01:07:56,766 --> 01:07:57,699
+clicked on the screen.
+
+169
+01:07:59,583 --> 01:08:01,466
+We're then clearing the buffers and we're
+
+170
+01:08:01,466 --> 01:08:03,566
+going through a series of routines which
+
+171
+01:08:03,566 --> 01:08:05,199
+I've done my best to document.
+
+172
+01:08:06,433 --> 01:08:08,166
+As these are likely to be routines you
+
+173
+01:08:08,166 --> 01:08:08,983
+have not used before.
+
+174
+01:08:10,000 --> 01:08:13,883
+Once this is all set up, we're using a
+
+175
+01:08:13,883 --> 01:08:17,133
+rotate call to work out the rotation of
+
+176
+01:08:17,133 --> 01:08:18,833
+our coordinates, both the
+
+177
+01:08:18,833 --> 01:08:20,583
+X, Y and the Z coordinates.
+
+178
+01:08:23,149 --> 01:08:23,816
+And the main work
+
+179
+01:08:23,816 --> 01:08:25,583
+begins in the case statement.
+
+180
+01:08:26,233 --> 01:08:28,133
+This is testing the selection you have
+
+181
+01:08:28,133 --> 01:08:29,316
+made from the options.
+
+182
+01:08:29,916 --> 01:08:32,083
+If we're doing points, it's setting the
+
+183
+01:08:32,083 --> 01:08:34,000
+vertex of each of these points.
+
+184
+01:08:39,083 --> 01:08:40,316
+And it's held within a
+
+185
+01:08:40,316 --> 01:08:42,733
+begin and an end command.
+
+186
+01:08:43,816 --> 01:08:46,066
+And we give it the constant to see what
+
+187
+01:08:46,066 --> 01:08:47,066
+kind of object we're
+
+188
+01:08:47,066 --> 01:08:48,616
+dealing with, in this case points.
+
+189
+01:08:50,483 --> 01:08:52,483
+The same with the lines, the
+
+190
+01:08:52,483 --> 01:08:54,766
+line strip and the line loop.
+
+191
+01:08:56,550 --> 01:08:59,066
+The triangles are slightly different, as
+
+192
+01:08:59,066 --> 01:09:01,183
+in the triangles have different colours.
+
+193
+01:09:03,633 --> 01:09:06,216
+So the first corner is green, the second
+
+194
+01:09:06,216 --> 01:09:08,816
+is red and the final one is blue.
+
+195
+01:09:10,333 --> 01:09:11,366
+And the same approach is
+
+196
+01:09:11,366 --> 01:09:12,899
+taken with the triangle strip.
+
+197
+01:09:13,383 --> 01:09:16,533
+We're using the glColor3ub function to
+
+198
+01:09:16,533 --> 01:09:17,966
+specify the color for
+
+199
+01:09:17,966 --> 01:09:19,283
+each of our vertices.
+
+200
+01:09:20,899 --> 01:09:22,533
+And again, a similar approach
+
+201
+01:09:22,533 --> 01:09:24,183
+taken with the triangle fan.
+
+202
+01:09:25,633 --> 01:09:28,000
+With the quads, we're setting the default
+
+203
+01:09:28,000 --> 01:09:31,000
+vertex color in one line, as green.
+
+204
+01:09:34,300 --> 01:09:35,233
+And for the quads strip,
+
+205
+01:09:35,533 --> 01:09:36,816
+the same approach again.
+
+206
+01:09:39,283 --> 01:09:40,366
+So when we get to the circle,
+
+207
+01:09:40,366 --> 01:09:42,083
+this one is slightly different.
+
+208
+01:09:43,516 --> 01:09:46,616
+We're using the triangle fan and we're
+
+209
+01:09:46,616 --> 01:09:47,699
+using a for next
+
+210
+01:09:47,699 --> 01:09:50,583
+loop, going from 0 to 360.
+
+211
+01:09:51,466 --> 01:09:52,433
+So this allows you to
+
+212
+01:09:52,433 --> 01:09:54,683
+specify all 360 degrees.
+
+213
+01:09:55,550 --> 01:09:58,516
+And we're using the glVertex2f with the
+
+214
+01:09:58,516 --> 01:10:00,566
+radius and pi to draw
+
+215
+01:10:00,566 --> 01:10:01,883
+the circle on the screen.
+
+216
+01:10:03,283 --> 01:10:05,066
+The change in the color is used by
+
+217
+01:10:05,066 --> 01:10:07,283
+manipulating three constants, one for
+
+218
+01:10:07,283 --> 01:10:09,733
+red, one for green and one for blue.
+
+219
+01:10:10,366 --> 01:10:12,083
+And using the color3ub
+
+220
+01:10:12,083 --> 01:10:14,233
+function to set these.
+
+221
+01:10:14,933 --> 01:10:17,216
+For each degree, we go around a circle.
+
+222
+01:10:18,899 --> 01:10:20,983
+The solid sphere is slightly different.
+
+223
+01:10:22,416 --> 01:10:23,966
+The solid sphere, we're using one of the
+
+224
+01:10:23,966 --> 01:10:27,216
+functions within the library, which we've
+
+225
+01:10:27,216 --> 01:10:27,816
+added at the
+
+226
+01:10:27,816 --> 01:10:28,983
+beginning of the application.
+
+227
+01:10:30,483 --> 01:10:31,899
+We're using the translate with the
+
+228
+01:10:31,899 --> 01:10:32,616
+coordinates provided.
+
+229
+01:10:33,533 --> 01:10:35,216
+And we're setting the three parameters
+
+230
+01:10:35,216 --> 01:10:37,000
+using this function here.
+
+231
+01:10:37,716 --> 01:10:40,166
+This single function will display on
+
+232
+01:10:40,166 --> 01:10:45,300
+screen a solid sphere of this radius and
+
+233
+01:10:45,300 --> 01:10:46,983
+the number of subdivisions you specify.
+
+234
+01:10:48,000 --> 01:10:50,066
+And in this case, we're using 64 to give
+
+235
+01:10:50,066 --> 01:10:51,116
+us the best chance of
+
+236
+01:10:51,116 --> 01:10:52,566
+having a smooth looking sphere.
+
+237
+01:10:55,800 --> 01:10:57,766
+The only additional things we're doing in this
+
+238
+01:10:57,766 --> 01:11:00,866
+function is setting up the lighting and
+
+239
+01:11:00,866 --> 01:11:02,066
+the material parameters.
+
+240
+01:11:03,583 --> 01:11:06,100
+And once we pop this matrix, at the very
+
+241
+01:11:06,100 --> 01:11:09,000
+end of this select statement is the
+
+242
+01:11:09,000 --> 01:11:11,966
+command to swap the buffers.
+
+243
+01:11:12,466 --> 01:11:14,333
+This will display the image to the user.
+
+244
+01:11:19,566 --> 01:11:21,666
+With the teapot, we're using exactly the
+
+245
+01:11:21,666 --> 01:11:23,466
+same approach when we're calling a
+
+246
+01:11:23,466 --> 01:11:24,783
+different function in the
+
+247
+01:11:24,783 --> 01:11:27,566
+FX library, the solid teapot.
+
+248
+01:11:29,433 --> 01:11:31,783
+If we have a look at this library, you
+
+249
+01:11:31,783 --> 01:11:34,283
+can see in the function list there are a
+
+250
+01:11:34,283 --> 01:11:36,483
+number of functions you can call to get
+
+251
+01:11:36,483 --> 01:11:39,716
+specific shapes very easily, from wire
+
+252
+01:11:39,716 --> 01:11:41,633
+spheres to wire teapots.
+
+253
+01:11:43,633 --> 01:11:46,133
+If we look inside this teapot function,
+
+254
+01:11:46,600 --> 01:11:48,000
+you'll see there's a large amount of code
+
+255
+01:11:48,000 --> 01:11:51,383
+to define the coordinates of each of the
+
+256
+01:11:51,383 --> 01:11:52,983
+areas of the teapot.
+
+257
+01:11:53,883 --> 01:11:54,600
+And this saves you
+
+258
+01:11:54,600 --> 01:11:56,066
+doing a great deal of work.
+
+259
+01:11:57,733 --> 01:11:59,733
+So if you're after a slightly more
+
+260
+01:11:59,733 --> 01:12:01,233
+enhanced primitive, you
+
+261
+01:12:01,233 --> 01:12:02,233
+can use these together.
+
+262
+01:12:04,000 --> 01:12:05,516
+And looking at the code within these
+
+263
+01:12:05,516 --> 01:12:07,733
+functions can give you ideas of how to
+
+264
+01:12:07,733 --> 01:12:08,983
+create other types of objects.
+
+265
+01:12:10,000 --> 01:12:12,816
+So feel free to browse into this code.
+
+266
+01:12:16,283 --> 01:12:17,833
+So this has been a short
+
+267
+01:12:17,833 --> 01:12:20,216
+dip into the world of OpenGL.
+
+268
+01:12:22,433 --> 01:12:24,166
+Hopefully you found this code interesting
+
+269
+01:12:24,166 --> 01:12:25,883
+and might find uses for it
+
+270
+01:12:25,883 --> 01:12:27,500
+within your own applications.
+
+271
+01:12:28,483 --> 01:12:30,016
+However, that's it for today.
+
+272
+01:12:30,916 --> 01:12:31,783
+Thank you for watching.
+

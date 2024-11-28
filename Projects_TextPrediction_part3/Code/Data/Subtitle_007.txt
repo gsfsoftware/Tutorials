@@ -1,0 +1,580 @@
+1
+01:00:05,433 --> 01:00:08,366
+Welcome to an update for the Power Basic
+
+2
+01:00:08,366 --> 01:00:10,116
+for Beginners YouTube channel.
+
+3
+01:00:11,516 --> 01:00:13,449
+We have recently gained a few new
+
+4
+01:00:13,449 --> 01:00:14,716
+subscribers to the channel
+
+5
+01:00:14,716 --> 01:00:16,566
+and as it's some time since
+
+6
+01:00:16,566 --> 01:00:19,150
+our last update then this short video
+
+7
+01:00:19,150 --> 01:00:20,599
+should provide some
+
+8
+01:00:20,599 --> 01:00:22,199
+useful information to assist
+
+9
+01:00:22,266 --> 01:00:24,966
+you in getting the most from the channel.
+
+10
+01:00:26,433 --> 01:00:28,616
+As you can see we're now on the Power
+
+11
+01:00:28,616 --> 01:00:30,666
+Basic for Beginners YouTube channel.
+
+12
+01:00:31,866 --> 01:00:35,716
+There are currently 426 videos on this
+
+13
+01:00:35,716 --> 01:00:37,849
+channel, covering many
+
+14
+01:00:37,849 --> 01:00:39,916
+topics on both the Power Basic
+
+15
+01:00:39,966 --> 01:00:42,133
+Windows and Console Compilers.
+
+16
+01:00:43,133 --> 01:00:46,516
+If we click on the More section here, we
+
+17
+01:00:46,516 --> 01:00:47,366
+can see that source
+
+18
+01:00:47,366 --> 01:00:49,016
+files for these projects are
+
+19
+01:00:49,016 --> 01:00:52,216
+available on an external website, this
+
+20
+01:00:52,216 --> 01:00:55,033
+one here, the GSF Software website.
+
+21
+01:00:55,949 --> 01:00:57,250
+If we go to that link,
+
+22
+01:00:57,933 --> 01:00:59,849
+it takes us to this page.
+
+23
+01:01:00,733 --> 01:01:03,349
+This site is in fact an index to the
+
+24
+01:01:03,349 --> 01:01:05,366
+YouTube channel, indexing
+
+25
+01:01:05,366 --> 01:01:06,699
+all the videos which are
+
+26
+01:01:06,699 --> 01:01:07,433
+on the channel.
+
+27
+01:01:08,400 --> 01:01:10,966
+On the Recently Added page we have all
+
+28
+01:01:10,966 --> 01:01:12,216
+the recent videos that
+
+29
+01:01:12,216 --> 01:01:13,116
+have been added to the
+
+30
+01:01:13,116 --> 01:01:13,433
+channel.
+
+31
+01:01:14,133 --> 01:01:15,266
+As you can see, each
+
+32
+01:01:15,266 --> 01:01:16,900
+video is listed separately.
+
+33
+01:01:17,416 --> 01:01:20,233
+We have a compiler or topic, which is an
+
+34
+01:01:20,233 --> 01:01:21,633
+icon to show what type
+
+35
+01:01:21,633 --> 01:01:23,766
+of video it is, in this
+
+36
+01:01:23,766 --> 01:01:26,900
+case a podcast and the next one down is a
+
+37
+01:01:26,900 --> 01:01:28,199
+video on the Power
+
+38
+01:01:28,199 --> 01:01:29,449
+Basic Windows compiler.
+
+39
+01:01:30,366 --> 01:01:32,916
+This website also charts the videos for
+
+40
+01:01:32,916 --> 01:01:34,300
+my Hardware channel,
+
+41
+01:01:35,266 --> 01:01:36,500
+which are shown by this
+
+42
+01:01:36,550 --> 01:01:37,750
+icon here.
+
+43
+01:01:38,550 --> 01:01:41,416
+Videos on purely console applications are
+
+44
+01:01:41,416 --> 01:01:43,066
+shown with this icon,
+
+45
+01:01:43,849 --> 01:01:44,966
+and videos which cover
+
+46
+01:01:45,116 --> 01:01:47,233
+both the console and the Windows
+
+47
+01:01:47,233 --> 01:01:48,500
+Compilers are shown
+
+48
+01:01:48,500 --> 01:01:50,599
+again with a different icon.
+
+49
+01:01:52,566 --> 01:01:55,066
+So apart from the obvious details of the
+
+50
+01:01:55,066 --> 01:01:56,550
+subject of the video and
+
+51
+01:01:56,550 --> 01:01:57,816
+the date on which it was
+
+52
+01:01:57,849 --> 01:01:59,449
+uploaded to YouTube, we
+
+53
+01:01:59,449 --> 01:02:01,266
+also have a short description.
+
+54
+01:02:02,849 --> 01:02:05,349
+However, the website goes further, it not
+
+55
+01:02:05,349 --> 01:02:06,099
+only gives you a link
+
+56
+01:02:06,099 --> 01:02:06,966
+to the YouTube video
+
+57
+01:02:06,966 --> 01:02:09,466
+itself, but it gives you keywords.
+
+58
+01:02:10,300 --> 01:02:12,300
+If you are interested in videos on a
+
+59
+01:02:12,300 --> 01:02:13,566
+similar subject, you
+
+60
+01:02:13,566 --> 01:02:14,750
+can click on a keyword.
+
+61
+01:02:15,366 --> 01:02:17,750
+This brings up a separate page, in this
+
+62
+01:02:17,750 --> 01:02:19,250
+case all the videos
+
+63
+01:02:19,250 --> 01:02:20,949
+with the podcast keyword.
+
+64
+01:02:22,300 --> 01:02:24,416
+If we click on the intro keyword, we'll
+
+65
+01:02:24,416 --> 01:02:26,066
+be taken to 47 videos,
+
+66
+01:02:26,650 --> 01:02:28,316
+which are all introduction
+
+67
+01:02:28,516 --> 01:02:29,666
+to Power Basic videos.
+
+68
+01:02:31,199 --> 01:02:33,116
+Additionally, if there is any source code
+
+69
+01:02:33,116 --> 01:02:34,250
+associated with a
+
+70
+01:02:34,250 --> 01:02:35,699
+video, then there will be
+
+71
+01:02:35,699 --> 01:02:38,966
+an icon in the source view column, and if
+
+72
+01:02:38,966 --> 01:02:39,800
+you click on that,
+
+73
+01:02:40,166 --> 01:02:41,266
+you will see the actual
+
+74
+01:02:41,266 --> 01:02:43,750
+source code of the core
+
+75
+01:02:43,750 --> 01:02:46,000
+Power Basic project file.
+
+76
+01:02:48,133 --> 01:02:49,616
+This allows you to view the source code
+
+77
+01:02:49,616 --> 01:02:51,066
+quite easily from this site.
+
+78
+01:02:52,366 --> 01:02:54,650
+Additionally, if you wish to download all
+
+79
+01:02:54,650 --> 01:02:56,033
+the files for this
+
+80
+01:02:56,033 --> 01:02:57,699
+particular project, there
+
+81
+01:02:57,699 --> 01:03:00,166
+is a zip files download icon.
+
+82
+01:03:01,266 --> 01:03:02,949
+Clicking on that will allow you to
+
+83
+01:03:02,949 --> 01:03:04,333
+download the zip file.
+
+84
+01:03:06,033 --> 01:03:08,566
+The GitHub link will take you to GitHub,
+
+85
+01:03:08,966 --> 01:03:10,750
+where you can view and
+
+86
+01:03:10,750 --> 01:03:12,866
+download the files from here.
+
+87
+01:03:14,900 --> 01:03:17,216
+This page only covers those videos which
+
+88
+01:03:17,216 --> 01:03:18,650
+have been added recently.
+
+89
+01:03:19,733 --> 01:03:21,633
+If you are interested in videos purely
+
+90
+01:03:21,633 --> 01:03:22,449
+for the console
+
+91
+01:03:22,449 --> 01:03:24,250
+compiler, if you click on that,
+
+92
+01:03:24,633 --> 01:03:26,933
+you will get a list of all the videos to
+
+93
+01:03:26,933 --> 01:03:28,550
+do with the console compiler.
+
+94
+01:03:29,566 --> 01:03:32,366
+Again, with keywords and the ability to
+
+95
+01:03:32,366 --> 01:03:33,650
+download or view the
+
+96
+01:03:33,650 --> 01:03:35,099
+source code for each of these
+
+97
+01:03:35,099 --> 01:03:35,466
+files.
+
+98
+01:03:37,033 --> 01:03:38,366
+If you are interested purely in the
+
+99
+01:03:38,366 --> 01:03:39,616
+Windows compiler, you
+
+100
+01:03:39,616 --> 01:03:40,900
+can do the same for it.
+
+101
+01:03:42,300 --> 01:03:44,916
+There is a section for videos which cover
+
+102
+01:03:44,916 --> 01:03:47,199
+both Windows and console compilers.
+
+103
+01:03:48,633 --> 01:03:50,716
+For third party add-ons, we have a
+
+104
+01:03:50,716 --> 01:03:51,916
+section for that too.
+
+105
+01:03:52,733 --> 01:03:54,566
+And for third party videos that cover
+
+106
+01:03:54,566 --> 01:03:55,966
+both the Windows and
+
+107
+01:03:55,966 --> 01:03:57,466
+console compilers, there is
+
+108
+01:03:57,466 --> 01:03:58,949
+again a separate page.
+
+109
+01:04:00,050 --> 01:04:01,966
+Again for Power Basic introductions,
+
+110
+01:04:02,933 --> 01:04:05,233
+Projects and Design, and
+
+111
+01:04:05,233 --> 01:04:07,816
+we have added a new entry
+
+112
+01:04:07,916 --> 01:04:08,750
+of podcasts.
+
+113
+01:04:11,116 --> 01:04:13,516
+We now have prepared a number of audio
+
+114
+01:04:13,516 --> 01:04:16,233
+podcasts, which link to
+
+115
+01:04:16,233 --> 01:04:17,816
+videos which have already been
+
+116
+01:04:17,816 --> 01:04:18,250
+uploaded.
+
+117
+01:04:19,233 --> 01:04:21,250
+These videos give you the opportunity to
+
+118
+01:04:21,250 --> 01:04:23,300
+listen to an audio discussion on the
+
+119
+01:04:23,300 --> 01:04:24,816
+topic of a particular
+
+120
+01:04:25,266 --> 01:04:27,000
+video which has already been uploaded.
+
+121
+01:04:28,466 --> 01:04:30,916
+And the last two options in here allow
+
+122
+01:04:30,916 --> 01:04:32,449
+you a bit more flexibility.
+
+123
+01:04:33,433 --> 01:04:35,199
+If you are interested in a specific
+
+124
+01:04:35,199 --> 01:04:36,833
+keyword, for example
+
+125
+01:04:36,833 --> 01:04:38,566
+browser, you can click on the
+
+126
+01:04:38,599 --> 01:04:39,500
+browser keyword.
+
+127
+01:04:40,116 --> 01:04:41,966
+And this will give you a list of all the
+
+128
+01:04:41,966 --> 01:04:44,333
+videos which have that keyword.
+
+129
+01:04:45,599 --> 01:04:47,966
+And the library files allow you to view
+
+130
+01:04:47,966 --> 01:04:49,500
+the source code of
+
+131
+01:04:49,500 --> 01:04:52,016
+libraries used within the projects,
+
+132
+01:04:53,316 --> 01:04:55,533
+by clicking on the source view icon.
+
+133
+01:04:58,150 --> 01:04:59,616
+This allows you, regardless of where you
+
+134
+01:04:59,616 --> 01:05:01,099
+are in the world, the
+
+135
+01:05:01,099 --> 01:05:02,416
+ability to look at source
+
+136
+01:05:02,433 --> 01:05:03,566
+code for Power Basic.
+
+137
+01:05:05,333 --> 01:05:07,533
+And as always, this website does not use
+
+138
+01:05:07,533 --> 01:05:09,066
+cookies or any similar
+
+139
+01:05:09,066 --> 01:05:10,316
+tracking technologies.
+
+140
+01:05:12,099 --> 01:05:14,216
+And should allow you an easier method of
+
+141
+01:05:14,216 --> 01:05:16,333
+actually finding YouTube videos to watch.
+
+142
+01:05:17,333 --> 01:05:19,500
+Hopefully you'll find this website of use
+
+143
+01:05:19,500 --> 01:05:21,033
+in your Power Basic coding.
+
+144
+01:05:21,816 --> 01:05:23,316
+But that's it for today.
+
+145
+01:05:24,166 --> 01:05:25,133
+Thank you for watching.
+

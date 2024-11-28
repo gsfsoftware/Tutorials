@@ -1,0 +1,1652 @@
+1
+01:00:04,849 --> 01:00:07,416
+Welcome. In this series of short videos
+
+2
+01:00:07,416 --> 01:00:09,000
+we will look at topics for
+
+3
+01:00:09,000 --> 01:00:11,116
+the PowerBasic console compiler.
+
+4
+01:00:12,216 --> 01:00:13,366
+Today we will look at
+
+5
+01:00:13,366 --> 01:00:15,500
+commands for the console itself.
+
+6
+01:00:17,150 --> 01:00:18,466
+Today we're going to be looking
+
+7
+01:00:18,466 --> 01:00:21,816
+specifically at commands used within the
+
+8
+01:00:21,816 --> 01:00:23,416
+PowerBasic console compiler.
+
+9
+01:00:24,750 --> 01:00:25,900
+And the commands we're going to be
+
+10
+01:00:25,900 --> 01:00:28,566
+looking at are those directly associated
+
+11
+01:00:28,566 --> 01:00:30,166
+with the console itself.
+
+12
+01:00:31,666 --> 01:00:33,616
+There may come a time when you wish to
+
+13
+01:00:33,616 --> 01:00:35,716
+monitor a background application.
+
+14
+01:00:36,599 --> 01:00:38,816
+This would be a console application which
+
+15
+01:00:38,816 --> 01:00:41,116
+is running with no user interaction.
+
+16
+01:00:42,199 --> 01:00:44,633
+This process can be processing data into
+
+17
+01:00:44,633 --> 01:00:47,233
+a database, processing many transactions
+
+18
+01:00:47,233 --> 01:00:50,233
+or dealing with large file processing.
+
+19
+01:00:51,949 --> 01:00:54,333
+As such you may want a quick and easy way
+
+20
+01:00:54,333 --> 01:00:56,966
+to monitor what the application is doing.
+
+21
+01:00:57,633 --> 01:00:58,800
+Something simpler than
+
+22
+01:00:58,800 --> 01:01:00,216
+monitoring log files.
+
+23
+01:01:01,283 --> 01:01:03,000
+So let's have a look at our code to see
+
+24
+01:01:03,000 --> 01:01:05,216
+what we can do within the console itself.
+
+25
+01:01:06,016 --> 01:01:06,833
+The Windows console
+
+26
+01:01:06,833 --> 01:01:08,233
+can be quite flexible.
+
+27
+01:01:09,233 --> 01:01:11,183
+What we're going to do first of all is to
+
+28
+01:01:11,183 --> 01:01:13,616
+designate the number of rows and columns
+
+29
+01:01:13,616 --> 01:01:15,099
+that are going to be used
+
+30
+01:01:15,099 --> 01:01:16,500
+within the console itself.
+
+31
+01:01:17,366 --> 01:01:19,283
+So I'm going to set up two constants, one
+
+32
+01:01:19,283 --> 01:01:21,166
+for rows and one for columns.
+
+33
+01:01:22,750 --> 01:01:24,983
+So in our console we're going to have 25
+
+34
+01:01:24,983 --> 01:01:26,900
+rows and 80 columns.
+
+35
+01:01:27,883 --> 01:01:29,699
+The console can be set up within
+
+36
+01:01:29,699 --> 01:01:31,633
+PowerBasic as a virtual console.
+
+37
+01:01:32,783 --> 01:01:34,683
+Hence you can have more rows and more
+
+38
+01:01:34,683 --> 01:01:37,400
+columns than console would normally show.
+
+39
+01:01:38,750 --> 01:01:40,099
+Also within the console you
+
+40
+01:01:40,099 --> 01:01:41,599
+can have a range of colours.
+
+41
+01:01:43,099 --> 01:01:45,183
+There are only 16 colours available
+
+42
+01:01:45,183 --> 01:01:47,633
+within the basic console and each of
+
+43
+01:01:47,633 --> 01:01:48,466
+those colours is
+
+44
+01:01:48,466 --> 01:01:49,966
+allocated by using a number.
+
+45
+01:01:50,883 --> 01:01:52,483
+So to make our code a little easier to
+
+46
+01:01:52,483 --> 01:01:54,216
+read, we're going to set up a global
+
+47
+01:01:54,216 --> 01:01:57,216
+string which will contain the text of
+
+48
+01:01:57,216 --> 01:01:58,133
+each of these colours.
+
+49
+01:01:58,800 --> 01:02:00,966
+For example red, blue or green.
+
+50
+01:02:02,099 --> 01:02:04,000
+And when we want to designate a colour we
+
+51
+01:02:04,000 --> 01:02:07,083
+can use the text of that colour and the
+
+52
+01:02:07,083 --> 01:02:09,083
+program will convert this to the number
+
+53
+01:02:09,083 --> 01:02:10,983
+to be used in the console commands.
+
+54
+01:02:12,000 --> 01:02:13,316
+And we'll call this
+
+55
+01:02:13,316 --> 01:02:14,933
+global array "colours".
+
+56
+01:02:16,433 --> 01:02:18,383
+So we need to do some preparatory work to
+
+57
+01:02:18,383 --> 01:02:20,733
+set up our application, to use these
+
+58
+01:02:20,733 --> 01:02:22,616
+colours and to prep our screen.
+
+59
+01:02:23,883 --> 01:02:25,566
+And as we're going to be displaying some
+
+60
+01:02:25,566 --> 01:02:28,233
+random data on the screen, just for the
+
+61
+01:02:28,233 --> 01:02:30,633
+purposes of this video we're going to use
+
+62
+01:02:30,633 --> 01:02:32,866
+the randomise command to set up the
+
+63
+01:02:32,866 --> 01:02:33,900
+random number generator.
+
+64
+01:02:34,699 --> 01:02:36,483
+So we have dimensioned our global array
+
+65
+01:02:36,483 --> 01:02:38,516
+of colours to be 15 elements.
+
+66
+01:02:39,416 --> 01:02:41,599
+That's starting from 0 and going to 15,
+
+67
+01:02:41,816 --> 01:02:44,300
+which will encapsulate all 16 colours
+
+68
+01:02:44,300 --> 01:02:46,433
+that we can use in the basic console.
+
+69
+01:02:47,550 --> 01:02:49,300
+And we're going to be calling a function
+
+70
+01:02:49,300 --> 01:02:50,733
+called "prepcolours".
+
+71
+01:02:51,066 --> 01:02:52,433
+This will set up our
+
+72
+01:02:52,433 --> 01:02:53,500
+colours in the array.
+
+73
+01:02:54,716 --> 01:02:56,983
+So we will prepare that function now.
+
+74
+01:02:57,766 --> 01:02:59,616
+This is a very simple function with
+
+75
+01:02:59,616 --> 01:03:01,800
+effectively only one line of code.
+
+76
+01:03:02,283 --> 01:03:04,766
+We're using the array's "sign" command to
+
+77
+01:03:04,766 --> 01:03:06,583
+assign a value to each of the
+
+78
+01:03:06,583 --> 01:03:07,983
+elements of our global array.
+
+79
+01:03:08,000 --> 01:03:10,583
+Ranging from black all the
+
+80
+01:03:10,583 --> 01:03:12,400
+way through to intense white.
+
+81
+01:03:13,966 --> 01:03:15,866
+So having prepared our array with
+
+82
+01:03:15,866 --> 01:03:17,033
+colours, we now need to
+
+83
+01:03:17,033 --> 01:03:18,483
+prepare the console screen.
+
+84
+01:03:18,933 --> 01:03:19,833
+So we'll create a new
+
+85
+01:03:19,833 --> 01:03:21,416
+function to perform that.
+
+86
+01:03:22,616 --> 01:03:24,866
+So we're passing a single parameter to
+
+87
+01:03:24,866 --> 01:03:27,216
+this new "prepscreen" function.
+
+88
+01:03:27,983 --> 01:03:29,699
+And this is the name we want on the
+
+89
+01:03:29,699 --> 01:03:30,800
+console window itself.
+
+90
+01:03:31,633 --> 01:03:32,800
+So let's create the
+
+91
+01:03:32,800 --> 01:03:33,983
+function to prepare our screen.
+
+92
+01:03:34,016 --> 01:03:38,016
+And here is our "prepscreen" function
+
+93
+01:03:38,016 --> 01:03:40,033
+taking its single parameter, which will
+
+94
+01:03:40,033 --> 01:03:42,383
+be the console name of the window.
+
+95
+01:03:43,583 --> 01:03:45,616
+Our first task is to set the location of
+
+96
+01:03:45,616 --> 01:03:48,016
+the console window on the monitor screen.
+
+97
+01:03:48,733 --> 01:03:50,000
+Using pixel coordinates
+
+98
+01:03:50,000 --> 01:03:51,833
+from the top left hand corner.
+
+99
+01:03:52,533 --> 01:03:54,733
+And we're using the "con.loc" command to
+
+100
+01:03:54,733 --> 01:03:56,666
+set the x and y coordinates.
+
+101
+01:03:57,316 --> 01:03:59,983
+In this case we're going for 50, 50.
+
+102
+01:04:01,000 --> 01:04:02,900
+Next we're going to use the virtual
+
+103
+01:04:02,900 --> 01:04:05,216
+option to set the number of rows and
+
+104
+01:04:05,216 --> 01:04:07,000
+columns on our console window.
+
+105
+01:04:07,683 --> 01:04:09,816
+This allows you, should you need a larger
+
+106
+01:04:09,816 --> 01:04:11,683
+console window, to set it
+
+107
+01:04:11,683 --> 01:04:13,333
+quite easily using this command.
+
+108
+01:04:14,766 --> 01:04:16,366
+And we're using the two constants we
+
+109
+01:04:16,366 --> 01:04:18,783
+created earlier for rows and columns.
+
+110
+01:04:19,916 --> 01:04:21,733
+Next we can set the title quite easy
+
+111
+01:04:21,733 --> 01:04:23,416
+using the "caption" command.
+
+112
+01:04:24,816 --> 01:04:26,366
+This will put a caption on
+
+113
+01:04:26,366 --> 01:04:27,483
+the window of the console.
+
+114
+01:04:29,000 --> 01:04:30,683
+Next I'm going to use the "color" command
+
+115
+01:04:30,683 --> 01:04:31,833
+to set the default
+
+116
+01:04:31,833 --> 01:04:33,866
+foreground and background colors.
+
+117
+01:04:35,433 --> 01:04:37,733
+As you may remember the colors use
+
+118
+01:04:37,733 --> 01:04:39,483
+numbers rather than names.
+
+119
+01:04:41,033 --> 01:04:42,683
+Color 10 is green.
+
+120
+01:04:43,666 --> 01:04:45,800
+There are two parameters on this command.
+
+121
+01:04:46,333 --> 01:04:48,316
+The first parameter is the foreground
+
+122
+01:04:48,316 --> 01:04:49,966
+color, which we're setting as green.
+
+123
+01:04:51,183 --> 01:04:52,083
+The second parameter
+
+124
+01:04:52,083 --> 01:04:53,516
+is the background color.
+
+125
+01:04:54,433 --> 01:04:57,900
+If you use a -1 it will leave the value to
+
+126
+01:04:57,900 --> 01:04:59,833
+whatever it is currently set at.
+
+127
+01:05:00,383 --> 01:05:01,166
+Console windows default
+
+128
+01:05:01,166 --> 01:05:02,433
+to a black background.
+
+129
+01:05:03,366 --> 01:05:05,083
+So if we put a "wait" command in our
+
+130
+01:05:05,083 --> 01:05:07,033
+pb_main function to allow us to run the
+
+131
+01:05:07,033 --> 01:05:09,699
+application and have it display on screen
+
+132
+01:05:09,699 --> 01:05:10,916
+long enough for us to
+
+133
+01:05:10,916 --> 01:05:12,583
+actually see what it looks like.
+
+134
+01:05:13,466 --> 01:05:16,933
+If we run the application now, we'll see
+
+135
+01:05:16,933 --> 01:05:17,983
+our console window appears.
+
+136
+01:05:18,000 --> 01:05:21,516
+It's got "monitor display" as the title
+
+137
+01:05:21,516 --> 01:05:23,800
+of the window and if we press the button
+
+138
+01:05:23,800 --> 01:05:26,400
+on the keyboard, the screen will close.
+
+139
+01:05:27,516 --> 01:05:28,433
+So we have successfully
+
+140
+01:05:28,433 --> 01:05:30,400
+set up our console window.
+
+141
+01:05:31,783 --> 01:05:33,466
+Should you need to clear the screen at
+
+142
+01:05:33,466 --> 01:05:35,599
+any point in your application, you can
+
+143
+01:05:35,599 --> 01:05:38,066
+use the "cls" command, which is one of
+
+144
+01:05:38,066 --> 01:05:40,433
+the console commands, to clear the
+
+145
+01:05:40,433 --> 01:05:40,983
+console window completely.
+
+146
+01:05:42,000 --> 01:05:45,033
+As we want to use this application to
+
+147
+01:05:45,033 --> 01:05:47,699
+display some information to a user, there
+
+148
+01:05:47,699 --> 01:05:49,966
+may well be some headers or default data
+
+149
+01:05:49,966 --> 01:05:52,116
+to appear on this type of form.
+
+150
+01:05:52,900 --> 01:05:55,016
+So we're going to create a function whose
+
+151
+01:05:55,016 --> 01:05:57,183
+job it will be to display these headers.
+
+152
+01:05:57,716 --> 01:05:59,933
+This will be text, which is non-changing.
+
+153
+01:06:01,166 --> 01:06:02,483
+So we're going to create a display
+
+154
+01:06:02,483 --> 01:06:03,983
+headers function to allow us to do this.
+
+155
+01:06:05,000 --> 01:06:08,500
+So here is our function. I'm setting up
+
+156
+01:06:08,500 --> 01:06:11,416
+three local variables. One for row, one
+
+157
+01:06:11,416 --> 01:06:14,866
+for column, both numbers, as long, and
+
+158
+01:06:14,866 --> 01:06:17,083
+one for text, which will be the text we
+
+159
+01:06:17,083 --> 01:06:18,900
+want to print onto the console window.
+
+160
+01:06:20,116 --> 01:06:21,599
+We're going to be doing a fair bit of
+
+161
+01:06:21,599 --> 01:06:23,366
+printing to the console window, so I'm
+
+162
+01:06:23,366 --> 01:06:25,016
+going to create a common function whose
+
+163
+01:06:25,016 --> 01:06:26,400
+job it will be to print
+
+164
+01:06:26,400 --> 01:06:26,983
+information to that window.
+
+165
+01:06:28,000 --> 01:06:31,533
+But first we want to set the location to
+
+166
+01:06:31,533 --> 01:06:32,766
+which we wish to print.
+
+167
+01:06:34,216 --> 01:06:36,266
+This is counted from the top left hand
+
+168
+01:06:36,266 --> 01:06:38,933
+corner of our window, so we're setting to
+
+169
+01:06:38,933 --> 01:06:40,783
+row two and column two.
+
+170
+01:06:42,099 --> 01:06:44,316
+And I want to print to this window a
+
+171
+01:06:44,316 --> 01:06:46,666
+piece of text that says "Monitor System"
+
+172
+01:06:47,016 --> 01:06:49,183
+and I want that printed in red.
+
+173
+01:06:50,916 --> 01:06:51,816
+So we're passing
+
+174
+01:06:51,816 --> 01:06:52,983
+information to the print function.
+
+175
+01:06:54,000 --> 01:06:58,833
+Via four parameters, the row and the
+
+176
+01:06:58,833 --> 01:07:01,466
+column, the text we wish to print, and
+
+177
+01:07:01,466 --> 01:07:03,300
+the colour we wish to print it.
+
+178
+01:07:03,766 --> 01:07:04,900
+So let's now go and create
+
+179
+01:07:04,900 --> 01:07:06,533
+this print to console function.
+
+180
+01:07:07,733 --> 01:07:09,716
+As you will see we have the four
+
+181
+01:07:09,716 --> 01:07:11,666
+parameters being passed to this function.
+
+182
+01:07:12,416 --> 01:07:14,983
+The last parameter is set as optional.
+
+183
+01:07:16,000 --> 01:07:18,500
+My idea behind this is if you do not
+
+184
+01:07:18,500 --> 01:07:19,983
+specify the colour, it
+
+185
+01:07:19,983 --> 01:07:21,283
+will not change the colour.
+
+186
+01:07:22,266 --> 01:07:24,099
+So we're going to put a piece of code in
+
+187
+01:07:24,099 --> 01:07:26,116
+to test to see whether this optional
+
+188
+01:07:26,116 --> 01:07:28,099
+parameter is present or not.
+
+189
+01:07:29,633 --> 01:07:30,633
+So we're going to use the
+
+190
+01:07:30,633 --> 01:07:32,516
+inbuilt is missing function.
+
+191
+01:07:33,666 --> 01:07:35,566
+This tests whether the optional parameter
+
+192
+01:07:35,566 --> 01:07:36,983
+has actually been given or not.
+
+193
+01:07:38,000 --> 01:07:42,683
+So if is missing is false, then we know
+
+194
+01:07:42,683 --> 01:07:45,316
+that a colour parameter has been given.
+
+195
+01:07:46,533 --> 01:07:48,283
+And we want to get the colour number
+
+196
+01:07:48,283 --> 01:07:50,366
+associated with that colour name.
+
+197
+01:07:51,416 --> 01:07:52,816
+So I'm going to have a little embedded
+
+198
+01:07:52,816 --> 01:07:54,733
+function in here called get colour.
+
+199
+01:07:55,750 --> 01:07:57,616
+And this will return the colour number
+
+200
+01:07:57,616 --> 01:08:00,416
+that the colour command needs to use for
+
+201
+01:08:00,416 --> 01:08:01,633
+our foreground colour.
+
+202
+01:08:02,400 --> 01:08:03,266
+And we're leaving our
+
+203
+01:08:03,266 --> 01:08:04,983
+background colour as minus one.
+
+204
+01:08:06,000 --> 01:08:07,716
+For this particular application I'm
+
+205
+01:08:07,716 --> 01:08:09,633
+leaving the background colour as black.
+
+206
+01:08:10,833 --> 01:08:12,599
+We'll create the get colour function in a
+
+207
+01:08:12,599 --> 01:08:14,516
+moment, but let's push on to do the last
+
+208
+01:08:14,516 --> 01:08:16,683
+couple lines of code in this function.
+
+209
+01:08:18,233 --> 01:08:20,066
+Having set the colour should the
+
+210
+01:08:20,066 --> 01:08:22,199
+parameter have come in, we want next to
+
+211
+01:08:22,199 --> 01:08:23,600
+do the setting of the
+
+212
+01:08:23,600 --> 01:08:25,033
+location to print to.
+
+213
+01:08:25,583 --> 01:08:27,716
+And we can use the cell command for that,
+
+214
+01:08:28,216 --> 01:08:29,683
+as we have the row
+
+215
+01:08:29,683 --> 01:08:30,666
+and the column numbers.
+
+216
+01:08:32,550 --> 01:08:34,116
+So now that we've set the location we
+
+217
+01:08:34,116 --> 01:08:36,100
+wish to print to, we can then use the
+
+218
+01:08:36,100 --> 01:08:37,300
+print command to print
+
+219
+01:08:37,300 --> 01:08:38,600
+our text to the console.
+
+220
+01:08:40,066 --> 01:08:42,216
+In this case the print command is
+
+221
+01:08:42,216 --> 01:08:44,466
+followed by the variable containing the
+
+222
+01:08:44,466 --> 01:08:45,583
+text you wish to print.
+
+223
+01:08:46,466 --> 01:08:48,399
+And if you put a semicolon at the end of
+
+224
+01:08:48,399 --> 01:08:50,583
+the line, it means it will not put a
+
+225
+01:08:50,583 --> 01:08:51,516
+carriage return line feed
+
+226
+01:08:51,516 --> 01:08:52,916
+at the end of the text.
+
+227
+01:08:54,000 --> 01:08:56,000
+Which would automatically push the cursor
+
+228
+01:08:56,000 --> 01:08:56,983
+down to the next row.
+
+229
+01:08:58,000 --> 01:09:00,416
+This allows us to update specific
+
+230
+01:09:00,416 --> 01:09:01,699
+locations on the screen
+
+231
+01:09:01,699 --> 01:09:04,166
+without injecting an extra line.
+
+232
+01:09:05,116 --> 01:09:06,766
+So let's go and create this
+
+233
+01:09:06,766 --> 01:09:08,399
+embedded get colour function.
+
+234
+01:09:09,983 --> 01:09:11,316
+So this is going to be a fairly
+
+235
+01:09:11,316 --> 01:09:13,366
+straightforward function whose job it
+
+236
+01:09:13,366 --> 01:09:16,766
+will be to return the number of the
+
+237
+01:09:16,766 --> 01:09:17,983
+associated colour name.
+
+238
+01:09:19,000 --> 01:09:21,566
+So as we have all of these colour names
+
+239
+01:09:21,566 --> 01:09:24,699
+in a global array, we merely have to do a
+
+240
+01:09:24,699 --> 01:09:26,683
+for-next loop to step through each
+
+241
+01:09:26,683 --> 01:09:28,433
+element while looking for a match.
+
+242
+01:09:30,449 --> 01:09:32,783
+So we're going for the zero element to
+
+243
+01:09:32,783 --> 01:09:34,766
+the upper bounding of the array.
+
+244
+01:09:35,283 --> 01:09:37,066
+The UBOUND command will quite easily
+
+245
+01:09:37,066 --> 01:09:39,699
+return the maximum number of elements in
+
+246
+01:09:39,699 --> 01:09:40,899
+this particular array,
+
+247
+01:09:41,433 --> 01:09:42,983
+which in this case is 15.
+
+248
+01:09:44,000 --> 01:09:46,366
+And we're comparing the colour that come
+
+249
+01:09:46,366 --> 01:09:48,333
+in with the parameters against
+
+250
+01:09:48,333 --> 01:09:50,216
+the colour held in the array.
+
+251
+01:09:51,183 --> 01:09:53,300
+And we're using the U CASE command to
+
+252
+01:09:53,300 --> 01:09:56,183
+force both of these strings to uppercase.
+
+253
+01:09:57,399 --> 01:09:59,566
+This avoids having a problem where the
+
+254
+01:09:59,566 --> 01:10:01,683
+user has actually coded this with
+
+255
+01:10:01,683 --> 01:10:04,983
+lowercase for the name of the colour and
+
+256
+01:10:04,983 --> 01:10:07,983
+our array is holding it in mixcase.
+
+257
+01:10:09,000 --> 01:10:11,983
+Should this comparison return true, then
+
+258
+01:10:11,983 --> 01:10:14,583
+we're returning the element number of the
+
+259
+01:10:14,583 --> 01:10:17,399
+array, which is the colour number, and we
+
+260
+01:10:17,399 --> 01:10:19,283
+can exit the function at that point.
+
+261
+01:10:20,516 --> 01:10:22,283
+So let's try running our application now
+
+262
+01:10:22,283 --> 01:10:24,116
+to see if we get the first line of text.
+
+263
+01:10:26,133 --> 01:10:28,600
+And there is our first piece of text on
+
+264
+01:10:28,600 --> 01:10:31,866
+our console. The words monitor system and
+
+265
+01:10:31,866 --> 01:10:32,983
+it's printed in red.
+
+266
+01:10:34,000 --> 01:10:36,466
+So now that we have the basic mechanics
+
+267
+01:10:36,466 --> 01:10:38,666
+in our display headers function to
+
+268
+01:10:38,666 --> 01:10:41,233
+operate, we can put additional pieces of
+
+269
+01:10:41,233 --> 01:10:43,516
+information in to put text on the screen.
+
+270
+01:10:45,149 --> 01:10:46,899
+These will be additional pieces of text
+
+271
+01:10:46,899 --> 01:10:48,466
+which will not change during
+
+272
+01:10:48,466 --> 01:10:49,866
+the run of the application.
+
+273
+01:10:51,116 --> 01:10:53,166
+So the first of these is the word
+
+274
+01:10:53,166 --> 01:10:55,866
+polling. This will be a section of the
+
+275
+01:10:55,866 --> 01:10:57,066
+screen to indicate whether
+
+276
+01:10:57,066 --> 01:10:58,983
+polling is active or inactive.
+
+277
+01:10:59,016 --> 01:11:02,216
+And we're setting the row number to be
+
+278
+01:11:02,216 --> 01:11:04,533
+row number 4 and the column number to be
+
+279
+01:11:04,533 --> 01:11:06,533
+column number 2. And we're
+
+280
+01:11:06,533 --> 01:11:08,483
+displaying this in green text.
+
+281
+01:11:09,633 --> 01:11:12,383
+If we put another 2 in, the first saying
+
+282
+01:11:12,383 --> 01:11:16,100
+server stats on row 6 column 2 and the
+
+283
+01:11:16,100 --> 01:11:18,383
+next set of text we're putting on is
+
+284
+01:11:18,383 --> 01:11:21,283
+going to be 3 sections all in one row.
+
+285
+01:11:22,449 --> 01:11:24,983
+Displaying on row 8 starting at column 2.
+
+286
+01:11:25,016 --> 01:11:26,966
+If we run our application
+
+287
+01:11:26,966 --> 01:11:28,733
+now we can see how this looks.
+
+288
+01:11:30,516 --> 01:11:32,233
+So we can see on screen we've got monitor
+
+289
+01:11:32,233 --> 01:11:34,783
+system, the word polling and then server
+
+290
+01:11:34,783 --> 01:11:37,333
+stats in a different color and then CPU
+
+291
+01:11:37,333 --> 01:11:40,600
+load, CPU response time and user count.
+
+292
+01:11:41,850 --> 01:11:44,100
+These are all the fixed pieces of text
+
+293
+01:11:44,100 --> 01:11:46,516
+that will not change within our for next 
+
+294
+01:11:46,516 --> 01:11:47,983
+loop which we're about to do.
+
+295
+01:11:48,000 --> 01:11:52,216
+So I'm adding a number of local variables
+
+296
+01:11:52,216 --> 01:11:55,133
+to keep track of the row, the column, the
+
+297
+01:11:55,133 --> 01:11:57,633
+text and a count variable.
+
+298
+01:11:58,283 --> 01:11:59,883
+I'm going to use the count variable for
+
+299
+01:11:59,883 --> 01:12:00,583
+the number of times
+
+300
+01:12:00,583 --> 01:12:02,133
+we run round this loop.
+
+301
+01:12:04,016 --> 01:12:05,816
+Each time we pass through this loop we
+
+302
+01:12:05,816 --> 01:12:08,416
+will increment the count variable. Once
+
+303
+01:12:08,416 --> 01:12:09,633
+the count variable reaches
+
+304
+01:12:09,633 --> 01:12:11,333
+10 we will exit the loop.
+
+305
+01:12:12,199 --> 01:12:14,000
+This means we will no longer need the
+
+306
+01:12:14,000 --> 01:12:15,783
+wait key at the end of the application.
+
+307
+01:12:17,816 --> 01:12:18,866
+So we can now start to put the
+
+308
+01:12:18,866 --> 01:12:20,133
+information on the screen
+
+309
+01:12:20,133 --> 01:12:21,866
+that the user would want to see.
+
+310
+01:12:22,699 --> 01:12:24,333
+So we're going to populate first of all
+
+311
+01:12:24,333 --> 01:12:27,366
+the system polling and we'll create a
+
+312
+01:12:27,366 --> 01:12:29,316
+little function to return that value.
+
+313
+01:12:30,600 --> 01:12:32,366
+These functions of course are just dummy
+
+314
+01:12:32,366 --> 01:12:34,616
+functions. If you were writing this
+
+315
+01:12:34,616 --> 01:12:36,433
+for real each of these functions would
+
+316
+01:12:36,433 --> 01:12:38,516
+perform whatever is needed to get the
+
+317
+01:12:38,516 --> 01:12:39,433
+information that you
+
+318
+01:12:39,433 --> 01:12:39,983
+wish to display to the user.
+
+319
+01:12:41,000 --> 01:12:44,600
+So this again is a very simple function
+
+320
+01:12:44,600 --> 01:12:47,183
+just to demonstrate different text
+
+321
+01:12:47,183 --> 01:12:48,300
+appearing on the screen.
+
+322
+01:12:49,033 --> 01:12:50,416
+We're using the random number generator
+
+323
+01:12:50,416 --> 01:12:53,216
+here to generate a number either of a 1
+
+324
+01:12:53,216 --> 01:12:56,033
+or a 2. If it's a 1 we will return the
+
+325
+01:12:56,033 --> 01:12:58,100
+word active. If it's a 2 we
+
+326
+01:12:58,100 --> 01:12:59,399
+will return the word inactive.
+
+327
+01:13:00,816 --> 01:13:02,266
+It's important when you're using this on
+
+328
+01:13:02,266 --> 01:13:04,466
+the console that the strings you put in
+
+329
+01:13:04,466 --> 01:13:05,983
+within this loop are of the same length.
+
+330
+01:13:07,000 --> 01:13:10,833
+If we put the word inactive in first and
+
+331
+01:13:10,833 --> 01:13:12,333
+then in the next loop we
+
+332
+01:13:12,333 --> 01:13:13,666
+put the word active in.
+
+333
+01:13:14,683 --> 01:13:17,116
+Since the string active is shorter than
+
+334
+01:13:17,116 --> 01:13:19,466
+inactive it would not overwrite the last
+
+335
+01:13:19,466 --> 01:13:21,083
+two letters of inactive.
+
+336
+01:13:22,000 --> 01:13:23,883
+But if we make them all the same length
+
+337
+01:13:23,883 --> 01:13:25,466
+that will not be a problem.
+
+338
+01:13:26,516 --> 01:13:28,399
+And to simulate what we'd be doing in a
+
+339
+01:13:28,399 --> 01:13:30,383
+live situation we're going to put a sleep
+
+340
+01:13:30,383 --> 01:13:32,633
+command in here. Otherwise the loop will
+
+341
+01:13:32,633 --> 01:13:34,016
+run so fast you'll hardly
+
+342
+01:13:34,016 --> 01:13:35,000
+see anything on the screen.
+
+343
+01:13:36,333 --> 01:13:38,100
+So we're putting a sleep command in for
+
+344
+01:13:38,100 --> 01:13:41,000
+1500 milliseconds. That gives us a delay
+
+345
+01:13:41,000 --> 01:13:43,233
+of one and a half seconds for each loop.
+
+346
+01:13:43,983 --> 01:13:47,483
+If we run the application now we'll see
+
+347
+01:13:47,483 --> 01:13:51,883
+it displays inactive and active randomly.
+
+348
+01:13:52,583 --> 01:13:54,783
+And then after 10 iterations of the loop
+
+349
+01:13:54,783 --> 01:13:56,699
+the program will terminate.
+
+350
+01:13:58,533 --> 01:14:01,733
+Like so. So we go back to the pb_main
+
+351
+01:14:01,733 --> 01:14:03,566
+function and we can put
+
+352
+01:14:03,566 --> 01:14:06,100
+some more printing in.
+
+353
+01:14:06,850 --> 01:14:09,433
+Again specifying the row and the column
+
+354
+01:14:09,433 --> 01:14:10,833
+that the text is to go into.
+
+355
+01:14:12,483 --> 01:14:14,899
+And we'll reduce the delay down slightly.
+
+356
+01:14:16,649 --> 01:14:17,833
+And run once more.
+
+357
+01:14:18,933 --> 01:14:21,566
+Now we're getting the CPU load, again as
+
+358
+01:14:21,566 --> 01:14:23,033
+a random number, in this case
+
+359
+01:14:23,033 --> 01:14:24,983
+between the values 60 and 85.
+
+360
+01:14:26,000 --> 01:14:28,166
+And as we're displaying this in white
+
+361
+01:14:28,166 --> 01:14:30,583
+it's quite easy to discern on the screen.
+
+362
+01:14:32,033 --> 01:14:33,283
+So we'll put two more pieces of
+
+363
+01:14:33,283 --> 01:14:34,666
+information on our screen.
+
+364
+01:14:36,100 --> 01:14:37,416
+And these are the additional bits of
+
+365
+01:14:37,416 --> 01:14:40,366
+information also appearing on row 8 but
+
+366
+01:14:40,366 --> 01:14:41,966
+further along in the columns.
+
+367
+01:14:43,383 --> 01:14:45,016
+Again using the random number generator
+
+368
+01:14:45,016 --> 01:14:48,416
+to go from a number between 30 and 80 and
+
+369
+01:14:48,416 --> 01:14:48,983
+displaying this on the screen.
+
+370
+01:14:50,000 --> 01:14:52,683
+As the numbers here are both going to be
+
+371
+01:14:52,683 --> 01:14:55,283
+two characters it won't cause a problem.
+
+372
+01:14:55,916 --> 01:14:57,616
+But in this bottom one where we're doing
+
+373
+01:14:57,616 --> 01:15:02,016
+a random number between 10 and 2250 these
+
+374
+01:15:02,016 --> 01:15:02,483
+will be turned
+
+375
+01:15:02,483 --> 01:15:04,300
+different lengths in the string.
+
+376
+01:15:05,116 --> 01:15:08,066
+So I'm using the RSET$ command to
+
+377
+01:15:08,066 --> 01:15:10,883
+right justify the text and it's going to
+
+378
+01:15:10,883 --> 01:15:11,983
+be in a 5 character limit.
+
+379
+01:15:13,000 --> 01:15:14,566
+So all the text will be
+
+380
+01:15:14,566 --> 01:15:16,399
+pushed to the right hand side.
+
+381
+01:15:17,000 --> 01:15:18,983
+Therefore nothing will be left on screen
+
+382
+01:15:18,983 --> 01:15:20,483
+from the previous iteration.
+
+383
+01:15:21,766 --> 01:15:24,766
+If we try running the application now we
+
+384
+01:15:24,766 --> 01:15:27,000
+will see we're getting the polling, the
+
+385
+01:15:27,000 --> 01:15:29,966
+CPU load, the response time and the user
+
+386
+01:15:29,966 --> 01:15:31,483
+count quite successfully
+
+387
+01:15:31,483 --> 01:15:33,016
+appearing on the screen.
+
+388
+01:15:34,783 --> 01:15:36,933
+So you can see we can quite easily build
+
+389
+01:15:36,933 --> 01:15:39,383
+up information on the screen using only a
+
+390
+01:15:39,383 --> 01:15:41,000
+very few console commands.
+
+391
+01:15:42,850 --> 01:15:44,866
+So in summary what we've done today is
+
+392
+01:15:44,866 --> 01:15:48,283
+we've used console commands to set up a
+
+393
+01:15:48,283 --> 01:15:51,533
+console of a fixed size, make it a
+
+394
+01:15:51,533 --> 01:15:53,483
+virtual screen to allow us to increase it
+
+395
+01:15:53,483 --> 01:15:54,483
+should we wish to do so.
+
+396
+01:15:55,266 --> 01:15:57,616
+We have prepared our screen, used the
+
+397
+01:15:57,616 --> 01:15:59,966
+clear screen command to clear the screen.
+
+398
+01:16:00,016 --> 01:16:02,416
+We have created a function to display
+
+399
+01:16:02,416 --> 01:16:05,366
+static headers and we've used a loop to
+
+400
+01:16:05,366 --> 01:16:08,216
+display information using a delay on the
+
+401
+01:16:08,216 --> 01:16:10,366
+screen to our user in different colors
+
+402
+01:16:10,366 --> 01:16:12,116
+using a standard, generic
+
+403
+01:16:12,116 --> 01:16:13,783
+print to console command.
+
+404
+01:16:14,666 --> 01:16:16,483
+Which allows us to specify the row and
+
+405
+01:16:16,483 --> 01:16:18,266
+column, the text and the
+
+406
+01:16:18,266 --> 01:16:19,983
+color of the text to display.
+
+407
+01:16:21,000 --> 01:16:23,600
+With these few commands you can use the
+
+408
+01:16:23,600 --> 01:16:25,683
+console compiler to display information
+
+409
+01:16:25,683 --> 01:16:28,300
+to a user quite easily to allow them to
+
+410
+01:16:28,300 --> 01:16:29,899
+monitor some background process.
+
+411
+01:16:31,516 --> 01:16:33,516
+Hopefully you'll find this code useful in
+
+412
+01:16:33,516 --> 01:16:36,066
+your applications but that's it for
+
+413
+01:16:36,066 --> 01:16:38,000
+today. Thank you for watching.
+

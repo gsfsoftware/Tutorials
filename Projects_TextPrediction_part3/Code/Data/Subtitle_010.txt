@@ -1,0 +1,1892 @@
+1
+01:00:04,599 --> 01:00:07,550
+Welcome in this series of short videos,
+
+2
+01:00:07,550 --> 01:00:09,599
+we will look at topics common to both
+
+3
+01:00:09,599 --> 01:00:11,933
+the Power Basic console and Windows
+
+4
+01:00:12,483 --> 01:00:14,849
+compilers today we will look at the
+
+5
+01:00:14,849 --> 01:00:17,050
+parameters passed between functions
+
+6
+01:00:17,616 --> 01:00:21,283
+and subroutines. It has been some time
+
+7
+01:00:21,300 --> 01:00:23,949
+since we did a video on the parameters
+
+8
+01:00:23,949 --> 01:00:26,516
+passed between functions and subroutines.
+
+9
+01:00:27,616 --> 01:00:29,483
+So today we're going to revisit the
+
+10
+01:00:29,849 --> 01:00:31,583
+subject for those of you who are just
+
+11
+01:00:32,433 --> 01:00:33,683
+using Power Basic.
+
+12
+01:00:35,633 --> 01:00:37,500
+Both the console compiler and the
+
+13
+01:00:37,633 --> 01:00:39,949
+Windows compiler can be used with the
+
+14
+01:00:39,949 --> 01:00:41,750
+source code for this project.
+
+15
+01:00:43,199 --> 01:00:44,400
+We have two include files
+
+16
+01:00:44,400 --> 01:00:45,800
+at the top of our code,
+
+17
+01:00:46,400 --> 01:00:49,216
+one for the Windows API and one for our
+
+18
+01:00:49,233 --> 01:00:51,550
+common display library, which allows
+
+19
+01:00:51,550 --> 01:00:53,883
+the source code to be used either in the
+
+20
+01:00:53,883 --> 01:00:56,233
+Windows compiler or the console compiler.
+
+21
+01:00:57,666 --> 01:00:59,599
+The first function in your application
+
+22
+01:00:59,833 --> 01:01:01,949
+that gets executed is the pb_main
+
+23
+01:01:02,099 --> 01:01:04,633
+function and in this function you can
+
+24
+01:01:04,633 --> 01:01:07,116
+include code and call other functions
+
+25
+01:01:07,150 --> 01:01:10,683
+and subroutines. We're going to start
+
+26
+01:01:10,683 --> 01:01:13,150
+this demonstration by calling a function
+
+27
+01:01:13,199 --> 01:01:15,699
+called process count by reference.
+
+28
+01:01:17,349 --> 01:01:17,883
+We're passing a
+
+29
+01:01:17,883 --> 01:01:19,416
+parameter to this function
+
+30
+01:01:19,416 --> 01:01:22,783
+called count. We have declared the count
+
+31
+01:01:22,783 --> 01:01:25,900
+as a long and we're using a for next loop
+
+32
+01:01:25,900 --> 01:01:28,150
+to count between one and five.
+
+33
+01:01:29,583 --> 01:01:32,150
+This function will be called five times.
+
+34
+01:01:33,849 --> 01:01:35,483
+So here is our new
+
+35
+01:01:35,483 --> 01:01:37,516
+function process count by ref.
+
+36
+01:01:38,449 --> 01:01:39,599
+In the brackets we
+
+37
+01:01:39,599 --> 01:01:41,233
+have the parameter list,
+
+38
+01:01:41,783 --> 01:01:44,033
+in this case just a single parameter
+
+39
+01:01:44,516 --> 01:01:47,050
+called count, which has
+
+40
+01:01:47,050 --> 01:01:48,716
+been defined as a long.
+
+41
+01:01:50,833 --> 01:01:53,816
+This is preceded by the word byref to
+
+42
+01:01:53,816 --> 01:01:56,533
+indicate that this parameter has been
+
+43
+01:01:56,550 --> 01:01:59,683
+passed by reference. This is a reference
+
+44
+01:01:59,716 --> 01:02:02,216
+to where the information is stored.
+
+45
+01:02:03,733 --> 01:02:04,333
+Power basic by
+
+46
+01:02:04,333 --> 01:02:06,283
+default passes parameters by
+
+47
+01:02:06,283 --> 01:02:10,333
+reference. So if we had no mention of the
+
+48
+01:02:10,333 --> 01:02:12,883
+word by ref it would still be passed by
+
+49
+01:02:12,883 --> 01:02:15,650
+reference. Within this function we're
+
+50
+01:02:15,650 --> 01:02:18,050
+declaring a local variable called value
+
+51
+01:02:18,050 --> 01:02:21,449
+also as a long and we're populating that
+
+52
+01:02:21,449 --> 01:02:24,333
+local variable with the value of the
+
+53
+01:02:24,349 --> 01:02:26,983
+parameter passed in count and we're
+
+54
+01:02:26,983 --> 01:02:29,283
+adding one to it and we're printing the
+
+55
+01:02:29,283 --> 01:02:33,633
+value out to our log. If we try running
+
+56
+01:02:33,633 --> 01:02:36,783
+the application now we will see the
+
+57
+01:02:36,783 --> 01:02:40,033
+values put out to a log are two, three,
+
+58
+01:02:40,033 --> 01:02:43,800
+four, five and six. This is because every
+
+59
+01:02:43,800 --> 01:02:45,733
+time we call this function we're taking
+
+60
+01:02:45,733 --> 01:02:48,833
+the values one to five and adding a one
+
+61
+01:02:48,833 --> 01:02:51,133
+to it, giving us the values two through
+
+62
+01:02:51,150 --> 01:02:54,516
+six. So we have successfully passed a
+
+63
+01:02:54,516 --> 01:02:57,433
+parameter from one function to another.
+
+64
+01:02:58,800 --> 01:03:00,583
+One thing to note when you're calling
+
+65
+01:03:00,599 --> 01:03:03,116
+functions is that the value you're
+
+66
+01:03:03,116 --> 01:03:05,216
+passing in here which is called count
+
+67
+01:03:05,216 --> 01:03:07,900
+which is the variable we could have this
+
+68
+01:03:07,900 --> 01:03:08,816
+called something
+
+69
+01:03:08,816 --> 01:03:11,783
+entirely different. If we
+
+70
+01:03:11,783 --> 01:03:15,033
+call this new count and changed the
+
+71
+01:03:15,033 --> 01:03:19,099
+other references to that, the application
+
+72
+01:03:19,416 --> 01:03:22,983
+would work just as well. The reason for
+
+73
+01:03:22,983 --> 01:03:25,650
+this is that you're passing a parameter
+
+74
+01:03:25,750 --> 01:03:28,816
+by reference therefore the name of the
+
+75
+01:03:28,816 --> 01:03:30,916
+parameter from this point of view is
+
+76
+01:03:30,916 --> 01:03:35,633
+irrelevant it's the same value. We can
+
+77
+01:03:35,633 --> 01:03:37,516
+prove this quite easily by adding an
+
+78
+01:03:37,516 --> 01:03:40,783
+extra line of code to our function. If we
+
+79
+01:03:40,783 --> 01:03:43,000
+place an increment command in as the
+
+80
+01:03:43,000 --> 01:03:45,316
+bottom line of this function which would
+
+81
+01:03:45,316 --> 01:03:48,616
+increment the long new count. As this
+
+82
+01:03:48,650 --> 01:03:50,333
+value being passed in is being passed
+
+83
+01:03:50,333 --> 01:03:54,083
+in by reference then if you increase this
+
+84
+01:03:54,083 --> 01:03:57,116
+by one then this would be passed back to
+
+85
+01:03:57,116 --> 01:03:59,333
+the calling function. So if we run the
+
+86
+01:03:59,333 --> 01:04:02,016
+application once more we will see the
+
+87
+01:04:02,016 --> 01:04:04,183
+values we get out are quite different.
+
+88
+01:04:05,050 --> 01:04:06,633
+This is because each time we pass
+
+89
+01:04:06,633 --> 01:04:09,183
+through this function we are incrementing
+
+90
+01:04:09,349 --> 01:04:12,150
+the current variable and this is being
+
+91
+01:04:12,150 --> 01:04:15,750
+passed back to the calling function. So
+
+92
+01:04:15,750 --> 01:04:17,333
+this is something to be wary of when
+
+93
+01:04:17,383 --> 01:04:19,000
+you're passing variables from one
+
+94
+01:04:19,000 --> 01:04:21,699
+function to another or from one function
+
+95
+01:04:21,699 --> 01:04:24,849
+to a subroutine. If they're passed by
+
+96
+01:04:24,849 --> 01:04:27,916
+reference then any change made to that
+
+97
+01:04:27,916 --> 01:04:30,316
+variable within the subroutine or
+
+98
+01:04:30,316 --> 01:04:32,583
+function will be reflected in the
+
+99
+01:04:32,583 --> 01:04:36,416
+calling routine. If you wish not to pass
+
+100
+01:04:36,416 --> 01:04:38,500
+them by reference you can pass it byval
+
+101
+01:04:38,500 --> 01:04:42,233
+that's by value. This way the actual
+
+102
+01:04:42,233 --> 01:04:44,849
+value of the variable is passed and not
+
+103
+01:04:44,849 --> 01:04:46,900
+the pointer to where it sits in memory.
+
+104
+01:04:47,916 --> 01:04:50,599
+If we change our code to call this
+
+105
+01:04:50,599 --> 01:04:54,583
+function and run the code now you will
+
+106
+01:04:54,583 --> 01:04:56,616
+see the values return to as they were
+
+107
+01:04:56,616 --> 01:05:00,800
+before. As any change made to this
+
+108
+01:05:00,800 --> 01:05:03,250
+variable is not reflected back to the
+
+109
+01:05:03,250 --> 01:05:06,483
+calling function. Normally you will pass
+
+110
+01:05:06,483 --> 01:05:09,016
+parameters by reference as it is more
+
+111
+01:05:09,016 --> 01:05:12,483
+efficient. Power basic will allow you to
+
+112
+01:05:12,483 --> 01:05:14,733
+pass up to 32 parameters between
+
+113
+01:05:14,783 --> 01:05:18,316
+functions and subroutines. So let's say
+
+114
+01:05:18,316 --> 01:05:20,116
+we wanted to pass a parameter to a
+
+115
+01:05:20,116 --> 01:05:23,416
+subroutine as opposed to a function. How
+
+116
+01:05:23,416 --> 01:05:25,333
+would we do that? We
+
+117
+01:05:25,333 --> 01:05:26,216
+can call a subroutine
+
+118
+01:05:26,216 --> 01:05:28,433
+by using the word call followed by the
+
+119
+01:05:28,433 --> 01:05:30,300
+name of the subroutine and its
+
+120
+01:05:30,300 --> 01:05:33,316
+parameters. The command word call is
+
+121
+01:05:33,316 --> 01:05:35,783
+optional. If we emitted call and just put
+
+122
+01:05:35,783 --> 01:05:37,533
+the name of the subroutine in it would
+
+123
+01:05:37,533 --> 01:05:41,083
+still function perfectly well. Our
+
+124
+01:05:41,083 --> 01:05:42,983
+subroutine would look like this. It would
+
+125
+01:05:43,000 --> 01:05:45,449
+start with the word sub followed by the
+
+126
+01:05:45,449 --> 01:05:47,983
+subroutine name and then the list of
+
+127
+01:05:48,083 --> 01:05:51,483
+parameters. The main difference between a
+
+128
+01:05:51,483 --> 01:05:54,033
+function and a subroutine is that a
+
+129
+01:05:54,033 --> 01:05:57,116
+function will return a value. As we see
+
+130
+01:05:57,116 --> 01:06:00,116
+here the function has declared that it's
+
+131
+01:06:00,116 --> 01:06:03,133
+going to return a long number. The
+
+132
+01:06:03,133 --> 01:06:04,900
+difference between a function and a
+
+133
+01:06:04,900 --> 01:06:07,849
+subroutine is that a function can return
+
+134
+01:06:07,849 --> 01:06:11,533
+a value. Functions are very useful as you
+
+135
+01:06:11,550 --> 01:06:14,699
+can embed them in your code. Subroutines
+
+136
+01:06:14,699 --> 01:06:17,016
+on the other hand do not return values.
+
+137
+01:06:18,099 --> 01:06:21,199
+If we try running that now we will see
+
+138
+01:06:21,199 --> 01:06:23,983
+our subroutine is returning this value
+
+139
+01:06:23,983 --> 01:06:26,599
+here 6 which was the last value of the
+
+140
+01:06:26,599 --> 01:06:29,500
+current variable. As
+
+141
+01:06:29,500 --> 01:06:31,183
+with functions if the
+
+142
+01:06:31,183 --> 01:06:33,800
+parameter passed is not defined as by
+
+143
+01:06:33,800 --> 01:06:36,283
+val or by ref it will always be passed
+
+144
+01:06:36,283 --> 01:06:39,250
+as by reference. To
+
+145
+01:06:39,250 --> 01:06:40,333
+demonstrate using your
+
+146
+01:06:40,349 --> 01:06:42,183
+function within your code we're going to
+
+147
+01:06:42,183 --> 01:06:45,133
+call a new function to determine whether
+
+148
+01:06:45,133 --> 01:06:49,783
+a value is odd or even. First of all we
+
+149
+01:06:49,783 --> 01:06:51,449
+will set up a variable which we're going
+
+150
+01:06:51,449 --> 01:06:54,050
+to test and we're setting the value of
+
+151
+01:06:54,050 --> 01:06:58,099
+this variable to the value 9. And we're
+
+152
+01:06:58,099 --> 01:06:59,983
+going to test the value coming back from
+
+153
+01:06:59,983 --> 01:07:03,016
+this function. Is it true or is it false?
+
+154
+01:07:04,050 --> 01:07:06,316
+Power basic has an is true command word
+
+155
+01:07:06,316 --> 01:07:09,500
+which tests the value returned from this
+
+156
+01:07:09,516 --> 01:07:11,616
+function. And we're passing our
+
+157
+01:07:11,616 --> 01:07:15,699
+parameter value to the function. And then
+
+158
+01:07:15,699 --> 01:07:18,216
+we can determine what to do based on the
+
+159
+01:07:18,216 --> 01:07:21,250
+return from this function. It's always an
+
+160
+01:07:21,250 --> 01:07:23,183
+advantage to name your functions for the
+
+161
+01:07:23,183 --> 01:07:25,633
+purpose they perform. In this case "is
+
+162
+01:07:25,633 --> 01:07:28,833
+value even". If that returns true then the
+
+163
+01:07:28,833 --> 01:07:31,633
+value is even. If it returns false then
+
+164
+01:07:31,633 --> 01:07:34,550
+the value is false. This makes your code
+
+165
+01:07:34,550 --> 01:07:37,616
+much easier to read and understand. So
+
+166
+01:07:37,650 --> 01:07:41,250
+let's now create this new function. So
+
+167
+01:07:41,250 --> 01:07:43,916
+here is a new function is value even
+
+168
+01:07:43,916 --> 01:07:46,949
+passing the single parameter of value
+
+169
+01:07:46,949 --> 01:07:50,650
+defined as a long. And our return from
+
+170
+01:07:50,650 --> 01:07:53,099
+this function is also defined as a long.
+
+171
+01:07:54,533 --> 01:07:57,250
+And we're using the modulus command to
+
+172
+01:07:57,250 --> 01:08:01,133
+take the value, divide it by 2 and if the
+
+173
+01:08:01,133 --> 01:08:04,300
+remainder from that division is 0 then
+
+174
+01:08:04,316 --> 01:08:07,616
+the value is divisible by 2. Therefore
+
+175
+01:08:07,633 --> 01:08:11,483
+the value is even. So we will return true
+
+176
+01:08:11,483 --> 01:08:14,250
+to the function calling this function.
+
+177
+01:08:15,783 --> 01:08:17,800
+Otherwise there is some remainder and
+
+178
+01:08:17,800 --> 01:08:22,016
+we return the value false. So if we run
+
+179
+01:08:22,016 --> 01:08:24,783
+that code now it would tell us that the
+
+180
+01:08:24,783 --> 01:08:29,216
+number 9 is odd. If we change that to an
+
+181
+01:08:29,216 --> 01:08:33,100
+even number. So for example 12 and run
+
+182
+01:08:33,116 --> 01:08:35,850
+the code again it would tell us the
+
+183
+01:08:35,850 --> 01:08:40,033
+value is even. So we've passed a variable
+
+184
+01:08:40,199 --> 01:08:43,100
+to a function and returned a value which
+
+185
+01:08:43,100 --> 01:08:46,449
+is either true or false. Another thing
+
+186
+01:08:46,449 --> 01:08:48,850
+you can do with parameters is make one
+
+187
+01:08:48,850 --> 01:08:52,600
+or more of the parameters optional. Say
+
+188
+01:08:52,600 --> 01:08:55,733
+for example we declared another value
+
+189
+01:08:55,733 --> 01:08:58,633
+variable called special value and we've
+
+190
+01:08:58,733 --> 01:09:00,683
+populated that variable with the value
+
+191
+01:09:00,816 --> 01:09:05,933
+13. We're now calling the "is value even"
+
+192
+01:09:05,949 --> 01:09:09,750
+function passing it two parameters. As
+
+193
+01:09:09,750 --> 01:09:12,133
+soon as you do this if we make no change
+
+194
+01:09:12,233 --> 01:09:16,033
+to the function is value even then the
+
+195
+01:09:16,033 --> 01:09:18,716
+program will no longer compile. As you're
+
+196
+01:09:18,716 --> 01:09:20,399
+attempting to call a function with two
+
+197
+01:09:20,399 --> 01:09:22,533
+parameters and the function only has
+
+198
+01:09:22,533 --> 01:09:25,816
+declarations for one parameter. Therefore
+
+199
+01:09:25,883 --> 01:09:29,583
+it will not compile. So what you can do
+
+200
+01:09:29,600 --> 01:09:31,733
+to the function to allow it to accept
+
+201
+01:09:31,733 --> 01:09:34,916
+either one or two parameters is to put
+
+202
+01:09:34,916 --> 01:09:37,033
+the word optional before the second
+
+203
+01:09:37,083 --> 01:09:40,199
+parameter. If you're passing say for
+
+204
+01:09:40,199 --> 01:09:42,616
+example five parameters to a function
+
+205
+01:09:42,633 --> 01:09:45,750
+then every parameter after the first
+
+206
+01:09:45,750 --> 01:09:48,300
+declaration of optional will be optional.
+
+207
+01:09:49,133 --> 01:09:51,083
+So the optional parameters need to be at
+
+208
+01:09:51,083 --> 01:09:54,116
+the end of the parameters list. So now
+
+209
+01:09:54,116 --> 01:09:55,600
+that we have an optional parameter in
+
+210
+01:09:55,600 --> 01:09:57,616
+how does our function know that a
+
+211
+01:09:57,633 --> 01:10:00,649
+parameter has been passed or not. Well
+
+212
+01:10:00,649 --> 01:10:04,333
+you can test for it. There is an inbuilt
+
+213
+01:10:04,333 --> 01:10:07,800
+command called is missing. If is missing
+
+214
+01:10:07,800 --> 01:10:11,300
+returns true then there is no optional
+
+215
+01:10:11,350 --> 01:10:14,533
+parameter. If if missing returns false
+
+216
+01:10:14,533 --> 01:10:16,899
+then the optional parameter has indeed
+
+217
+01:10:16,899 --> 01:10:20,233
+been passed. You can place this at the
+
+218
+01:10:20,233 --> 01:10:23,149
+beginning of your function to work out
+
+219
+01:10:23,149 --> 01:10:24,616
+whether the optional or optional
+
+220
+01:10:24,699 --> 01:10:28,116
+parameters have been passed. It's
+
+221
+01:10:28,116 --> 01:10:30,733
+important not to reference the special
+
+222
+01:10:30,733 --> 01:10:33,616
+value variable if the parameter has not
+
+223
+01:10:33,616 --> 01:10:37,283
+been passed. Using this construct allows
+
+224
+01:10:37,283 --> 01:10:39,633
+you to set your code to handle missing
+
+225
+01:10:39,683 --> 01:10:42,633
+parameters. If the parameter is missing
+
+226
+01:10:42,633 --> 01:10:45,516
+then you should have no reference to the
+
+227
+01:10:45,516 --> 01:10:48,016
+named parameter. For example special
+
+228
+01:10:48,033 --> 01:10:51,600
+value. If the parameter is not missing
+
+229
+01:10:51,699 --> 01:10:55,083
+then you can reference the value. And if
+
+230
+01:10:55,083 --> 01:10:56,616
+you're going to use this for the on in
+
+231
+01:10:56,616 --> 01:10:58,633
+the code you can populate a locally
+
+232
+01:10:58,633 --> 01:11:02,850
+declared variable with that value. So if
+
+233
+01:11:02,850 --> 01:11:05,583
+we try running the application now it
+
+234
+01:11:05,583 --> 01:11:07,483
+will print out that the optional
+
+235
+01:11:07,483 --> 01:11:11,933
+parameter equals 13. If we change it so
+
+236
+01:11:11,933 --> 01:11:15,449
+there is no optional parameter the code
+
+237
+01:11:15,449 --> 01:11:17,949
+will still compile and run and it will
+
+238
+01:11:17,949 --> 01:11:20,199
+tell us there is no optional parameter.
+
+239
+01:11:22,533 --> 01:11:24,350
+So using optional parameters gives you a
+
+240
+01:11:24,350 --> 01:11:26,216
+great deal of flexibility within your
+
+241
+01:11:26,233 --> 01:11:30,016
+function. So what happens if we want to
+
+242
+01:11:30,016 --> 01:11:32,916
+pass more information than just numbers?
+
+243
+01:11:34,816 --> 01:11:38,516
+Let's declare a user defined type. We've
+
+244
+01:11:38,516 --> 01:11:40,783
+now declared a user defined type called
+
+245
+01:11:40,783 --> 01:11:45,550
+udt car and it has four elements make
+
+246
+01:11:45,550 --> 01:11:49,416
+model type and color. Each of these is
+
+247
+01:11:49,449 --> 01:11:53,250
+set up as a 20 character string. Within a
+
+248
+01:11:53,250 --> 01:11:55,949
+user defined type all the strings are not
+
+249
+01:11:55,949 --> 01:11:59,199
+dynamic they have to be fixed length so
+
+250
+01:11:59,199 --> 01:12:01,133
+it's important to set them up to be large
+
+251
+01:12:01,133 --> 01:12:03,000
+enough for the data you're going to be
+
+252
+01:12:03,000 --> 01:12:07,300
+populating it with. We can now declare a
+
+253
+01:12:07,300 --> 01:12:10,083
+local variable as that user defined type.
+
+254
+01:12:11,800 --> 01:12:14,949
+So our local variable is called ucar and
+
+255
+01:12:14,949 --> 01:12:17,733
+it's been declared as a udt car which
+
+256
+01:12:17,783 --> 01:12:20,133
+is the type we declared a moment ago.
+
+257
+01:12:21,333 --> 01:12:23,550
+You can then populate that by the
+
+258
+01:12:23,550 --> 01:12:26,133
+construct of ucar dot and then the
+
+259
+01:12:26,133 --> 01:12:27,933
+element name. I'm
+
+260
+01:12:27,933 --> 01:12:29,033
+using the prefix command
+
+261
+01:12:29,033 --> 01:12:31,233
+here to save a little bit of typing and
+
+262
+01:12:31,233 --> 01:12:33,250
+to make the code look a little easier to
+
+263
+01:12:33,250 --> 01:12:37,833
+read. The prefix command takes the string
+
+264
+01:12:37,833 --> 01:12:40,183
+which appears immediately after it and
+
+265
+01:12:40,183 --> 01:12:42,733
+adds it to the beginning of each line
+
+266
+01:12:42,733 --> 01:12:45,216
+of code that follows until we get to end
+
+267
+01:12:45,233 --> 01:12:49,316
+prefix. This saves you in some cases a
+
+268
+01:12:49,316 --> 01:12:51,333
+great deal of typing and makes the code
+
+269
+01:12:51,333 --> 01:12:54,933
+look nice and tidy. So now that we've
+
+270
+01:12:54,933 --> 01:12:57,033
+populated this user defined type how do
+
+271
+01:12:57,033 --> 01:13:01,583
+we pass that to a function? Actually
+
+272
+01:13:01,583 --> 01:13:04,033
+quite simply as we would pass any other
+
+273
+01:13:04,033 --> 01:13:06,133
+variable just by mentioning it in the
+
+274
+01:13:06,133 --> 01:13:09,033
+list within the brackets. So let's create
+
+275
+01:13:09,033 --> 01:13:13,216
+this new show car details function. So as
+
+276
+01:13:13,233 --> 01:13:15,133
+you will see in the parameters list
+
+277
+01:13:15,133 --> 01:13:17,600
+we've declared a local variable in this
+
+278
+01:13:17,600 --> 01:13:22,233
+case ucar as the udt car type in the
+
+279
+01:13:22,233 --> 01:13:24,350
+same way as you declare any other
+
+280
+01:13:24,350 --> 01:13:26,516
+variable passed on the parameters list.
+
+281
+01:13:28,199 --> 01:13:30,050
+So all we're doing within this function
+
+282
+01:13:30,050 --> 01:13:32,916
+is we're displaying the details of the
+
+283
+01:13:32,916 --> 01:13:36,600
+car out to our log. By printing out the
+
+284
+01:13:36,600 --> 01:13:40,016
+local name ucar dot then the element
+
+285
+01:13:40,016 --> 01:13:42,216
+name in this case the string make
+
+286
+01:13:42,250 --> 01:13:44,750
+followed by a carriage return line
+
+287
+01:13:44,750 --> 01:13:48,100
+feed. So that each element of this user
+
+288
+01:13:48,100 --> 01:13:49,800
+defined type is printed out on a
+
+289
+01:13:49,800 --> 01:13:52,483
+separate line. So if we try running that
+
+290
+01:13:52,483 --> 01:13:56,383
+code now we will see we get the Ford
+
+291
+01:13:56,383 --> 01:13:59,250
+Capri electric silver printed out to our
+
+292
+01:13:59,250 --> 01:14:03,416
+log. So we've successfully passed a user
+
+293
+01:14:03,416 --> 01:14:05,449
+defined type from one function to
+
+294
+01:14:05,449 --> 01:14:08,883
+another. However we can go further with
+
+295
+01:14:08,883 --> 01:14:11,416
+this. What if we had multiple car details
+
+296
+01:14:11,683 --> 01:14:15,016
+to pass to our function. We can set up an
+
+297
+01:14:15,016 --> 01:14:18,333
+array of user defined types. So we're
+
+298
+01:14:18,333 --> 01:14:23,050
+dimensioning an array as udt car and the
+
+299
+01:14:23,050 --> 01:14:25,116
+number of elements we have specified as
+
+300
+01:14:25,116 --> 01:14:28,516
+two. So we can step through a little for next
+
+301
+01:14:28,516 --> 01:14:32,250
+loop to populate this information. So
+
+302
+01:14:32,250 --> 01:14:35,000
+we're doing between one and two and we're
+
+303
+01:14:35,000 --> 01:14:37,716
+using the prefix which is the name of the
+
+304
+01:14:37,716 --> 01:14:39,816
+user defined type and in brackets the
+
+305
+01:14:39,850 --> 01:14:42,716
+element number and then the details of
+
+306
+01:14:42,716 --> 01:14:45,616
+the car. The make the model the type and
+
+307
+01:14:45,616 --> 01:14:46,100
+the color.
+
+308
+01:14:48,583 --> 01:14:50,916
+And we're adding on the number to the
+
+309
+01:14:50,916 --> 01:14:52,949
+end of the word just so we can
+
+310
+01:14:52,949 --> 01:14:54,899
+distinguish which is number one and
+
+311
+01:14:54,899 --> 01:14:59,050
+which is number two. As it is an array we
+
+312
+01:14:59,050 --> 01:15:01,016
+need to put the two brackets at the end
+
+313
+01:15:01,033 --> 01:15:05,233
+of the variable name. As in a ucars open
+
+314
+01:15:05,283 --> 01:15:08,383
+then close brackets. This tells Power
+
+315
+01:15:08,399 --> 01:15:10,633
+Basic that we're passing an array by
+
+316
+01:15:10,633 --> 01:15:14,533
+reference. So on our function to actually
+
+317
+01:15:14,716 --> 01:15:17,416
+display these to the user we're calling
+
+318
+01:15:17,416 --> 01:15:21,133
+the function showAllCarDetails. The
+
+319
+01:15:21,133 --> 01:15:25,116
+array is defined as a u cars open and
+
+320
+01:15:25,116 --> 01:15:27,300
+close bracket. This tells Power Basic
+
+321
+01:15:27,433 --> 01:15:29,616
+that it's an incoming array which has
+
+322
+01:15:29,616 --> 01:15:31,916
+been passed by reference and we're
+
+323
+01:15:31,916 --> 01:15:34,116
+specifying that the type of this array
+
+324
+01:15:34,416 --> 01:15:36,500
+is a user defined type car.
+
+325
+01:15:38,699 --> 01:15:40,333
+And we're putting a for next loop in here
+
+326
+01:15:40,333 --> 01:15:43,633
+again to display each element within the
+
+327
+01:15:43,633 --> 01:15:46,300
+array. We can determine the number of
+
+328
+01:15:46,300 --> 01:15:49,000
+elements within the array by using the
+
+329
+01:15:49,000 --> 01:15:53,100
+ubound command. From one to the value in
+
+330
+01:15:53,100 --> 01:15:56,316
+this case two. And we're printing the
+
+331
+01:15:56,316 --> 01:16:00,000
+details out to the log using ucars and
+
+332
+01:16:00,000 --> 01:16:02,716
+then within brackets the element number.
+
+333
+01:16:03,850 --> 01:16:06,600
+Followed by the type from the user
+
+334
+01:16:06,600 --> 01:16:09,483
+defined type as in make, model, type and
+
+335
+01:16:09,550 --> 01:16:12,750
+color. So if we try running that code now
+
+336
+01:16:14,233 --> 01:16:16,750
+we will see we get the details for
+
+337
+01:16:16,949 --> 01:16:18,516
+number one and the
+
+338
+01:16:18,516 --> 01:16:20,016
+details for number two.
+
+339
+01:16:21,183 --> 01:16:22,933
+So you can pass a great deal of data
+
+340
+01:16:23,283 --> 01:16:26,583
+using the array as one of the parameters.
+
+341
+01:16:27,783 --> 01:16:29,250
+But it's important to note that you're
+
+342
+01:16:29,250 --> 01:16:32,050
+always passing this by reference. So you
+
+343
+01:16:32,100 --> 01:16:34,300
+can pass a great deal of data between
+
+344
+01:16:34,316 --> 01:16:36,483
+one function and another function or
+
+345
+01:16:36,483 --> 01:16:40,233
+subroutine by using an array. The arrays
+
+346
+01:16:40,399 --> 01:16:43,416
+are always passed by reference. As in
+
+347
+01:16:43,416 --> 01:16:45,416
+you're not passing the data within the
+
+348
+01:16:45,416 --> 01:16:48,283
+array but you're passing details which
+
+349
+01:16:48,283 --> 01:16:50,216
+Power Basic can use to determine where
+
+350
+01:16:50,216 --> 01:16:53,716
+the data actually sits. Any change made
+
+351
+01:16:53,716 --> 01:16:55,750
+to data within the array will of course
+
+352
+01:16:55,750 --> 01:16:58,616
+be reflected in the calling routine as
+
+353
+01:16:58,616 --> 01:17:00,550
+they're both pointing at the same place.
+
+354
+01:17:01,383 --> 01:17:03,100
+Even if the name you're using in the
+
+355
+01:17:03,100 --> 01:17:06,033
+parameters list is different. So what
+
+356
+01:17:06,033 --> 01:17:07,933
+other kind of parameters can we possibly
+
+357
+01:17:08,000 --> 01:17:11,500
+use? Well say for example we want to run
+
+358
+01:17:11,600 --> 01:17:15,516
+a process. A simple arithmetic process
+
+359
+01:17:15,516 --> 01:17:17,516
+that's going to be called many times.
+
+360
+01:17:18,733 --> 01:17:20,449
+So I'm going to set up some local
+
+361
+01:17:20,449 --> 01:17:22,899
+variables. A counter variable, a total
+
+362
+01:17:22,899 --> 01:17:26,300
+variable, a loop variable and a quad
+
+363
+01:17:26,483 --> 01:17:29,016
+timer. We'll set the values for the
+
+364
+01:17:29,050 --> 01:17:32,800
+counter to 10 and the total to be 0.
+
+365
+01:17:33,883 --> 01:17:35,733
+And I'm going to be using a for next loop
+
+366
+01:17:35,833 --> 01:17:38,399
+from 1 to 1000. So we're going to be
+
+367
+01:17:38,399 --> 01:17:39,683
+calling this new function
+
+368
+01:17:40,083 --> 01:17:44,250
+process 1000 times. In order to determine
+
+369
+01:17:44,316 --> 01:17:46,050
+how long this actually takes for the
+
+370
+01:17:46,050 --> 01:17:47,133
+processor to process
+
+371
+01:17:47,600 --> 01:17:49,350
+I'm going to be using the tix command.
+
+372
+01:17:50,733 --> 01:17:51,416
+The tix command
+
+373
+01:17:51,416 --> 01:17:52,816
+takes a single parameter.
+
+374
+01:17:53,416 --> 01:17:57,199
+In this case a quad value. This picks up
+
+375
+01:17:57,583 --> 01:18:00,033
+the cycle count of the CPU.
+
+376
+01:18:01,416 --> 01:18:03,483
+And after the processing I'm calling
+
+377
+01:18:03,483 --> 01:18:06,616
+tix end. Which picks up the value again
+
+378
+01:18:06,949 --> 01:18:09,600
+and subtracts the first value from the
+
+379
+01:18:09,600 --> 01:18:12,949
+second value. This gives us the number of
+
+380
+01:18:12,949 --> 01:18:13,916
+CPU cycles
+
+381
+01:18:14,550 --> 01:18:17,233
+used between the tix and the tix end
+
+382
+01:18:17,233 --> 01:18:17,583
+command.
+
+383
+01:18:19,466 --> 01:18:21,300
+This is useful to determine just how
+
+384
+01:18:21,300 --> 01:18:23,416
+efficient one routine is to another.
+
+385
+01:18:24,783 --> 01:18:27,116
+So we're going to print out the total to
+
+386
+01:18:27,333 --> 01:18:31,183
+the log with the number of CPU cycles.
+
+387
+01:18:32,500 --> 01:18:34,699
+So let's create this fun process
+
+388
+01:18:34,716 --> 01:18:37,550
+function. This is a very straightforward
+
+389
+01:18:37,683 --> 01:18:38,199
+process
+
+390
+01:18:38,550 --> 01:18:40,699
+which takes the two parameters coming in
+
+391
+01:18:40,699 --> 01:18:41,699
+the total and the counter.
+
+392
+01:18:42,733 --> 01:18:45,883
+And it adds to the total what's already
+
+393
+01:18:45,883 --> 01:18:47,600
+in total plus the counter.
+
+394
+01:18:48,449 --> 01:18:50,949
+And then returns to the calling function
+
+395
+01:18:51,199 --> 01:18:52,983
+the value of the total variable.
+
+396
+01:18:54,466 --> 01:18:56,333
+So if we try running that now
+
+397
+01:18:57,983 --> 01:19:01,183
+we will see it gives us a value 10,000
+
+398
+01:19:01,433 --> 01:19:06,533
+and it has taken 20,787 CPU cycles
+
+399
+01:19:06,800 --> 01:19:09,350
+to perform these 1000 iterations.
+
+400
+01:19:11,033 --> 01:19:14,316
+So that is our baseline. So now that we
+
+401
+01:19:14,316 --> 01:19:14,933
+have a function
+
+402
+01:19:14,949 --> 01:19:16,699
+that performs something purely
+
+403
+01:19:16,699 --> 01:19:18,283
+arithmetic can we do
+
+404
+01:19:18,283 --> 01:19:20,050
+this faster? Is there
+
+405
+01:19:20,050 --> 01:19:21,250
+a faster way of executing
+
+406
+01:19:22,050 --> 01:19:26,016
+this process? Power basic has a different
+
+407
+01:19:26,016 --> 01:19:27,300
+type of function called
+
+408
+01:19:27,433 --> 01:19:31,300
+fast proc. We've now created a fast proc
+
+409
+01:19:31,300 --> 01:19:31,750
+function.
+
+410
+01:19:32,449 --> 01:19:34,083
+It's taking in exactly the same
+
+411
+01:19:34,083 --> 01:19:36,633
+parameters. However it's taking them in
+
+412
+01:19:36,633 --> 01:19:40,083
+by value. In fast proc you have to use
+
+413
+01:19:40,149 --> 01:19:40,933
+by value.
+
+414
+01:19:43,033 --> 01:19:45,483
+The arithmetic calculation within the
+
+415
+01:19:45,483 --> 01:19:47,416
+routine is exactly the same as the
+
+416
+01:19:47,516 --> 01:19:48,100
+previous one.
+
+417
+01:19:48,683 --> 01:19:50,783
+We're taking the value in total and
+
+418
+01:19:50,800 --> 01:19:52,033
+adding on the counter.
+
+419
+01:19:52,949 --> 01:19:54,850
+And at the end of the fast proc we're
+
+420
+01:19:54,850 --> 01:19:56,933
+returning that total to the calling
+
+421
+01:19:56,933 --> 01:19:57,383
+routine.
+
+422
+01:19:58,649 --> 01:20:00,233
+So we now go back to our pb_main
+
+423
+01:20:00,233 --> 01:20:02,833
+function and call this new function.
+
+424
+01:20:04,550 --> 01:20:06,933
+So here is the call to the new function.
+
+425
+01:20:07,316 --> 01:20:08,916
+We're resetting the counter and the
+
+426
+01:20:08,916 --> 01:20:10,433
+total to 10 and zero.
+
+427
+01:20:11,266 --> 01:20:13,316
+We're starting the tix command. We're
+
+428
+01:20:13,316 --> 01:20:15,883
+doing a look from 1 to 1000 as we did
+
+429
+01:20:15,883 --> 01:20:16,300
+before.
+
+430
+01:20:16,550 --> 01:20:19,500
+But we're calling the new fast proc
+
+431
+01:20:19,899 --> 01:20:23,816
+process. And we're ending the tix command
+
+432
+01:20:24,316 --> 01:20:26,416
+and printing out the details to the log.
+
+433
+01:20:27,283 --> 01:20:30,883
+If we try running the code once more we
+
+434
+01:20:30,883 --> 01:20:32,683
+will see we get a different value
+
+435
+01:20:32,683 --> 01:20:34,300
+coming back. We get the same
+
+436
+01:20:34,550 --> 01:20:37,399
+value for the total 10 000.
+
+437
+01:20:38,016 --> 01:20:39,949
+But the number of cpu cycles is
+
+438
+01:20:39,949 --> 01:20:41,083
+considerably less.
+
+439
+01:20:41,483 --> 01:20:43,600
+It's only 7371.
+
+440
+01:20:46,149 --> 01:20:48,850
+So running this as a fast proc means our
+
+441
+01:20:48,899 --> 01:20:51,683
+process runs in almost a third of the
+
+442
+01:20:51,683 --> 01:20:52,050
+time.
+
+443
+01:20:53,733 --> 01:20:55,783
+So just in case the position in the code
+
+444
+01:20:55,833 --> 01:20:57,983
+is actually giving the fast proc an
+
+445
+01:20:57,983 --> 01:20:58,399
+advantage.
+
+446
+01:20:58,633 --> 01:21:00,899
+We'll move that code to before the
+
+447
+01:21:00,899 --> 01:21:01,733
+normal process.
+
+448
+01:21:03,166 --> 01:21:05,750
+We'll cut that code out of here and we'll
+
+449
+01:21:05,750 --> 01:21:07,633
+put it in before the other one.
+
+450
+01:21:11,750 --> 01:21:13,699
+So we're calling the fast process first
+
+451
+01:21:14,316 --> 01:21:15,949
+and we're calling the normal process
+
+452
+01:21:16,000 --> 01:21:16,300
+second.
+
+453
+01:21:17,050 --> 01:21:19,850
+So if we run that code again we're still
+
+454
+01:21:19,850 --> 01:21:22,000
+getting the same 10 000 values.
+
+455
+01:21:22,300 --> 01:21:24,500
+But the fast proc is still running
+
+456
+01:21:24,716 --> 01:21:26,883
+considerably faster than the normal
+
+457
+01:21:26,949 --> 01:21:27,399
+function.
+
+458
+01:21:29,016 --> 01:21:31,050
+There are some disadvantages in using
+
+459
+01:21:31,199 --> 01:21:31,850
+fast proc.
+
+460
+01:21:33,433 --> 01:21:35,899
+You can't use local variables within the
+
+461
+01:21:35,899 --> 01:21:36,300
+function.
+
+462
+01:21:37,350 --> 01:21:38,883
+But if you have something that is
+
+463
+01:21:38,883 --> 01:21:41,183
+computationally intensive and you're
+
+464
+01:21:41,183 --> 01:21:42,583
+calling it a great many times
+
+465
+01:21:42,883 --> 01:21:45,250
+it can speed up your processing as you
+
+466
+01:21:45,283 --> 01:21:45,883
+can see.
+
+467
+01:21:47,783 --> 01:21:49,933
+So this completes our short look at
+
+468
+01:21:49,933 --> 01:21:51,533
+parameters being passed between
+
+469
+01:21:51,533 --> 01:21:53,183
+functions and subroutines.
+
+470
+01:21:54,116 --> 01:21:56,199
+Hopefully you'll find this code useful in
+
+471
+01:21:56,199 --> 01:21:56,883
+your applications.
+
+472
+01:21:57,449 --> 01:21:59,100
+But that's it for today.
+
+473
+01:21:59,933 --> 01:22:00,899
+Thank you for watching.
+

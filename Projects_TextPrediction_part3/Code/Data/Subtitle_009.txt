@@ -1,0 +1,2316 @@
+1
+01:00:02,483 --> 01:00:06,966
+Welcome! In this series of videos we will
+
+2
+01:00:06,966 --> 01:00:08,099
+cover the design and
+
+3
+01:00:08,099 --> 01:00:09,683
+implementation of a project,
+
+4
+01:00:10,566 --> 01:00:12,533
+from initial design through coding and
+
+5
+01:00:12,533 --> 01:00:13,966
+development to testing,
+
+6
+01:00:14,516 --> 01:00:16,483
+using the Power Basic Windows
+
+7
+01:00:16,516 --> 01:00:19,416
+compiler. Today we will continue our
+
+8
+01:00:19,416 --> 01:00:21,316
+project to create our own
+
+9
+01:00:21,316 --> 01:00:23,783
+web browser by adding support
+
+10
+01:00:24,266 --> 01:00:27,816
+for hyperlinks on images. Hypertext
+
+11
+01:00:27,816 --> 01:00:30,900
+Marker Language (HTML) was
+
+12
+01:00:30,900 --> 01:00:33,816
+developed in 1989 at CERN,
+
+13
+01:00:34,400 --> 01:00:36,883
+the European organisation of nuclear
+
+14
+01:00:36,883 --> 01:00:39,183
+research. Its purpose was
+
+15
+01:00:39,183 --> 01:00:40,966
+not only to provide a common
+
+16
+01:00:40,966 --> 01:00:44,216
+file format to share knowledge, but also
+
+17
+01:00:44,216 --> 01:00:45,866
+to allow those files to
+
+18
+01:00:45,866 --> 01:00:47,383
+have the ability to link
+
+19
+01:00:47,616 --> 01:00:51,083
+to other files. This could be on distant
+
+20
+01:00:51,083 --> 01:00:53,333
+servers. This was no small
+
+21
+01:00:53,333 --> 01:00:55,233
+feat as they also needed to
+
+22
+01:00:55,233 --> 01:00:58,083
+create the Hypertext Transfer Protocol
+
+23
+01:00:58,083 --> 01:01:01,833
+(HTTP) - this to standardise
+
+24
+01:01:01,833 --> 01:01:03,416
+communication between computers
+
+25
+01:01:04,000 --> 01:01:07,683
+and the world wide web was born. The work
+
+26
+01:01:07,683 --> 01:01:09,383
+in our light browser so far
+
+27
+01:01:09,383 --> 01:01:11,333
+has been to support a number
+
+28
+01:01:11,366 --> 01:01:15,266
+of tags within the HTML document. Today
+
+29
+01:01:15,266 --> 01:01:16,466
+we'll be adding support
+
+30
+01:01:16,466 --> 01:01:18,966
+for the Anchor tag to allow
+
+31
+01:01:18,966 --> 01:01:22,083
+hypertext linking to other documents by
+
+32
+01:01:22,083 --> 01:01:24,016
+allowing users to click on
+
+33
+01:01:24,016 --> 01:01:27,033
+images. So what changes do we
+
+34
+01:01:27,033 --> 01:01:29,266
+need to make to a code to support this
+
+35
+01:01:29,266 --> 01:01:31,733
+new Anchor tag? The first
+
+36
+01:01:31,733 --> 01:01:33,866
+thing we will look at is when the
+
+37
+01:01:33,866 --> 01:01:36,866
+HTML code is loaded into our light
+
+38
+01:01:36,866 --> 01:01:38,966
+browser. So what do we need to
+
+39
+01:01:38,966 --> 01:01:40,783
+do to keep track of these new
+
+40
+01:01:40,883 --> 01:01:43,566
+Anchor tags? As we're going to be
+
+41
+01:01:43,566 --> 01:01:45,516
+clicking on images, we need
+
+42
+01:01:45,516 --> 01:01:47,116
+to keep track of how much space
+
+43
+01:01:47,116 --> 01:01:50,066
+these images take up on screen. These
+
+44
+01:01:50,066 --> 01:01:52,099
+zones need to be stored within the
+
+45
+01:01:52,099 --> 01:01:53,333
+application so that when
+
+46
+01:01:53,333 --> 01:01:55,500
+the user clicks with the left mouse
+
+47
+01:01:55,500 --> 01:01:58,116
+button anywhere on the graphics control
+
+48
+01:01:58,116 --> 01:01:59,599
+we can determine whether
+
+49
+01:01:59,599 --> 01:02:02,566
+the user has indeed clicked on an image
+
+50
+01:02:02,566 --> 01:02:04,433
+which has an underlying
+
+51
+01:02:04,433 --> 01:02:06,966
+Anchor linking it to another
+
+52
+01:02:07,066 --> 01:02:09,616
+document. So we're going to create a user
+
+53
+01:02:09,616 --> 01:02:11,583
+defined type called Image
+
+54
+01:02:11,583 --> 01:02:13,783
+Tag. This will store the top
+
+55
+01:02:13,783 --> 01:02:16,500
+left hand and bottom right hand corners
+
+56
+01:02:16,500 --> 01:02:18,433
+of any of these linked zones
+
+57
+01:02:18,433 --> 01:02:20,583
+and we will create a global
+
+58
+01:02:20,583 --> 01:02:23,783
+array to store this information. So here
+
+59
+01:02:23,783 --> 01:02:26,983
+is our new type called udt
+
+60
+01:02:26,983 --> 01:02:30,766
+image tag. This has a number
+
+61
+01:02:30,966 --> 01:02:33,883
+of elements. It stores an x and y
+
+62
+01:02:33,883 --> 01:02:35,800
+coordinate for the top left hand corner
+
+63
+01:02:35,800 --> 01:02:37,833
+of the image. It also
+
+64
+01:02:37,833 --> 01:02:40,766
+stores the bottom right hand corner of
+
+65
+01:02:40,766 --> 01:02:43,216
+that image. This will allow
+
+66
+01:02:43,216 --> 01:02:45,466
+us to define the area of our
+
+67
+01:02:45,466 --> 01:02:48,099
+clicking zone and additionally it stores
+
+68
+01:02:48,099 --> 01:02:51,233
+a URL. This is the URL that
+
+69
+01:02:51,233 --> 01:02:52,666
+once the user clicks on this
+
+70
+01:02:52,666 --> 01:02:55,383
+zone we will link to and we have
+
+71
+01:02:55,383 --> 01:02:57,083
+dimensioned a global array
+
+72
+01:02:57,083 --> 01:02:59,916
+called URLs. This is an array
+
+73
+01:03:00,099 --> 01:03:03,466
+of this user defined type. So having this
+
+74
+01:03:03,466 --> 01:03:04,833
+global array our next
+
+75
+01:03:04,833 --> 01:03:07,033
+question is how many elements are
+
+76
+01:03:07,033 --> 01:03:09,983
+we going to allow in this array? How many
+
+77
+01:03:09,983 --> 01:03:11,400
+zones are we going to allow
+
+78
+01:03:11,400 --> 01:03:13,466
+the user to click on? So we've
+
+79
+01:03:13,466 --> 01:03:16,866
+added a new constant called max URLs. We
+
+80
+01:03:16,866 --> 01:03:17,699
+are currently setting
+
+81
+01:03:17,699 --> 01:03:20,900
+this as 100. This will allow
+
+82
+01:03:20,900 --> 01:03:24,383
+up to 100 links within our HTML document.
+
+83
+01:03:25,416 --> 01:03:26,933
+Should you find 100 links
+
+84
+01:03:26,933 --> 01:03:28,233
+is too small you can always
+
+85
+01:03:28,500 --> 01:03:31,183
+increase the value of the constant and
+
+86
+01:03:31,183 --> 01:03:32,983
+within our pb_main function we can
+
+87
+01:03:32,983 --> 01:03:34,116
+dimension this array.
+
+88
+01:03:34,966 --> 01:03:37,300
+So there we have our global array of URLs
+
+89
+01:03:37,300 --> 01:03:39,300
+dimensioned for the maximum
+
+90
+01:03:39,300 --> 01:03:41,083
+number. So now that we have
+
+91
+01:03:41,083 --> 01:03:43,183
+somewhere to store the information we
+
+92
+01:03:43,183 --> 01:03:45,099
+next need to pick the information up from
+
+93
+01:03:45,099 --> 01:03:46,966
+the HTML file. So in
+
+94
+01:03:46,966 --> 01:03:48,683
+order to see what we need to do let's
+
+95
+01:03:48,683 --> 01:03:49,900
+launch the browser as it
+
+96
+01:03:49,900 --> 01:03:52,133
+currently stands and we're going to
+
+97
+01:03:52,233 --> 01:03:55,099
+drag our index document into that browser
+
+98
+01:03:55,099 --> 01:03:58,216
+and as you will see we
+
+99
+01:03:58,216 --> 01:04:00,033
+have the four images quite
+
+100
+01:04:00,033 --> 01:04:04,599
+happily showing and we're not currently
+
+101
+01:04:04,599 --> 01:04:07,199
+handling the anchor tag. So
+
+102
+01:04:07,199 --> 01:04:08,883
+our first task is to handle
+
+103
+01:04:08,966 --> 01:04:11,699
+the anchor tag when the document is read.
+
+104
+01:04:12,400 --> 01:04:13,183
+So we need to make a
+
+105
+01:04:13,183 --> 01:04:15,500
+change to the render HTML tags
+
+106
+01:04:15,516 --> 01:04:18,416
+function to add support for anchor tags.
+
+107
+01:04:19,300 --> 01:04:21,033
+So here is our render HTML
+
+108
+01:04:21,033 --> 01:04:23,316
+tags function. This is the heart
+
+109
+01:04:23,366 --> 01:04:26,099
+of our render engine handling each of the
+
+110
+01:04:26,099 --> 01:04:28,716
+tags. So the last tag in our list
+
+111
+01:04:28,716 --> 01:04:30,166
+currently is the image
+
+112
+01:04:30,166 --> 01:04:32,533
+tag which is testing to ensure we're
+
+113
+01:04:32,533 --> 01:04:33,816
+inside the body of the
+
+114
+01:04:33,816 --> 01:04:36,216
+document before we display the image.
+
+115
+01:04:36,783 --> 01:04:38,433
+So let's first put a couple of case
+
+116
+01:04:38,433 --> 01:04:40,583
+statements in to handle the beginning and
+
+117
+01:04:40,583 --> 01:04:41,783
+the end of the anchor
+
+118
+01:04:41,916 --> 01:04:45,783
+tags. So here are the two new tags the
+
+119
+01:04:45,783 --> 01:04:47,666
+beginning of the anchor tag
+
+120
+01:04:47,666 --> 01:04:49,800
+and the end of the anchor tag.
+
+121
+01:04:50,633 --> 01:04:52,933
+We're going to set a new variable within
+
+122
+01:04:52,933 --> 01:04:55,266
+here called ref tag which
+
+123
+01:04:55,266 --> 01:04:56,500
+will be true at the beginning
+
+124
+01:04:56,500 --> 01:04:59,900
+of a tag and false at the end. This will
+
+125
+01:04:59,900 --> 01:05:01,066
+let our code know that
+
+126
+01:05:01,066 --> 01:05:03,233
+we're inside an anchor tag group
+
+127
+01:05:03,966 --> 01:05:05,966
+and as we're handling clicks on images
+
+128
+01:05:05,966 --> 01:05:07,599
+today we can test that
+
+129
+01:05:07,599 --> 01:05:09,099
+within the image tag section.
+
+130
+01:05:09,683 --> 01:05:11,766
+By testing this immediately after we
+
+131
+01:05:11,766 --> 01:05:14,500
+display the image on the browser. So
+
+132
+01:05:14,500 --> 01:05:15,583
+since the value of ref
+
+133
+01:05:15,599 --> 01:05:18,599
+tag is true we know we're inside a
+
+134
+01:05:18,599 --> 01:05:21,033
+reference tag. We're within the block
+
+135
+01:05:21,033 --> 01:05:22,283
+which is the anchor.
+
+136
+01:05:22,983 --> 01:05:24,983
+So we need to store the link which has
+
+137
+01:05:24,983 --> 01:05:28,733
+come in on the URL. So at this point we
+
+138
+01:05:28,733 --> 01:05:29,566
+need to have already
+
+139
+01:05:29,599 --> 01:05:33,099
+stored the value in the URL variable and
+
+140
+01:05:33,099 --> 01:05:34,199
+we can do that quite easily
+
+141
+01:05:34,199 --> 01:05:35,616
+at the start of the reference
+
+142
+01:05:35,683 --> 01:05:38,833
+tag because the URL will be within the
+
+143
+01:05:38,833 --> 01:05:40,683
+attributes. So we're looking
+
+144
+01:05:40,683 --> 01:05:42,433
+specifically for the equal sign
+
+145
+01:05:42,716 --> 01:05:45,116
+and we're taking the second part of that
+
+146
+01:05:45,116 --> 01:05:47,033
+using our parse command and
+
+147
+01:05:47,033 --> 01:05:48,616
+trimming off any double quotes.
+
+148
+01:05:50,066 --> 01:05:51,966
+So for the moment this should give us the
+
+149
+01:05:51,966 --> 01:05:54,166
+direct path, albeit in the same
+
+150
+01:05:54,166 --> 01:05:55,866
+directory, to the file we
+
+151
+01:05:55,866 --> 01:05:59,633
+wish to link to. So as the anchor tag is
+
+152
+01:05:59,633 --> 01:06:01,833
+processed before the image
+
+153
+01:06:01,833 --> 01:06:04,133
+tag then at this point in the
+
+154
+01:06:04,166 --> 01:06:07,633
+code our strURL variable will be
+
+155
+01:06:07,633 --> 01:06:09,866
+populated. So where are we going to
+
+156
+01:06:09,866 --> 01:06:12,116
+populate the details of this
+
+157
+01:06:12,116 --> 01:06:15,216
+image? The display image command is the
+
+158
+01:06:15,216 --> 01:06:16,800
+one that loads the image up
+
+159
+01:06:16,800 --> 01:06:19,099
+from file. So we're going to
+
+160
+01:06:19,099 --> 01:06:21,616
+pass a user defined type to that to allow
+
+161
+01:06:21,616 --> 01:06:23,633
+us to pass back the x and y
+
+162
+01:06:23,633 --> 01:06:25,233
+coordinates of the top left
+
+163
+01:06:25,433 --> 01:06:27,933
+and the bottom right hand corners of the
+
+164
+01:06:27,933 --> 01:06:30,833
+rectangle. So we're going to use a new
+
+165
+01:06:30,833 --> 01:06:31,916
+local variable which
+
+166
+01:06:32,000 --> 01:06:34,800
+is a user defined type we declared at the
+
+167
+01:06:34,800 --> 01:06:35,916
+beginning of our application.
+
+168
+01:06:36,833 --> 01:06:37,816
+This will be a local variable
+
+169
+01:06:38,000 --> 01:06:40,400
+to this function. So let's go to the
+
+170
+01:06:40,400 --> 01:06:42,133
+beginning of the function and declare the
+
+171
+01:06:42,133 --> 01:06:43,099
+local variables we're
+
+172
+01:06:43,099 --> 01:06:46,099
+going to be needing to do all this. So
+
+173
+01:06:46,099 --> 01:06:47,933
+here are our new variables.
+
+174
+01:06:48,766 --> 01:06:50,933
+We're using the ref tag as a
+
+175
+01:06:50,933 --> 01:06:52,966
+true or false to determine whether we're
+
+176
+01:06:52,966 --> 01:06:55,783
+inside an anchor tag or not and we're
+
+177
+01:06:55,783 --> 01:06:56,583
+using a user defined
+
+178
+01:06:56,666 --> 01:06:59,316
+type to store the coordinates top left
+
+179
+01:06:59,316 --> 01:07:02,166
+and bottom right of the image. We're
+
+180
+01:07:02,166 --> 01:07:04,133
+using url to store the
+
+181
+01:07:04,133 --> 01:07:07,816
+url in the link and we're using another
+
+182
+01:07:07,816 --> 01:07:10,599
+variable which is a long as the last
+
+183
+01:07:10,599 --> 01:07:13,183
+populated url. As the
+
+184
+01:07:13,183 --> 01:07:16,000
+user will have up to 10 tabs usable
+
+185
+01:07:16,000 --> 01:07:18,216
+within the browser and we
+
+186
+01:07:18,216 --> 01:07:19,983
+load each one up dynamically each
+
+187
+01:07:20,000 --> 01:07:22,683
+time the user clicks on a tab. Therefore
+
+188
+01:07:22,683 --> 01:07:25,366
+we need to keep track of a number of
+
+189
+01:07:25,366 --> 01:07:27,666
+these URLs as the user
+
+190
+01:07:27,683 --> 01:07:30,716
+can step back and forward through 10
+
+191
+01:07:30,716 --> 01:07:34,033
+history pages for a tab only to hold
+
+192
+01:07:34,033 --> 01:07:36,216
+information for each of
+
+193
+01:07:36,216 --> 01:07:39,916
+these URLs. So as well as resetting this
+
+194
+01:07:39,916 --> 01:07:41,933
+tag we need to pass this
+
+195
+01:07:41,933 --> 01:07:44,333
+value to our display image
+
+196
+01:07:45,283 --> 01:07:47,983
+as it will populate this with x and y
+
+197
+01:07:47,983 --> 01:07:50,466
+coordinates. So before we amend this
+
+198
+01:07:50,466 --> 01:07:51,599
+display image function
+
+199
+01:07:51,683 --> 01:07:53,666
+let's push on and put the rest of the
+
+200
+01:07:53,666 --> 01:07:55,533
+code in here. If ref tag
+
+201
+01:07:55,533 --> 01:07:57,933
+is true then we're inside a
+
+202
+01:07:58,000 --> 01:08:00,533
+anchor. The url has already been
+
+203
+01:08:00,533 --> 01:08:03,833
+populated so we need to increment the
+
+204
+01:08:03,833 --> 01:08:05,783
+pointer to our url position.
+
+205
+01:08:06,699 --> 01:08:09,199
+This will determine the place in the urls
+
+206
+01:08:09,199 --> 01:08:11,266
+array. Now we can populate
+
+207
+01:08:11,266 --> 01:08:13,333
+the link from the url variable.
+
+208
+01:08:14,083 --> 01:08:17,166
+Inside our user defined type and then we
+
+209
+01:08:17,166 --> 01:08:18,283
+can quite easily slot
+
+210
+01:08:18,283 --> 01:08:20,233
+this entire user defined type
+
+211
+01:08:20,516 --> 01:08:23,133
+into the array of user defined types
+
+212
+01:08:23,133 --> 01:08:27,399
+based on the url long variable. So next
+
+213
+01:08:27,399 --> 01:08:28,483
+we need to go to the
+
+214
+01:08:28,483 --> 01:08:30,766
+display image function. As we have
+
+215
+01:08:30,766 --> 01:08:31,716
+changed the number of
+
+216
+01:08:31,716 --> 01:08:34,366
+parameters it's now accepting. Up until
+
+217
+01:08:34,366 --> 01:08:37,600
+now it's taken only three parameters the
+
+218
+01:08:37,600 --> 01:08:39,666
+dialog handle the attribute
+
+219
+01:08:39,666 --> 01:08:41,983
+string and the tab that has
+
+220
+01:08:42,000 --> 01:08:44,633
+been selected. Now we're passing an
+
+221
+01:08:44,633 --> 01:08:46,616
+additional value which is a
+
+222
+01:08:46,616 --> 01:08:48,533
+user defined type. So further
+
+223
+01:08:48,533 --> 01:08:50,483
+down this code we have loaded the image
+
+224
+01:08:50,483 --> 01:08:52,483
+file from disk into memory
+
+225
+01:08:52,483 --> 01:08:55,000
+and we have the image width and
+
+226
+01:08:55,000 --> 01:08:57,383
+the image height which are the key bits
+
+227
+01:08:57,383 --> 01:08:58,833
+of information we need to
+
+228
+01:08:58,833 --> 01:09:00,683
+store in our user defined
+
+229
+01:09:00,683 --> 01:09:03,916
+type. So after our copy command we can
+
+230
+01:09:03,916 --> 01:09:05,966
+store the location. I'm using
+
+231
+01:09:05,966 --> 01:09:07,783
+the prefix command to prefix
+
+232
+01:09:07,916 --> 01:09:10,516
+the name of our user defined type before
+
+233
+01:09:10,516 --> 01:09:11,733
+each of the elements.
+
+234
+01:09:12,466 --> 01:09:14,216
+We're storing the x and the y
+
+235
+01:09:14,216 --> 01:09:16,899
+coordinates using our global x and y.
+
+236
+01:09:17,433 --> 01:09:19,916
+We're storing the bottom right hand
+
+237
+01:09:19,916 --> 01:09:22,383
+corner by taking the global
+
+238
+01:09:22,483 --> 01:09:26,333
+and adding on the width of that image and
+
+239
+01:09:26,333 --> 01:09:27,983
+the bottom y coordinate
+
+240
+01:09:27,983 --> 01:09:30,583
+is the global y coordinate
+
+241
+01:09:30,800 --> 01:09:33,633
+plus the height of the image. So we have
+
+242
+01:09:33,633 --> 01:09:35,300
+now stored the x and y
+
+243
+01:09:35,300 --> 01:09:37,333
+location of both the top and
+
+244
+01:09:37,366 --> 01:09:39,899
+left and the bottom right hand corners of
+
+245
+01:09:39,899 --> 01:09:41,433
+our image and this is
+
+246
+01:09:41,433 --> 01:09:42,583
+passed back to the calling
+
+247
+01:09:42,583 --> 01:09:45,199
+routine to be passed into the global
+
+248
+01:09:45,199 --> 01:09:47,600
+array. So now that we've stored that
+
+249
+01:09:47,600 --> 01:09:48,833
+information in a global
+
+250
+01:09:48,833 --> 01:09:51,583
+array how can we make use of it so that
+
+251
+01:09:51,583 --> 01:09:53,016
+when the user hovers over it
+
+252
+01:09:53,016 --> 01:09:54,583
+when they click with the left
+
+253
+01:09:54,583 --> 01:09:57,783
+mouse button it will load up the URL
+
+254
+01:09:57,783 --> 01:09:59,583
+that's been stored in the
+
+255
+01:09:59,583 --> 01:10:01,666
+array. Well we've already got a
+
+256
+01:10:01,699 --> 01:10:03,883
+function which allows us to right click
+
+257
+01:10:03,883 --> 01:10:05,899
+on the graphics control we
+
+258
+01:10:05,899 --> 01:10:07,216
+merely need to add to that
+
+259
+01:10:07,216 --> 01:10:09,600
+the ability to trap left clicks as well
+
+260
+01:10:09,600 --> 01:10:12,366
+and that is within the graphic proc
+
+261
+01:10:12,366 --> 01:10:14,583
+function. So here is
+
+262
+01:10:14,583 --> 01:10:17,266
+our graphic proc function. This is a
+
+263
+01:10:17,266 --> 01:10:18,316
+function which is called
+
+264
+01:10:18,316 --> 01:10:20,316
+when the user clicks either with
+
+265
+01:10:20,316 --> 01:10:23,266
+the left or the right mouse button. We
+
+266
+01:10:23,266 --> 01:10:24,733
+have a condition set up
+
+267
+01:10:24,733 --> 01:10:25,866
+to handle the right mouse
+
+268
+01:10:25,866 --> 01:10:28,100
+button at the moment. We now need to add
+
+269
+01:10:28,100 --> 01:10:29,166
+a condition for the
+
+270
+01:10:29,166 --> 01:10:30,933
+left mouse button. So here
+
+271
+01:10:30,983 --> 01:10:33,300
+is the case statement to handle when the
+
+272
+01:10:33,300 --> 01:10:34,883
+user clicks with the
+
+273
+01:10:34,883 --> 01:10:37,000
+left mouse button. When that
+
+274
+01:10:37,000 --> 01:10:39,183
+button is released we will pick up the x
+
+275
+01:10:39,183 --> 01:10:40,100
+and y coordinates on
+
+276
+01:10:40,100 --> 01:10:42,533
+screen. We will populate the URL
+
+277
+01:10:42,800 --> 01:10:45,500
+with an empty length string and at the
+
+278
+01:10:45,500 --> 01:10:47,216
+moment we will display a message box on
+
+279
+01:10:47,216 --> 01:10:48,699
+the screen to prove that
+
+280
+01:10:48,699 --> 01:10:50,466
+we've actually trapped the left mouse
+
+281
+01:10:50,466 --> 01:10:52,683
+button. So let's try running the
+
+282
+01:10:52,683 --> 01:10:55,133
+application now and if we
+
+283
+01:10:55,133 --> 01:10:56,766
+left mouse click someone on the screen
+
+284
+01:10:56,766 --> 01:11:00,033
+we're getting the message box. So we are
+
+285
+01:11:00,033 --> 01:11:00,866
+correctly picking up
+
+286
+01:11:01,600 --> 01:11:04,533
+the click with the left mouse button. So
+
+287
+01:11:04,533 --> 01:11:06,083
+we've proved that works quite
+
+288
+01:11:06,083 --> 01:11:07,733
+successfully. So next
+
+289
+01:11:07,733 --> 01:11:10,100
+we have to create a new function called
+
+290
+01:11:10,100 --> 01:11:12,899
+isLink. This will take three parameters
+
+291
+01:11:12,899 --> 01:11:14,300
+the x the y coordinate
+
+292
+01:11:14,716 --> 01:11:17,783
+and the URL. The URL is going to be
+
+293
+01:11:17,783 --> 01:11:19,300
+populated on return from that
+
+294
+01:11:19,300 --> 01:11:21,300
+function if the zone we have
+
+295
+01:11:21,300 --> 01:11:23,683
+clicked upon is one of those which has an
+
+296
+01:11:23,683 --> 01:11:26,033
+embedded link. So let's go
+
+297
+01:11:26,033 --> 01:11:27,516
+and create this new function.
+
+298
+01:11:28,233 --> 01:11:30,433
+So as I said this function is going to
+
+299
+01:11:30,433 --> 01:11:31,699
+take the three parameters
+
+300
+01:11:31,699 --> 01:11:33,983
+the x the y coordinate and the
+
+301
+01:11:33,983 --> 01:11:37,483
+return value which will be a URL. So
+
+302
+01:11:37,483 --> 01:11:39,333
+we're going to use a for next loop here
+
+303
+01:11:39,333 --> 01:11:40,716
+to step through each
+
+304
+01:11:40,966 --> 01:11:44,666
+element of the global URLs array. So this
+
+305
+01:11:44,666 --> 01:11:46,166
+is quite a simple function.
+
+306
+01:11:47,033 --> 01:11:48,483
+So for each element of this
+
+307
+01:11:48,483 --> 01:11:51,199
+global array we're testing the x and y
+
+308
+01:11:51,199 --> 01:11:52,566
+coordinates against the
+
+309
+01:11:52,566 --> 01:11:55,416
+values stored within. If the x
+
+310
+01:11:55,433 --> 01:11:59,766
+coordinate is greater than the top x but
+
+311
+01:11:59,766 --> 01:12:03,166
+less than the bottom x and the y
+
+312
+01:12:03,166 --> 01:12:04,033
+coordinate is greater
+
+313
+01:12:04,233 --> 01:12:07,733
+than the top y and less than the bottom
+
+314
+01:12:07,733 --> 01:12:10,116
+y. If this is all true then
+
+315
+01:12:10,116 --> 01:12:11,899
+we are indeed within a zone
+
+316
+01:12:12,166 --> 01:12:15,383
+which holds a link. We can then populate
+
+317
+01:12:15,383 --> 01:12:17,933
+the URL from that by using
+
+318
+01:12:17,933 --> 01:12:19,733
+the trim command to trim it
+
+319
+01:12:19,766 --> 01:12:21,966
+down from the extra spaces at the end.
+
+320
+01:12:22,533 --> 01:12:23,366
+We can then return the
+
+321
+01:12:23,366 --> 01:12:25,733
+value true and exit the function
+
+322
+01:12:25,766 --> 01:12:28,933
+immediately. If we find no entry within
+
+323
+01:12:28,933 --> 01:12:30,466
+this array then the value
+
+324
+01:12:30,466 --> 01:12:33,066
+returned is false. So this will
+
+325
+01:12:33,066 --> 01:12:35,083
+give us a mechanism by which when the
+
+326
+01:12:35,083 --> 01:12:37,483
+user clicks on the graphics control we
+
+327
+01:12:37,483 --> 01:12:38,600
+can determine if the
+
+328
+01:12:38,600 --> 01:12:40,800
+area they have clicked on has been stored
+
+329
+01:12:40,800 --> 01:12:44,016
+as an anchor hyperlink. So
+
+330
+01:12:44,016 --> 01:12:45,333
+if this does return true
+
+331
+01:12:45,699 --> 01:12:48,466
+what do we do next? Well we need to link
+
+332
+01:12:48,466 --> 01:12:50,766
+to the new URL. So let's
+
+333
+01:12:50,766 --> 01:12:52,483
+create a new function which can
+
+334
+01:12:52,483 --> 01:12:54,316
+do that for us and we'll call that
+
+335
+01:12:54,316 --> 01:12:57,566
+function process a URL. So here is the
+
+336
+01:12:57,566 --> 01:12:59,583
+skeleton of our new function
+
+337
+01:12:59,600 --> 01:13:02,566
+process a URL taking its single parameter
+
+338
+01:13:02,566 --> 01:13:05,316
+which is the URL itself. Within this
+
+339
+01:13:05,316 --> 01:13:06,000
+function we're going
+
+340
+01:13:06,000 --> 01:13:07,783
+to be using some common code we have
+
+341
+01:13:07,783 --> 01:13:09,500
+already created. So our
+
+342
+01:13:09,500 --> 01:13:11,183
+first task is to determine the
+
+343
+01:13:11,199 --> 01:13:14,633
+existing path of the URL we're currently
+
+344
+01:13:14,633 --> 01:13:16,316
+on. We can get that from
+
+345
+01:13:16,316 --> 01:13:18,733
+the URL text box which is on
+
+346
+01:13:18,733 --> 01:13:20,366
+screen at the top of the dialog.
+
+347
+01:13:21,300 --> 01:13:23,033
+Eventually we're going to have to support
+
+348
+01:13:23,033 --> 01:13:24,566
+documents which are on
+
+349
+01:13:24,566 --> 01:13:26,983
+a web server as opposed to those which
+
+350
+01:13:26,983 --> 01:13:28,666
+are local to the machine
+
+351
+01:13:28,666 --> 01:13:30,199
+we are currently running on.
+
+352
+01:13:30,933 --> 01:13:32,800
+So this code will go through a number of
+
+353
+01:13:32,800 --> 01:13:34,416
+iterations as we move down
+
+354
+01:13:34,416 --> 01:13:36,116
+that path but for the moment
+
+355
+01:13:36,716 --> 01:13:38,866
+we're going to take the value that's in
+
+356
+01:13:38,866 --> 01:13:41,116
+the URL at the top of the
+
+357
+01:13:41,116 --> 01:13:42,800
+dialog and we're going to work
+
+358
+01:13:42,800 --> 01:13:45,383
+out is the path relative to where the
+
+359
+01:13:45,383 --> 01:13:48,133
+existing URL actually is. So we're
+
+360
+01:13:48,133 --> 01:13:50,699
+looking for the backslash
+
+361
+01:13:50,699 --> 01:13:53,433
+and forward slash within the URL variable
+
+362
+01:13:53,433 --> 01:13:55,066
+and we can determine the
+
+363
+01:13:55,066 --> 01:13:57,199
+delimiter either backslash or
+
+364
+01:13:57,199 --> 01:13:58,899
+forward slash depending whether we're
+
+365
+01:13:58,899 --> 01:13:59,966
+actually pulling any local
+
+366
+01:13:59,966 --> 01:14:01,899
+file or we're taking this from
+
+367
+01:14:01,916 --> 01:14:04,199
+somewhere on the world wide web and as
+
+368
+01:14:04,199 --> 01:14:04,983
+we're handling everything
+
+369
+01:14:04,983 --> 01:14:06,800
+locally we're taking the last
+
+370
+01:14:06,800 --> 01:14:10,233
+element of the end of the path replacing
+
+371
+01:14:10,233 --> 01:14:12,566
+that with the file we've
+
+372
+01:14:12,566 --> 01:14:14,883
+just loaded up the URL and
+
+373
+01:14:14,883 --> 01:14:17,516
+we're launching from there. So we're
+
+374
+01:14:17,516 --> 01:14:20,033
+using an inbuilt function in our file
+
+375
+01:14:20,033 --> 01:14:21,216
+handling routines library
+
+376
+01:14:21,833 --> 01:14:24,899
+which is called start range parse. This
+
+377
+01:14:24,899 --> 01:14:26,199
+takes the path the
+
+378
+01:14:26,199 --> 01:14:28,300
+delimiter and the end element.
+
+379
+01:14:29,199 --> 01:14:31,233
+We have determined the end element using
+
+380
+01:14:31,233 --> 01:14:32,616
+the parse count value.
+
+381
+01:14:33,183 --> 01:14:35,866
+This counts the number of elements using
+
+382
+01:14:35,866 --> 01:14:36,866
+the delimiter and
+
+383
+01:14:36,866 --> 01:14:39,633
+subtracts one and we end up with
+
+384
+01:14:39,633 --> 01:14:42,283
+a path which is the path to the folder
+
+385
+01:14:42,283 --> 01:14:44,733
+but not the file itself. We
+
+386
+01:14:44,733 --> 01:14:46,600
+then add on the file we've got
+
+387
+01:14:46,600 --> 01:14:49,566
+from the URL and in later videos we'll
+
+388
+01:14:49,566 --> 01:14:51,133
+put code in to handle these
+
+389
+01:14:51,133 --> 01:14:53,016
+new paths. So now that we've
+
+390
+01:14:53,066 --> 01:14:55,416
+got this far we now need to go through a
+
+391
+01:14:55,416 --> 01:14:57,233
+series of steps to actually
+
+392
+01:14:57,233 --> 01:14:59,066
+set values on the dialogue
+
+393
+01:14:59,433 --> 01:15:01,766
+and to handle the population of our
+
+394
+01:15:01,766 --> 01:15:03,783
+graphics control. So we are
+
+395
+01:15:03,783 --> 01:15:05,816
+first going to call the clear
+
+396
+01:15:05,833 --> 01:15:09,283
+graphics control routine and then set the
+
+397
+01:15:09,283 --> 01:15:10,633
+text at the top of the
+
+398
+01:15:10,633 --> 01:15:12,566
+dialogue to be the URL we're
+
+399
+01:15:12,566 --> 01:15:15,100
+about to link to. We can then store the
+
+400
+01:15:15,100 --> 01:15:18,466
+URL in our global array by determining
+
+401
+01:15:18,466 --> 01:15:19,816
+the tab the user has
+
+402
+01:15:19,833 --> 01:15:22,266
+currently selected and using that to
+
+403
+01:15:22,266 --> 01:15:24,383
+store it in the array. And our final
+
+404
+01:15:24,383 --> 01:15:25,716
+stage is to increment
+
+405
+01:15:25,766 --> 01:15:29,066
+the latest slot array and then store the
+
+406
+01:15:29,066 --> 01:15:30,466
+URL history and then
+
+407
+01:15:30,466 --> 01:15:32,916
+finally render the HTML itself
+
+408
+01:15:33,433 --> 01:15:36,166
+using our existing function setup to
+
+409
+01:15:36,166 --> 01:15:38,183
+perform that task. So these
+
+410
+01:15:38,183 --> 01:15:39,433
+are routines we've created
+
+411
+01:15:39,516 --> 01:15:42,083
+in previous videos. So now that we've got
+
+412
+01:15:42,083 --> 01:15:43,833
+this far how close is our
+
+413
+01:15:43,833 --> 01:15:45,666
+code to completion? Let's
+
+414
+01:15:45,766 --> 01:15:47,899
+try running it. Well there is our
+
+415
+01:15:47,899 --> 01:15:49,316
+browser. Let's try
+
+416
+01:15:49,316 --> 01:15:51,233
+dragging in our index document.
+
+417
+01:15:52,283 --> 01:15:54,533
+Well our index document is showing but
+
+418
+01:15:54,533 --> 01:15:56,183
+we've still got the text
+
+419
+01:15:56,183 --> 01:15:58,383
+for the href on the screen.
+
+420
+01:15:59,199 --> 01:16:02,383
+If we go over page one and click on it we
+
+421
+01:16:02,383 --> 01:16:04,600
+are indeed getting a link to page one.
+
+422
+01:16:05,633 --> 01:16:07,833
+If we go to page two we're getting page
+
+423
+01:16:07,833 --> 01:16:10,833
+two. However we need to
+
+424
+01:16:10,833 --> 01:16:12,300
+get rid of this text on the
+
+425
+01:16:12,333 --> 01:16:14,883
+screen. Let's go back to the code and
+
+426
+01:16:14,883 --> 01:16:16,199
+have a look at what prints
+
+427
+01:16:16,199 --> 01:16:18,166
+on this graphics control.
+
+428
+01:16:19,116 --> 01:16:21,283
+So printing to the graphics control of
+
+429
+01:16:21,283 --> 01:16:22,983
+plain text is done in a
+
+430
+01:16:22,983 --> 01:16:25,433
+function called print data. This
+
+431
+01:16:25,433 --> 01:16:27,566
+determines the position to print and
+
+432
+01:16:27,566 --> 01:16:28,899
+prints text using the
+
+433
+01:16:28,899 --> 01:16:31,416
+graphics print command. And we are
+
+434
+01:16:31,416 --> 01:16:34,283
+storing the value of the data to print in
+
+435
+01:16:34,283 --> 01:16:35,699
+this temporary variable.
+
+436
+01:16:36,866 --> 01:16:38,000
+However if this temporary
+
+437
+01:16:38,100 --> 01:16:40,916
+variable contains an image source command
+
+438
+01:16:40,916 --> 01:16:42,899
+then it's an embedded
+
+439
+01:16:42,899 --> 01:16:45,283
+image. So we need to test and
+
+440
+01:16:45,283 --> 01:16:48,000
+bypass that if that's the case. So here
+
+441
+01:16:48,000 --> 01:16:49,216
+is our test for the
+
+442
+01:16:49,216 --> 01:16:51,199
+embedded link. We're using the in
+
+443
+01:16:51,199 --> 01:16:53,516
+string command to look for image source.
+
+444
+01:16:54,266 --> 01:16:55,866
+As the value within temp
+
+445
+01:16:55,866 --> 01:16:58,366
+data is all lowercase then this
+
+446
+01:16:58,366 --> 01:17:01,000
+will work quite successfully. And if the
+
+447
+01:17:01,000 --> 01:17:02,116
+value is greater than zero
+
+448
+01:17:02,116 --> 01:17:04,133
+then it's an embedded image.
+
+449
+01:17:05,116 --> 01:17:07,716
+So we can pick up the position we are on
+
+450
+01:17:07,716 --> 01:17:09,616
+screen. We can print a
+
+451
+01:17:09,616 --> 01:17:11,600
+blank line and we can then
+
+452
+01:17:11,600 --> 01:17:13,916
+repopulate the global x and y
+
+453
+01:17:13,916 --> 01:17:16,199
+coordinates. So let's try running that
+
+454
+01:17:16,199 --> 01:17:17,983
+code once more. We drag
+
+455
+01:17:17,983 --> 01:17:20,899
+in our index page and we are now missing
+
+456
+01:17:20,899 --> 01:17:24,100
+the text we had before. But
+
+457
+01:17:24,100 --> 01:17:25,583
+the links will still work.
+
+458
+01:17:26,399 --> 01:17:31,699
+And we can have a look at the history and
+
+459
+01:17:31,699 --> 01:17:32,399
+we'll see we have our
+
+460
+01:17:32,399 --> 01:17:34,266
+index page and page two.
+
+461
+01:17:36,316 --> 01:17:38,699
+So all appears to be working quite well.
+
+462
+01:17:39,816 --> 01:17:41,066
+Page one gives us page one,
+
+463
+01:17:41,933 --> 01:17:43,633
+page two gives us page two,
+
+464
+01:17:44,300 --> 01:17:48,066
+and page three gives us page three. If
+
+465
+01:17:48,066 --> 01:17:49,416
+however we scroll down the virtual graphics control
+
+466
+01:17:49,683 --> 01:17:55,533
+and click on page four it's not giving us
+
+467
+01:17:55,533 --> 01:17:58,116
+a page. Or is it? If we
+
+468
+01:17:58,116 --> 01:17:59,983
+scroll back up we'll see we have
+
+469
+01:17:59,983 --> 01:18:03,000
+indeed got page one. So why have we got
+
+470
+01:18:03,000 --> 01:18:04,100
+page one when we
+
+471
+01:18:04,100 --> 01:18:06,066
+actually clicked on page four?
+
+472
+01:18:08,583 --> 01:18:10,216
+The reason for this is the graphics
+
+473
+01:18:10,216 --> 01:18:12,699
+control is virtual. As we
+
+474
+01:18:12,699 --> 01:18:15,683
+scroll up and down the position
+
+475
+01:18:15,683 --> 01:18:17,399
+has actually changed. So what has
+
+476
+01:18:17,399 --> 01:18:18,300
+returned when we click? Are they coordinates? Is it
+
+477
+01:18:18,316 --> 01:18:20,783
+are the coordinates on the top left hand
+
+478
+01:18:20,783 --> 01:18:23,000
+corner of the current part of the window?
+
+479
+01:18:23,983 --> 01:18:26,500
+So if we click on page two it's going to
+
+480
+01:18:26,500 --> 01:18:27,583
+give us page one because
+
+481
+01:18:27,583 --> 01:18:29,216
+that's where page one existed.
+
+482
+01:18:30,083 --> 01:18:32,133
+So we need to find a way of handling when
+
+483
+01:18:32,133 --> 01:18:33,183
+the user has actually
+
+484
+01:18:33,183 --> 01:18:35,100
+scrolled down to a lower part
+
+485
+01:18:35,116 --> 01:18:38,216
+of the graphics page. So let's go back to
+
+486
+01:18:38,216 --> 01:18:39,516
+the code and fix that
+
+487
+01:18:39,516 --> 01:18:41,583
+problem. So when the user actually
+
+488
+01:18:41,583 --> 01:18:44,633
+clicks on the left mouse button we need
+
+489
+01:18:44,633 --> 01:18:46,233
+to make a change to the graphic proc
+
+490
+01:18:46,233 --> 01:18:47,899
+function. In here we're
+
+491
+01:18:47,933 --> 01:18:50,533
+picking up the x and the y coordinates
+
+492
+01:18:50,533 --> 01:18:52,916
+but we're using a virtual
+
+493
+01:18:52,916 --> 01:18:54,983
+window. So we need to get the
+
+494
+01:18:54,983 --> 01:18:58,283
+beginning of this window and Power Basic
+
+495
+01:18:58,283 --> 01:19:00,000
+provides a graphic get
+
+496
+01:19:00,000 --> 01:19:02,416
+view command and this allows us
+
+497
+01:19:02,416 --> 01:19:05,699
+to pick up a width and the height of
+
+498
+01:19:05,699 --> 01:19:07,633
+where we currently are and
+
+499
+01:19:07,633 --> 01:19:09,583
+we can then add that on to the
+
+500
+01:19:09,583 --> 01:19:12,633
+x and y coordinates. So we've now started
+
+501
+01:19:12,633 --> 01:19:14,233
+to use two new variables
+
+502
+01:19:14,233 --> 01:19:15,500
+which we'll need to create at
+
+503
+01:19:15,533 --> 01:19:17,933
+the beginning of our function as we have
+
+504
+01:19:17,933 --> 01:19:19,933
+now done. So this should
+
+505
+01:19:19,933 --> 01:19:21,483
+allow us to correctly pick up
+
+506
+01:19:21,600 --> 01:19:24,016
+where we are actually clicking on and get
+
+507
+01:19:24,016 --> 01:19:25,333
+coordinate system we
+
+508
+01:19:25,333 --> 01:19:26,483
+can actually use with a
+
+509
+01:19:26,483 --> 01:19:28,600
+global array. So let's try running the
+
+510
+01:19:28,600 --> 01:19:30,583
+code once more. We drag in
+
+511
+01:19:30,583 --> 01:19:32,383
+our index, we can click on page
+
+512
+01:19:32,399 --> 01:19:36,933
+one, we can click on page three and if we
+
+513
+01:19:36,933 --> 01:19:39,683
+scroll down if we click on
+
+514
+01:19:39,683 --> 01:19:42,133
+page four it has indeed got
+
+515
+01:19:42,383 --> 01:19:45,383
+page four. However the position on that
+
+516
+01:19:45,383 --> 01:19:48,183
+screen is further down so
+
+517
+01:19:48,183 --> 01:19:50,433
+we'll need to set the location
+
+518
+01:19:50,883 --> 01:19:53,466
+back to the beginning of the page. So
+
+519
+01:19:53,466 --> 01:19:55,366
+there's one more change we have to make.
+
+520
+01:19:56,216 --> 01:19:58,666
+However the ability to click on each of
+
+521
+01:19:58,666 --> 01:20:00,699
+the pages is working quite nicely.
+
+522
+01:20:04,399 --> 01:20:07,100
+So once more back to the code. So there
+
+523
+01:20:07,100 --> 01:20:08,183
+are several places within
+
+524
+01:20:08,183 --> 01:20:09,283
+the code we could probably
+
+525
+01:20:09,433 --> 01:20:12,199
+put this change. However the render the
+
+526
+01:20:12,199 --> 01:20:13,800
+html function is where
+
+527
+01:20:13,800 --> 01:20:15,383
+all information is rendered
+
+528
+01:20:15,383 --> 01:20:17,633
+to the graphics control. So it's the
+
+529
+01:20:17,633 --> 01:20:19,983
+logical place to put this single line of
+
+530
+01:20:19,983 --> 01:20:21,716
+code. This is where we
+
+531
+01:20:21,716 --> 01:20:24,300
+set up details for the graphics control.
+
+532
+01:20:24,866 --> 01:20:26,283
+We do a clear command, we set
+
+533
+01:20:26,283 --> 01:20:27,583
+the colors, we set the phone,
+
+534
+01:20:27,833 --> 01:20:30,383
+we set the position. So we're going to
+
+535
+01:20:30,383 --> 01:20:32,100
+enter a new line of code in
+
+536
+01:20:32,100 --> 01:20:33,583
+here and that's to use the
+
+537
+01:20:33,600 --> 01:20:37,600
+graphic set view command. This will set
+
+538
+01:20:37,600 --> 01:20:39,666
+the view to 00 which is the
+
+539
+01:20:39,666 --> 01:20:41,199
+top left hand coordinates of
+
+540
+01:20:41,199 --> 01:20:44,116
+our graphics control. So if we try
+
+541
+01:20:44,116 --> 01:20:46,783
+running the code once more, bring in our
+
+542
+01:20:46,783 --> 01:20:49,483
+index page, scroll down,
+
+543
+01:20:50,100 --> 01:20:55,199
+select page four and go back. We're now
+
+544
+01:20:55,199 --> 01:20:57,516
+going back to the beginning of the page
+
+545
+01:20:59,766 --> 01:21:01,033
+which is ideal.
+
+546
+01:21:05,399 --> 01:21:07,366
+So we can link to each of the pages quite
+
+547
+01:21:07,366 --> 01:21:08,766
+successfully regardless
+
+548
+01:21:08,766 --> 01:21:10,783
+of the size of our browser.
+
+549
+01:21:12,883 --> 01:21:15,016
+We can make our browser larger to
+
+550
+01:21:15,016 --> 01:21:16,566
+accommodate all four links
+
+551
+01:21:16,566 --> 01:21:19,633
+and we can link quite easily
+
+552
+01:21:19,633 --> 01:21:21,816
+between each of the pages.
+
+553
+01:21:24,983 --> 01:21:25,933
+And if we click on an
+
+554
+01:21:25,933 --> 01:21:27,983
+area outside the click zones,
+
+555
+01:21:28,166 --> 01:21:33,100
+nothing happens. We need to be inside the
+
+556
+01:21:33,100 --> 01:21:34,133
+zone which we have
+
+557
+01:21:34,133 --> 01:21:35,416
+trapped the coordinates of
+
+558
+01:21:35,416 --> 01:21:38,383
+in order to make the anchor link work
+
+559
+01:21:38,383 --> 01:21:41,216
+correctly. So in summary what we've
+
+560
+01:21:41,216 --> 01:21:42,800
+achieved today is we have
+
+561
+01:21:42,800 --> 01:21:47,916
+added a new html command, the anchor tag.
+
+562
+01:21:48,633 --> 01:21:50,233
+This allows us to wrap
+
+563
+01:21:50,233 --> 01:21:52,966
+around the image tag and make
+
+564
+01:21:52,966 --> 01:21:55,866
+the image a clickable link. The user when
+
+565
+01:21:55,866 --> 01:21:56,933
+they click on this image
+
+566
+01:21:56,933 --> 01:21:57,100
+can then link to the image
+
+567
+01:21:57,116 --> 01:21:59,833
+and then link to another document. So
+
+568
+01:21:59,833 --> 01:22:01,583
+using this technique we can actually
+
+569
+01:22:01,583 --> 01:22:02,983
+connect together a large
+
+570
+01:22:03,033 --> 01:22:05,283
+number of documents and as we are
+
+571
+01:22:05,283 --> 01:22:08,433
+supporting up to 100 links within any one
+
+572
+01:22:08,433 --> 01:22:10,116
+html file this gives
+
+573
+01:22:10,116 --> 01:22:13,266
+you a great deal of flexibility. There is
+
+574
+01:22:13,266 --> 01:22:14,466
+of course a great deal
+
+575
+01:22:14,466 --> 01:22:16,283
+more to be done with anchors
+
+576
+01:22:16,566 --> 01:22:20,283
+and links in general. However we'll leave
+
+577
+01:22:20,283 --> 01:22:21,800
+that for a later
+
+578
+01:22:21,800 --> 01:22:24,216
+video. That's it for today,
+
+579
+01:22:24,266 --> 01:22:26,366
+thank you for watching.
+
