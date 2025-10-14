@@ -1,0 +1,84 @@
+10 INPUT "WARM START";W$
+20 IF W$="y" THEN GOTO 1000
+30 IF W$="Y" THEN GOTO 1000
+50 INPUT "Tens of Hours (24Hr Clock)";HT
+60 INPUT "Hours";H
+70 INPUT "Tens of Minutes"; MT
+80 INPUT "Minutes";M
+90 INPUT "Tens of Seconds"; ST
+100 INPUT "seconds"; S
+110 INPUT "Tens of Years";YT
+120 INPUT "Years";Y
+130 INPUT "Tens of months";NT
+140 INPUT "Months";N
+150 INPUT "Tens of Days";DT
+160 INPUT "Days";D
+
+190 REM check chip ready
+200 OUT 127,4
+210 OUT 125,0
+220 OUT 125,1
+230 IF (INP(125) AND 2) = 0 THEN GOTO 260
+240 OUT 125,0
+250 GOTO 220
+260 OUT 127,7
+
+300 FOR PT=112 TO 124
+310 OUT PT,0
+320 NEXT PT
+
+390 REM output date time to Epson chip
+400 OUT 117,HT
+410 OUT 116,H
+420 OUT 115,MT
+430 OUT 114,M
+440 OUT 113,ST
+450 OUT 112,S
+460 OUT 118,D
+470 OUT 119,DT
+480 OUT 120,N
+490 OUT 121,NT
+500 OUT 122,Y
+510 OUT 123,YT
+
+600 OUT 127,4
+610 OUT 125,0
+
+
+990 REM pick up time/date from epson chip
+1000 LET HT=(INP(117) AND 3)
+1010 LET H=(INP(116) AND 15)
+1020 LET MT=(INP(115) AND 15)
+1030 LET M=(INP(114) AND 15)
+1040 LET ST=(INP(113) AND 15)
+1050 LET S=(INP(112) AND 15)
+
+1060 REM get date
+1070 LET D=(INP(118) AND 15)
+1080 LET DT=(INP(119) AND 3)
+1090 LET N=(INP(120) and 15)
+1100 LET NT=(INP(121) and 15)
+1110 LET Y=(INP(122) and 15)
+1120 LET YT=(INP(123) and 15)
+
+
+2000 REM output to display
+2010 OUT 56,M
+2020 OUT 57,MT
+2030 OUT 58,H
+2040 OUT 59,HT
+
+3000 REM wait a bit
+3010 FOR X=1 TO 1000
+3020 NEXT X
+
+3030 REM output time to screen
+3040 REM -- reformat to exclude spaces
+3050 PRINT mid$(str$(HT),2,1);mid$(str$(H),2,1);":";
+3060 PRINT mid$(str$(MT),2,1);mid$(str$(M),2,1);":";
+3070 print mid$(str$(ST),2,1);mid$(str$(S),2,1),
+3080 print mid$(str$(DT),2,1);mid$(str$(D),2,1);"/";
+3090 print mid$(str$(NT),2,1);mid$(str$(N),2,1);"/";
+3100 print mid$(str$(YT),2,1);mid$(str$(Y),2,1)
+
+4000 GOTO 600
