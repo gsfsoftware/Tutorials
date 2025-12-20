@@ -1,0 +1,519 @@
+#PBFORMS CREATED V2.01
+'------------------------------------------------------------------------------
+' The first line in this file is a PB/Forms metastatement.
+' It should ALWAYS be the first line of the file. Other
+' PB/Forms metastatements are placed at the beginning and
+' end of "Named Blocks" of code that should be edited
+' with PBForms only. Do not manually edit or delete these
+' metastatements or PB/Forms will not be able to reread
+' the file correctly.  See the PB/Forms documentation for
+' more information.
+' Named blocks begin like this:    #PBFORMS BEGIN ...
+' Named blocks end like this:      #PBFORMS END ...
+' Other PB/Forms metastatements such as:
+'     #PBFORMS DECLARATIONS
+' are used by PB/Forms to insert additional code.
+' Feel free to make changes anywhere else in the file.
+'------------------------------------------------------------------------------
+
+#COMPILE EXE
+#DIM ALL
+
+'------------------------------------------------------------------------------
+'   ** Includes **
+'------------------------------------------------------------------------------
+#PBFORMS BEGIN INCLUDES
+#RESOURCE "FormDemo.pbr"
+%USEMACROS = 1
+#INCLUDE ONCE "WIN32API.INC"
+#INCLUDE ONCE "COMMCTRL.INC"
+#INCLUDE ONCE "PBForms.INC"
+#PBFORMS END INCLUDES
+'------------------------------------------------------------------------------
+#INCLUDE "DateFunctions.inc"
+'------------------------------------------------------------------------------
+'   ** Constants **
+'------------------------------------------------------------------------------
+#PBFORMS BEGIN CONSTANTS
+%IDD_dlgGetTitle       =  101
+%IDC_lblTitle          = 1001
+%IDABORT               =    3
+%IDC_txtTitle          = 1002
+%IDC_lblName           = 1005
+%IDC_lblAge            = 1006
+%IDC_txtName           = 1003
+%IDC_txtAge            = 1004
+%IDC_SUBMIT            = 1007
+%IDC_lblFeedBack       = 1008
+%IDC_lblFeedBackOutput = 1009
+%IDC_lblDepartment     = 1012
+%IDC_cboDepartment     = 1011
+%IDC_lblWorkingPattern = 1015
+%IDC_lstWorkingPattern = 1014
+%IDC_lblStartDate      = 1017
+%IDC_datStartDate      = 1016
+#PBFORMS END CONSTANTS
+'------------------------------------------------------------------------------
+
+'------------------------------------------------------------------------------
+'   ** Declarations **
+'------------------------------------------------------------------------------
+
+#PBFORMS DECLARATIONS
+'------------------------------------------------------------------------------
+GLOBAL g_hFont1 AS DWORD ' used for large fonts
+%StarterBuffer = 7       ' number of days buffer for new starters
+'
+'------------------------------------------------------------------------------
+'   ** Main Application Entry Point **
+'------------------------------------------------------------------------------
+FUNCTION PBMAIN()
+  PBFormsInitComCtls (%ICC_WIN95_CLASSES OR %ICC_DATE_CLASSES OR _
+    %ICC_INTERNET_CLASSES)
+   ' set up global font for large text
+  FONT NEW "MS Sans Serif", 18, 0, %ANSI_CHARSET TO g_hFont1
+  DIALOG DEFAULT FONT "MS Sans Serif", 10, 0, %ANSI_CHARSET
+  '
+  ShowTitle %HWND_DESKTOP
+  '
+  FONT END g_hFont1
+  '
+END FUNCTION
+'------------------------------------------------------------------------------
+
+'------------------------------------------------------------------------------
+'   ** CallBacks **
+'------------------------------------------------------------------------------
+CALLBACK FUNCTION ShowTitleProc()
+  LOCAL strDepartment AS STRING ' Department selected
+  STATIC strStartDate AS STRING  ' start date for new user
+  '
+  LOCAL ptnmhdr AS NMHDR PTR            ' information about a notification
+  LOCAL ptnmdtc AS NMDATETIMECHANGE PTR ' date time information
+  '
+  SELECT CASE AS LONG CB.MSG
+    CASE %WM_INITDIALOG
+    ' Initialization handler
+       ' set the font for each control
+      PREFIX "CONTROL SET FONT CB.HNDL, "
+        %IDC_lblTitle,g_hFont1
+        %IDC_lblName,g_hFont1
+        %IDC_lblAge,g_hFont1
+        %IDC_lblFeedbackOutput,g_hFont1
+        %IDC_lblDepartment, g_hFont1
+        %IDC_lblWorkingPattern, g_hFont1
+        %IDC_lblStartDate, g_hFont1
+      END PREFIX
+      ' set focus to the first control
+      ' you wish user to access
+      CONTROL SET FOCUS CB.HNDL,%IDC_txtTitle
+      '
+      ' populate the departments list
+      funPopulateDepartments(CB.HNDL,%IDC_cboDepartment)
+      '
+      ' populate the working patterns
+      funPopulateWorkingPatterns(CB.HNDL,%IDC_LstWorkingPattern)
+      '
+      ' set the start date
+      LOCAL iptDay AS IPOWERTIME
+      LET iptDay = CLASS "PowerTime"
+      iptDay.Today   ' pick up today as a date
+      ' populate static variable with that date
+      strStartDate = iptDay.DateString
+      '
+    CASE %WM_NCACTIVATE
+      STATIC hWndSaveFocus AS DWORD
+      IF ISFALSE CB.WPARAM THEN
+        ' Save control focus
+        hWndSaveFocus = GetFocus()
+      ELSEIF hWndSaveFocus THEN
+        ' Restore control focus
+        SetFocus(hWndSaveFocus)
+        hWndSaveFocus = 0
+      END IF
+      '
+    CASE %WM_NOTIFY
+      ptnmhdr = CB.LPARAM
+      SELECT CASE @ptnmhdr.idfrom
+        CASE %IDC_datStartDate
+          SELECT CASE @ptnmhdr.code
+            CASE %DTN_DATETIMECHANGE
+              ptnmdtc = CB.LPARAM
+              strStartDate = RIGHT$("00" & FORMAT$(@ptnmdtc.st.wDay),2) _
+                             & "/" & _
+                             RIGHT$("00" & FORMAT$(@ptnmdtc.st.wMonth),2) _
+                             & "/" & _
+                             FORMAT$(@ptnmdtc.st.wYear)
+         END SELECT
+      END SELECT
+      '
+    CASE %WM_COMMAND
+      ' Process control notifications
+      SELECT CASE AS LONG CB.CTL
+        CASE %IDABORT
+          IF CB.CTLMSG = %BN_CLICKED OR CB.CTLMSG = 1 THEN
+            DIALOG END CB.HNDL
+          END IF
+          '
+        CASE %IDC_cboDepartment
+        ' handle events for the Department combobox
+          IF CB.CTLMSG = %BN_CLICKED OR CB.CTLMSG = 1 THEN
+            ' selection has been made
+            CONTROL GET TEXT CB.HNDL,%IDC_cboDepartment TO strDepartment
+            '
+            IF strDepartment = "HR" THEN
+            ' HR selected
+            ' so hide the shift options
+              PREFIX "control hide cb.hndl,"
+                %IDC_lblWorkingPattern
+                %IDC_lstWorkingPattern
+              END PREFIX
+              '
+            ELSE
+            ' some other department selected
+              PREFIX "control normalize cb.hndl,"
+                %IDC_lblWorkingPattern
+                %IDC_lstWorkingPattern
+              END PREFIX
+              '
+            END IF
+            '
+          END IF
+          '
+        CASE %IDC_txtTitle
+        '
+        CASE %IDC_txtAge
+        ' events for Age field
+          SELECT CASE CB.CTLMSG
+            CASE %EN_SETFOCUS
+            ' field has focus so preselect the field
+              CONTROL SEND CB.HNDL, %IDC_txtAge, %EM_SetSel, 0, -1
+          END SELECT
+          '
+        CASE %IDC_Submit
+          IF CB.CTLMSG = %BN_CLICKED OR CB.CTLMSG = 1 THEN
+          ' submit button has been pressed
+          ' so validate input
+            IF ISTRUE funValidateForm(CB.HNDL, strStartDate) THEN
+            ' and confirm to user
+            '
+            END IF
+          '
+          END IF
+      END SELECT
+  END SELECT
+END FUNCTION
+'
+FUNCTION funPopulateDepartments(hDlg AS DWORD, _
+                                lngCombo AS LONG) AS LONG
+' populate the departments list
+  DIM a_strDepartments(1 TO 5) AS STRING
+  'LOCAL lngR AS LONG
+  '
+  ARRAY ASSIGN a_strDepartments() = "Marketing","Finance", _
+                                    "HR","Facilities", _
+                                    "IT"
+  funPopulateCombo(hDlg,lngCombo,a_strDepartments())
+  'COMBOBOX RESET hDlg,lngCombo
+  'FOR lngR = 1 TO UBOUND(a_strDepartments)
+  '  COMBOBOX ADD hDlg,lngCombo,a_strDepartments(lngR)
+  'NEXT lngR
+  '
+END FUNCTION
+'
+FUNCTION funPopulateWorkingPatterns(hDlg AS DWORD, _
+                                    lnglistbox AS LONG) AS LONG
+' populate the working patterns list
+  DIM a_strWorkingPatterns(1 TO 3) AS STRING
+  '
+  ARRAY ASSIGN a_strWorkingPatterns() = "Shift 3", _
+                                        "Shift 2", _
+                                        "Shift 1"
+  '
+  funPopulateListBox(hDlg,lnglistbox,a_strWorkingPatterns())
+  '
+END FUNCTION
+'
+FUNCTION funPopulateListbox(hDlg AS DWORD, _
+                          lnglistbox AS LONG, _
+                          BYREF a_strArray() AS STRING) AS LONG
+' populate listboxfrom array
+  LOCAL lngR AS LONG
+  '
+  LISTBOX RESET hDlg,lnglistbox
+  FOR lngR = 1 TO UBOUND(a_strArray)
+    LISTBOX ADD hDlg,lnglistbox,a_strArray(lngR)
+  NEXT lngR
+'
+END FUNCTION
+'
+FUNCTION funPopulateCombo(hDlg AS DWORD, _
+                          lngCombo AS LONG, _
+                          BYREF a_strArray() AS STRING) AS LONG
+' populate combo from array
+  LOCAL lngR AS LONG
+  '
+  COMBOBOX RESET hDlg,lngCombo
+  FOR lngR = 1 TO UBOUND(a_strArray)
+    COMBOBOX ADD hDlg,lngCombo,a_strArray(lngR)
+  NEXT lngR
+  '
+END FUNCTION
+'------------------------------------------------------------------------------
+FUNCTION funValidateForm(hDlg AS DWORD, _
+                         strStartDate AS STRING) AS LONG
+' validate the form
+  LOCAL strTitle AS STRING    ' title value
+  LOCAL strName AS STRING     ' name value
+  LOCAL strAge AS STRING      ' age value
+  LOCAL strOutput AS STRING   ' output text
+  LOCAL strDepartment AS STRING     ' department value
+  LOCAL strWorkingPattern AS STRING ' working pattern value
+  '
+  PREFIX "control get text hDlg,"
+    %IDC_txtTitle TO strTitle
+    %IDC_txtName TO strName
+    %IDC_txtAge TO strAge
+    %IDC_cboDepartment TO strDepartment
+  END PREFIX
+  '
+  strWorkingPattern = funGetLBvalues(hDlg,%IDC_LstWorkingPattern)
+  '
+  IF TRIM$(strTitle) = "" THEN
+  ' no title
+  ' highlight an error
+    macErrorHighlight(hDlg,%IDC_lblFeedbackOutput, _
+                      "No Title entered", %IDC_lblTitle, _
+                      %IDC_txtTitle)
+    EXIT FUNCTION
+  ELSE
+  ' clear any error
+    macClearHighlight(hDlg,%IDC_lblFeedbackOutput, _
+                      %IDC_lblTitle)
+  END IF
+  '
+  IF TRIM$(strName) = "" THEN
+  ' no name
+    macErrorHighlight(hDlg,%IDC_lblFeedbackOutput, _
+                      "No Name entered", %IDC_lblName, _
+                      %IDC_txtName)
+    EXIT FUNCTION
+  ELSE
+    ' clear any error
+    macClearHighlight(hDlg,%IDC_lblFeedbackOutput, _
+                      %IDC_lblName)
+  END IF
+  '
+  IF VAL(strAge) > 99 OR VAL(strAge) < 18 THEN
+  ' invalid age
+    macErrorHighlight(hDlg, _
+                      %IDC_lblFeedbackOutput, _
+                      "Age is too young, old or missing", _
+                      %IDC_lblAge, _
+                      %IDC_txtAge)
+    EXIT FUNCTION
+    '
+  ELSE
+    macClearHighlight(hDlg, _
+                      %IDC_lblFeedbackOutput, _
+                      %IDC_lblAge)
+  END IF
+  '
+  IF strDepartment = "" THEN
+  ' no department picked
+    macErrorHighlight(hDlg, _
+                      %IDC_lblFeedbackOutput, _
+                      "No department picked", _
+                      %IDC_lblDepartment, _
+                      %IDC_cboDepartment)
+    EXIT FUNCTION
+  '
+  ELSE
+    macClearHighlight(hDlg, _
+                      %IDC_lblFeedbackOutput, _
+                      %IDC_lblDepartment)
+  END IF
+  '
+  ' working pattern does not apply to HR department
+  IF strDepartment = "HR" THEN
+    strWorkingPattern = "HR Full time"
+    macClearHighlight(hDlg, _
+                      %IDC_lblFeedbackOutput, _
+                      %IDC_lblWorkingPattern)
+  ELSE
+  ' all other departments
+    IF strWorkingPattern = "" THEN
+      macErrorHighlight(hDlg, _
+                      %IDC_lblFeedbackOutput, _
+                      "No working pattern picked", _
+                      %IDC_lblWorkingPattern, _
+                      %IDC_lstWorkingPattern)
+      EXIT FUNCTION
+    ELSE
+      macClearHighlight(hDlg, _
+                      %IDC_lblFeedbackOutput, _
+                      %IDC_lblWorkingPattern)
+    END IF
+  '
+  END IF
+  '
+  ' check the start date
+  ' is start date before today?
+  LOCAL strError AS STRING    ' error msg to show to user
+  LOCAL lngError AS LONG      ' true/false for error
+  LOCAL strNewDate AS STRING  ' start date plus starter buffer
+  ' add days to UK format date
+  strNewDate = funAddDays(funUKdate, %StarterBuffer,"UK")
+  '
+  IF funDateNumberUK(strStartDate) < funDateNumberUK(funUKdate) THEN
+  ' start date is in the past
+    strError = "Start date is in the past"
+    lngError = %TRUE
+  ELSEIF funDateNumberUK(strStartDate) < _
+          funDateNumberUK(strNewDate) THEN
+  ' start date is less than 7 days away
+    strError = "Start date is less than 7 days away"
+    lngError = %TRUE
+  END IF
+  '
+  IF ISTRUE lngError THEN
+    macErrorHighlight(hDlg, _
+                        %IDC_lblFeedbackOutput, _
+                        strError, _
+                        %IDC_lblStartDate, _
+                        %IDC_datStartDate)
+    EXIT FUNCTION
+  ELSE
+    macClearHighlight(hDlg, _
+                        %IDC_lblFeedbackOutput, _
+                        %IDC_lblStartDate)
+  '
+  END IF
+  ' all tests pass - validate data to user
+  strOutput = TRIM$(strTitle) & " " & TRIM$(strName) & $CRLF & _
+             "Age = " & strAge & $CRLF & _
+             "Department = " & strDepartment & $CRLF & _
+             "Working pattern = " & strWorkingPattern & $CRLF & _
+             "Start Date = " & strStartDate
+             '
+  CONTROL SET TEXT hDlg, %IDC_lblFeedbackOutput, strOutput
+  FUNCTION = %TRUE
+  '
+END FUNCTION
+'
+FUNCTION funGetLBvalues(hDlg AS DWORD, _
+                        lngListBox AS LONG) AS STRING
+' return all selected values in a listbox
+  LOCAL lngCountSelected AS LONG    ' number of items selected
+  LOCAL lngItemSelected AS LONG     ' item number of selected
+  LOCAL strListOfSelected AS STRING ' string of selected items
+  LOCAL strText AS STRING           ' text on selected item
+  '
+  LISTBOX GET SELCOUNT hDlg, lngListBox TO lngCountSelected
+  '
+  IF lngCountSelected = 0 THEN
+  ' nothing selected
+    FUNCTION = ""
+  ELSE
+    LISTBOX GET SELECT hDlg, lngListBox ,1 TO lngItemSelected
+    WHILE lngItemSelected > 0
+      LISTBOX GET TEXT hDlg, lngListBox ,lngItemSelected _
+                             TO strText
+      ' add on to the running list
+      strListOfSelected = strListOfSelected & strText & ","
+      INCR lngItemSelected
+      LISTBOX GET SELECT hDlg, lngListBox ,lngItemSelected _
+                               TO lngItemSelected
+    WEND
+    ' trim off last comma
+    strListOfSelected = RTRIM$(strListOfSelected,",")
+    FUNCTION = strListOfSelected
+    '
+  END IF
+  '
+END FUNCTION
+'
+MACRO macClearHighlight(hDlg,lngFeedbackOutput, _
+                        lngLabel)
+  CONTROL SET COLOR hDlg,lngLabel, %BLUE,-1
+  CONTROL REDRAW hDlg,lngLabel
+  CONTROL SET TEXT hDlg,lngFeedbackOutput,""
+  CONTROL REDRAW hDlg,lngFeedbackOutput
+END MACRO
+'
+MACRO macErrorHighlight(hDlg,lngFeedbackOutput, _
+                        strText, lngLabel, _
+                        lngText)
+   CONTROL SET TEXT hDlg,lngFeedbackOutput,strText
+   CONTROL SET COLOR hDlg,lngLabel, %RED,-1
+   CONTROL REDRAW hDlg,lngLabel
+   CONTROL SET FOCUS hDlg,lngText
+END MACRO
+'------------------------------------------------------------------------------
+'   ** Dialogs **
+'------------------------------------------------------------------------------
+FUNCTION ShowTitle(BYVAL hParent AS DWORD) AS LONG
+  LOCAL lRslt  AS LONG
+
+#PBFORMS BEGIN DIALOG %IDD_dlgGetTitle->->
+  LOCAL hDlg  AS DWORD
+
+  DIALOG NEW hParent, "Enter the Title", 286, 172, 653, 278, %WS_POPUP OR _
+    %WS_BORDER OR %WS_DLGFRAME OR %WS_CAPTION OR %WS_SYSMENU OR _
+    %WS_MINIMIZEBOX OR %WS_MAXIMIZEBOX OR %WS_CLIPSIBLINGS OR %WS_VISIBLE OR _
+    %DS_MODALFRAME OR %DS_CENTER OR %DS_3DLOOK OR %DS_NOFAILCREATE OR _
+    %DS_SETFONT, %WS_EX_CONTROLPARENT OR %WS_EX_LEFT OR %WS_EX_LTRREADING OR _
+    %WS_EX_RIGHTSCROLLBAR, TO hDlg
+  CONTROL ADD TEXTBOX,  hDlg, %IDC_txtTitle, "", 45, 50, 165, 15
+  CONTROL ADD TEXTBOX,  hDlg, %IDC_txtName, "", 45, 95, 165, 15
+  CONTROL ADD TEXTBOX,  hDlg, %IDC_txtAge, "", 45, 135, 50, 15, %WS_CHILD OR _
+    %WS_VISIBLE OR %WS_TABSTOP OR %ES_CENTER OR %ES_AUTOHSCROLL OR _
+    %ES_NUMBER, %WS_EX_CLIENTEDGE OR %WS_EX_LEFT OR %WS_EX_LTRREADING OR _
+    %WS_EX_RIGHTSCROLLBAR
+  CONTROL ADD COMBOBOX, hDlg, %IDC_cboDepartment, , 45, 175, 160, 40, _
+    %WS_CHILD OR %WS_VISIBLE OR %WS_TABSTOP OR %CBS_DROPDOWNLIST OR _
+    %CBS_SORT, %WS_EX_LEFT OR %WS_EX_LTRREADING OR %WS_EX_RIGHTSCROLLBAR
+  CONTROL ADD LISTBOX,  hDlg, %IDC_lstWorkingPattern, , 45, 210, 100, 50, _
+    %WS_CHILD OR %WS_VISIBLE OR %WS_TABSTOP OR %WS_VSCROLL OR _
+    %LBS_MULTIPLESEL OR %LBS_SORT OR %LBS_NOTIFY, %WS_EX_CLIENTEDGE OR _
+    %WS_EX_LEFT OR %WS_EX_LTRREADING OR %WS_EX_RIGHTSCROLLBAR
+  CONTROL ADD "SysDateTimePick32", hDlg, %IDC_datStartDate, _
+    "SysDateTimePick32_1", 240, 51, 100, 13, %WS_CHILD OR %WS_VISIBLE OR _
+    %WS_TABSTOP OR %DTS_SHORTDATEFORMAT, %WS_EX_CLIENTEDGE OR %WS_EX_LEFT OR _
+    %WS_EX_LTRREADING OR %WS_EX_RIGHTSCROLLBAR
+  CONTROL ADD BUTTON,   hDlg, %IDC_SUBMIT, "Submit", 255, 250, 50, 15
+  CONTROL ADD BUTTON,   hDlg, %IDABORT, "Exit", 595, 250, 50, 15
+  CONTROL ADD LABEL,    hDlg, %IDC_lblTitle, "Title goes here", 45, 35, 165, _
+    15
+  CONTROL SET COLOR     hDlg, %IDC_lblTitle, %BLUE, -1
+  CONTROL ADD LABEL,    hDlg, %IDC_lblName, "Name goes here", 45, 80, 165, 15
+  CONTROL SET COLOR     hDlg, %IDC_lblName, %BLUE, -1
+  CONTROL ADD LABEL,    hDlg, %IDC_lblAge, "Age goes here", 45, 120, 165, 15
+  CONTROL SET COLOR     hDlg, %IDC_lblAge, %BLUE, -1
+  CONTROL ADD LABEL,    hDlg, %IDC_lblFeedBackOutput, "", 430, 50, 200, 160, _
+    %WS_CHILD OR %WS_VISIBLE OR %SS_LEFT, %WS_EX_CLIENTEDGE OR %WS_EX_LEFT _
+    OR %WS_EX_LTRREADING
+  CONTROL ADD LABEL,    hDlg, %IDC_lblFeedBack, "Form Feedback", 430, 35, _
+    165, 15
+  CONTROL SET COLOR     hDlg, %IDC_lblFeedBack, %BLUE, -1
+  CONTROL ADD LABEL,    hDlg, %IDC_lblDepartment, "Department goes here", 45, _
+    160, 165, 15
+  CONTROL SET COLOR     hDlg, %IDC_lblDepartment, %BLUE, -1
+  CONTROL ADD LABEL,    hDlg, %IDC_lblWorkingPattern, "Working Pattern goes " + _
+    "here", 45, 195, 165, 15
+  CONTROL SET COLOR     hDlg, %IDC_lblWorkingPattern, %BLUE, -1
+  CONTROL ADD LABEL,    hDlg, %IDC_lblStartDate, "Start Date goes here", 240, _
+    37, 165, 15
+  CONTROL SET COLOR     hDlg, %IDC_lblStartDate, %BLUE, -1
+#PBFORMS END DIALOG
+  '
+  ' your code goes here
+  '
+  DIALOG SHOW MODAL hDlg, CALL ShowTitleProc TO lRslt
+
+#PBFORMS BEGIN CLEANUP %IDD_dlgGetTitle
+#PBFORMS END CLEANUP
+
+  FUNCTION = lRslt
+END FUNCTION
+'------------------------------------------------------------------------------
