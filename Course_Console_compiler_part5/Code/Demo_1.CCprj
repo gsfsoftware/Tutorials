@@ -1,0 +1,29 @@
+PowerBASIC project
+PBCC
+2
+SaveFile000="/A:/W:0,0,9,35:H:\Youtube\PowerBasic\Course_Console_compiler_part2\Code\Demo_1.bas"
+SaveFile001="/W:10,0,4,25:H:\Youtube\PowerBasic\Course_Console_compiler_part2\Code\PB_CommonConsoleFunctions.inc"
+Include0="H:\PowerBasic\PBCC60\WinAPI"
+Include1=
+Include2=
+Include3=
+Include4=
+Include5=
+Include6=
+Include7=
+Include8=
+Include9=
+Watch="ERR",0,
+Watch="strSeedDate",0,
+Watch="strDateFormat",0,
+Watch="lngDays",0,
+CommandLine0="/TimeSlotRef#"1" /Building#"1" /Hour# "1" /TimeSlot# "1"
+CommandLine1="D:\Paradox\WarpCore_Service\wc_ProcessTimeSlot.EXE /TimeSlotRef#"1" /Building#"1" /Hour# "1" /TimeSlot# "1"
+CommandLine2=""
+CommandLine3=""
+CommandLine4=""
+CommandLine5=""
+CommandLine6=""
+CommandLine7=""
+CommandLine8=""
+CommandLine9=""
