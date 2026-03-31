@@ -1,0 +1,4 @@
+Name,Payroll,LeaveType,Start Date,End Date,CourtRef,HomeWorking,DailyHours
+"John Smith","x1234","Holiday","01/07/2024","05/07/2024","","",""
+"Jane Thomas","x3456","Jury Duty","01/07/2024","05/07/2024","1234","",""
+"Tim","Smith","Holiday","14/05/2025","14/05/2025","","1","jjjkkkkkkknmnnn"
