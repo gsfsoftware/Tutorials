@@ -1,0 +1,14 @@
+SOFTWARE LICENSE AGREEMENT
+
+This is an agreement between Rainer Morgen (the Licensor), and you. It covers your use of RMChart ("the Software"). Do not use the Software accompanying this Agreement until you have carefully read the following Agreement. Using the Software (or authorizing any other person to do so) indicates your acceptance of the terms and conditions contained in this Agreement. If you do not agree with the terms and conditions of this Agreement, promptly remove the Software from your computer.
+
+You are granted a non-exclusive license to use the Software. This license grants you the right to use the Software on a royalty-free basis as freeware (without fee). You may freely distribute along with your application the files rmchart.dll and rmchart.ocx, as long as you  mention somewhere in your program and/or in the acompanying documents ("About", "Readme file" and so on), that your application uses RMChart.
+
+The Software is protected by copyright laws. You may not decompile, reverse engineer, disassemble, or otherwise reduce the Software to human-perceivable form. You may not modify, adapt, translate, rent, sublicense, assign, lease, loan, resell for profit, distribute, or network the Software or create derivative works based upon the Softwareor any part thereof.
+
+THIS SOFTWARE IS PROVIDED "AS-IS", WITHOUT A WARRANTY OF ANY KIND. ALL EXPRESS OR IMPLIED REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. IN NO EVENT SHALL THE LICENSOR OR CONTRIBUTORS BE LIABLE FOR ANY PROBLEMS OR DAMAGES OF ANY KIND (HARDWARE OR SOFTWARE, DIRECT OR INDIRECT, CAUSING A LOSS OF TIME, DATA, MONEY, OR ANYTHING ELSE) RESULTING FROM THE USE OF THE SOFTWARE.
+
+                                                          
+                                                         Rainer Morgen
+                                                  http://www.rmchart.com
+                                                         (C) 2004-2005
