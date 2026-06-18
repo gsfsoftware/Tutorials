@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>Clock in and Out</title>
+</head>
+
+<body>
+<table bgcolor="#006699" width="90%">
+<tr >
+<td width="90%" style="color:white"><h1>Clocking In or Out</h1></td>
+<td width="10%"><img src="Graphics/Logo_GSF.png" width="128" height="67" alt=""></td>
+</tr>
+</table>
+
+<h2>Time Clocking Service - @@TIME@@</h2>
+
+<form name="ClockRequests" method="post" action="/CGI_BIN/CGI_SaveClocking.exe">
+
+<table>
+<tr>
+<td>User name
+<input type="text"  title="Enter name" size="60" name="username" value="" />
+</td>
+</tr>
+
+<tr>
+<td>Payroll ID
+<input type="text" title="Enter Payroll ID" size ="6" name="payroll" value="" />
+</td>
+</tr>
+
+<tr>
+<td>
+<input type="submit" title="Click here to save your Clockings" value="Submit Decision" />
+<td>
+<tr>
+</table>
+</form>
+
+</body>
+</html>
